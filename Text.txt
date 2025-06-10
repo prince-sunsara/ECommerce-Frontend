@@ -1,0 +1,30 @@
+🌑 Background & Section Colors:
+Main background color (dark purple/gray): #2B2A40
+
+Form section background (right side): #1C1B2A
+
+Left image section overlay: #1B182F
+
+🟣 Button & Highlight Colors:
+"Create account" button color: #7D5FFF
+
+Google/Apple button borders: #3D3C50
+
+Checkbox tick background (selected): #7D5FFF
+
+🔤 Text Colors:
+Primary text (e.g., "Create an account"): #FFFFFF
+
+Secondary text (e.g., "Already have an account?"): #B3B3C1
+
+Input placeholder/label text: #9A99A9
+
+🟪 Input Fields:
+Input field background: #2F2E41
+
+Input border (if any): #3D3C50
+
+🎨 Accent Colors:
+Eye icon (password field): #9A99A9
+
+Terms & Conditions text color: #FFFFFF
