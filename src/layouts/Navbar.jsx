@@ -10,73 +10,111 @@ import { useState } from "react";
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(null);
   const menus = {
-    Home: ["Home-1", "Home-2", "Home-3"],
     About: ["About Us", "Team", "Contact"],
-    Categories: ["Shoes", "Cloths", "Electronics"],
+    Categories: [
+      "Shoes",
+      "Clothing",
+      "Electronics",
+      "Home & Kitchen",
+      "Beauty & Personal Care",
+      "Books",
+      "Mobile Phones",
+      "Laptops & Computers",
+      "Watches",
+      "Jewellery",
+      "Toys & Games",
+      "Sports & Fitness",
+      "Automotive",
+      "Health & Wellness",
+      "Grocery & Essentials",
+      "Baby Products",
+      "Furniture",
+      "Stationery & Office Supplies",
+      "Cameras & Accessories",
+      "Musical Instruments",
+    ],
     Shop: ["Men", "Women", "Kids"],
     Pages: ["FAQ", "404", "Terms"],
   };
 
   return (
     <>
-      <nav className="bg-[#2B2A40] text-white py-4 px-8 flex items-center justify-between">
+      <nav className="bg-[#2B2A40] text-white py-4 px-8 flex items-center justify-between shadow-md">
         {/* Logo  */}
         <Link to="/">
           <h1 className="text-4xl font-bold">ECommerce</h1>
         </Link>
 
-        {/* Main Links  */}
-        <div className="flex gap-6 text-[1.2rem]">
+        {/* Navigation Links  */}
+        <div className="flex gap-8 text-[1.1rem] text-center">
+          <Link to="/" className="hover:text-[#7d5fff]">
+            Home
+          </Link>
           {Object.keys(menus).map((menu) => (
             <div
-              to="/"
               key={menu}
-              className="cursor-pointer flex items-center gap-1 relative group"
+              className="relative group"
               onMouseEnter={() => setOpenMenu(menu)}
               onMouseLeave={() => setOpenMenu(null)}
             >
-              <p className="text-[1.2rem]">{menu}</p>
-              <span className="text-xs">▼</span>
+              <div className="flex items-center gap-1 cursor-pointer">
+                <span className="hover:text-[#7d5fff]">{menu} ▼ </span>
+              </div>
 
-              {/* DropDown menu  */}
+              {/* DropDown  */}
               {openMenu === menu && (
                 <>
-                  <ul className="absolute top-8 left-0 w-30 bg-white text-[1rem] text-black rounded-2xl shadow-lg py-4 z-50">
-                    {menus[menu].map((item, index) => (
-                      <Link
-                        to={menu + "/" + item}
-                        key={index}
-                        className="cursor-pointer px-4 py-2 flex text-center justify-center"
-                      >
-                        {item}
-                      </Link>
-                    ))}
-                  </ul>
+                  <div
+                    className={`absolute top-full -left-0 mt-2 bg-[#3D3C50] text-sm text-white rounded-lg shadow-lg z-50 p-4 ${
+                      menu === "Categories" ? "min-w-[600px]" : "min-w-[200px]"
+                    }`}
+                  >
+                    <div
+                      className={`grid ${
+                        menu === "Categories" ? "grid-cols-3" : "grid-cols-1"
+                      } gap-3`}
+                    >
+                      {menus[menu].map((item, index) => (
+                        <Link
+                          to={`/${menu}/${item}`}
+                          key={index}
+                          className="hover:bg-[#4e4c66] px-3 py-2 rounded-md whitespace-nowrap"
+                        >
+                          {item}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
                 </>
               )}
             </div>
           ))}
         </div>
 
-        {/* Account and search  */}
+        {/* Search + Icons */}
         <div className="flex items-center gap-4">
-          <div className="py-1 px-4 rounded-2xl">
+          <div className="flex items-center bg-[#3D3C50] rounded-full px-3 py-1">
             <input
               type="text"
               placeholder="Search item here"
-              className="border-none focus:outline-none"
+              className="bg-transparent text-white placeholder:text-gray-300 focus:outline-none w-40"
             />
             <FontAwesomeIcon
               icon={faSearch}
-              className="hover:text-[#7D5FFF] cursor-pointer hover:scale-110"
+              className="ml-2 text-gray-300 hover:text-white cursor-pointer"
             />
-            <div className="h-0.5 rounded-xl mt-1 bg-white"></div>
           </div>
           <Link to="/user-profile">
-            <FontAwesomeIcon icon={faUser} className="text-xl" />
+            <FontAwesomeIcon
+              icon={faUser}
+              className="text-xl hover:text-[#7D5FFF]"
+            />
           </Link>
           <Link to="/user-cart">
-            <FontAwesomeIcon icon={faCartShopping} className="text-xl" />
+            <FontAwesomeIcon
+              icon={faCartShopping}
+              className="text-xl hover:text-[#7D5FFF]"
+            />
           </Link>
         </div>
       </nav>
