@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router";
 import UserLogin from "./pages/LoginRegister/UserLogin";
 import SellerLogin from "./pages/SellerRegister/SellerLogin";
 import UserSignUp from "./pages/LoginRegister/UserSignUp";
@@ -6,10 +6,23 @@ import SellerSignUp from "./pages/SellerRegister/SellerSignUp";
 import Navbar from "./layouts/Navbar";
 import { About, AboutUs, Contact, Home, Team } from "./pages";
 
-function App() {
+function AppWrapper() {
+  const location = useLocation();
+
+  // List of routes where Navbar should be hidden
+  const hideNavbarRoutes = [
+    "/user-login",
+    "/user-sign-up",
+    "/seller-login",
+    "/seller-sign-up",
+  ];
+
+  const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
+
   return (
-    <BrowserRouter>
-      <Navbar />
+    <>
+      {!shouldHideNavbar && <Navbar />}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />}>
@@ -22,8 +35,14 @@ function App() {
         <Route path="/seller-login" element={<SellerLogin />} />
         <Route path="/seller-sign-up" element={<SellerSignUp />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppWrapper />
+    </BrowserRouter>
+  );
+}
