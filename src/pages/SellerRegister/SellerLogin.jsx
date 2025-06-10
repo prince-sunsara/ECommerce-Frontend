@@ -1,5 +1,4 @@
 import React from 'react'
-import "../../styles/colors.css"
 import loginBg from '../../assets/images/login_bg.png'
 
 export default function SellerLogin() {

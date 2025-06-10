@@ -1,5 +1,4 @@
 import React from 'react'
-import "../../styles/colors.css"
 import signUpBg from '../../assets/images/sign_up_bg.png'
 export default function UserSignUp() {
     return (
