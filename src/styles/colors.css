@@ -1,0 +1,16 @@
+@import "tailwindcss";
+:root {
+  --primary-bg: #1c1930;
+  --input-bg: #2f2b4d;
+  --primary-color: #6347b7;
+  --primary-hover: #5036a3;
+  --ring-color: #5a52c6;
+  --text-light: #d1d1d1;
+  --border-color: #3a3755;
+  --link-hover: #5a52c6;
+  --highlight-color: #7a6ee6;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
