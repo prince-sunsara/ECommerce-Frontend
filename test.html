@@ -1,0 +1,146 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>Create Account - AMU</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col md:flex-row bg-[#1c1930] text-white">
+  <!-- Left side -->
+  <div class="md:w-1/2 relative flex flex-col justify-between">
+    <div class="p-8 pt-6 flex justify-between items-center">
+      <div class="w-[90px] h-[30px] flex items-center justify-center">
+        <h1 class="text-white text-3xl font-semibold tracking-wide select-none">Test</h1>
+      </div>
+      <button
+        class="px-4 py-1.5 bg-[#6347b7] rounded-md text-white text-sm font-normal hover:bg-[#5036a3] transition flex items-center w-max"
+        type="button"
+      >
+        Back to website
+        <i class="fas fa-caret-down ml-2 text-white text-xs"></i>
+      </button>
+    </div>
+    <img
+      alt="Dark purple desert dunes landscape with purple sky"
+      class="absolute inset-0 w-full h-full object-cover -z-10 opacity-90"
+      height="900"
+      src="./src/assets/images/sign_up_bg.png"
+      width="600"
+    />
+  </div>
+  <!-- Right side -->
+  <div
+    class="md:w-1/2 flex flex-col justify-center px-8 py-12 sm:px-16 md:px-20 lg:px-24 bg-[#1c1930]"
+  >
+    <h1 class="text-white text-4xl font-semibold mb-3 leading-tight">
+      Create an account
+    </h1>
+    <p class="text-[#d1d1d1] text-sm mb-6">
+      Already have an account?
+      <a class="text-white hover:underline font-normal" href="#">Login</a>
+    </p>
+    <form class="space-y-4">
+      <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+        <input
+          class="bg-[#2f2b4d] rounded-md px-4 py-3 text-white placeholder-[#cfcfe3] focus:outline-none focus:ring-2 focus:ring-[#5a52c6] flex-1"
+          placeholder="First name"
+          required=""
+          type="text"
+        />
+        <input
+          class="bg-[#2f2b4d] rounded-md px-4 py-3 text-white placeholder-[#cfcfe3] focus:outline-none focus:ring-2 focus:ring-[#5a52c6] flex-1"
+          placeholder="Last name"
+          required=""
+          type="text"
+        />
+      </div>
+      <input
+        class="bg-[#2f2b4d] rounded-md px-4 py-3 text-white placeholder-[#cfcfe3] w-full focus:outline-none focus:ring-2 focus:ring-[#5a52c6]"
+        placeholder="Email"
+        required=""
+        type="email"
+      />
+      <div class="relative w-full">
+        <input
+          class="bg-[#2f2b4d] rounded-md px-4 py-3 pr-12 text-white placeholder-[#cfcfe3] w-full focus:outline-none focus:ring-2 focus:ring-[#5a52c6]"
+          placeholder="Password"
+          required=""
+          type="password"
+        />
+        <button
+          aria-label="Toggle password visibility"
+          class="absolute inset-y-0 right-3 flex items-center text-[#cfcfe3] hover:text-white"
+          tabindex="-1"
+          type="button"
+        >
+          <i class="far fa-eye"></i>
+        </button>
+      </div>
+      <label class="flex items-center space-x-3 text-[#d1d1d1] text-sm">
+        <input
+          checked=""
+          class="w-5 h-5 rounded border-none bg-white text-[#1c1930] cursor-pointer"
+          required=""
+          type="checkbox"
+        />
+        <span>
+          I agree to the
+          <a class="underline hover:text-[#5a52c6]" href="#">Terms &amp; Conditions</a>
+        </span>
+      </label>
+      <button
+        class="w-full bg-[#6347b7] rounded-md py-3 text-white text-lg font-normal hover:bg-[#5036a3] transition"
+        type="submit"
+      >
+        Create account
+      </button>
+    </form>
+    <div class="flex items-center my-8 space-x-4">
+      <hr class="flex-grow border-[#3a3755]" />
+      <span class="text-[#7a6ee6] text-xs whitespace-nowrap">Or sign up wia</span>
+      <hr class="flex-grow border-[#3a3755]" />
+    </div>
+    <div class="flex space-x-4">
+      <button
+        class="flex items-center justify-center space-x-2 border border-[#3a3755] rounded-md py-3 px-6 w-full hover:border-[#5a52c6] transition"
+        type="button"
+      >
+        <img
+          alt="Google logo with blue G letter on white background"
+          class="w-5 h-5"
+          height="20"
+          src="https://storage.googleapis.com/a1aa/image/c754ac72-6d4f-49d9-de94-826702f3bc3f.jpg"
+          width="20"
+        />
+        <span class="text-white text-sm font-normal">Google</span>
+      </button>
+      <button
+        class="flex items-center justify-center space-x-2 border border-[#3a3755] rounded-md py-3 px-6 w-full hover:border-[#5a52c6] transition"
+        type="button"
+      >
+        <img
+          alt="Apple logo white on black background"
+          class="w-5 h-5"
+          height="20"
+          src="https://upload.wikimedia.org/wikipedia/commons/3/31/Apple_logo_white.svg"
+          width="20"
+        />
+        <span class="text-white text-sm font-normal">Apple</span>
+      </button>
+    </div>
+  </div>
+</body>
+</html>
