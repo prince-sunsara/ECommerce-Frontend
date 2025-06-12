@@ -53,7 +53,11 @@ function AppWrapper() {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/help-center" element={<HelpCenter />} />
       </Routes>
-      <Footer />
+            {!shouldHideNavbar && (
+        <>
+          <Footer />
+        </>
+      )}
     </>
   );
 }
