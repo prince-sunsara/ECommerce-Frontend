@@ -5,6 +5,12 @@ import UserSignUp from "./pages/LoginRegister/UserSignUp";
 import SellerSignUp from "./pages/SellerRegister/SellerSignUp";
 import Navbar from "./layouts/Navbar";
 import { About, AboutUs, Contact, Home, Team } from "./pages";
+import Footer from "./layouts/Footer";
+import ContactUs from "./pages/ContactUs";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
+import HelpCenter from "./pages/HelpCenter";
+import FAQ from "./pages/FAQ";
 
 function AppWrapper() {
   const location = useLocation();
@@ -21,7 +27,11 @@ function AppWrapper() {
 
   return (
     <>
-      {!shouldHideNavbar && <Navbar />}
+      {!shouldHideNavbar && (
+        <>
+          <Navbar />
+        </>
+      )}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -35,6 +45,15 @@ function AppWrapper() {
         <Route path="/seller-login" element={<SellerLogin />} />
         <Route path="/seller-sign-up" element={<SellerSignUp />} />
       </Routes>
+      <Routes>
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/help-center" element={<HelpCenter />} />
+      </Routes>
+      <Footer />
     </>
   );
 }

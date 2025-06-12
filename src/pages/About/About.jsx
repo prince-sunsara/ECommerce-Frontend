@@ -3,8 +3,8 @@ import { Outlet } from "react-router";
 const About = () => {
   return (
     <>
-      <div>About</div>
-      <Outlet />;
+      <div className="text-yellow">About</div>
+      {/* <Outlet />; */}
     </>
   );
 };
