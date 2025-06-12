@@ -5,7 +5,7 @@ import UserSignUp from "./pages/LoginRegister/UserSignUp";
 import SellerSignUp from "./pages/SellerRegister/SellerSignUp";
 import Navbar from "./layouts/Navbar";
 import { About, AboutUs, Contact, Home, Team } from "./pages";
-import Footer from "./components/Footer";
+import Footer from "./layouts/Footer";
 import ContactUs from "./pages/ContactUs";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";

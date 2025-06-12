@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import {
   FaFacebookF,
   FaInstagram,
@@ -66,7 +66,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-10 text-sm">
           {/* Company Info */}
           <div>
-            <h3 className="text-lg font-bold mb-2">E-Commerce</h3>
+            <h1 className="text-4xl font-bold mb-2">E-Commerce</h1>
             <p className="text-gray-400 mb-4">
               Experience fast delivery, unbeatable prices, and the widest range.
             </p>
