@@ -1,7 +1,27 @@
 import Home from "./Home";
-import About from "./About/About";
-import AboutUs from "./About/AboutUs";
-import Team from "./About/Team";
-import Contact from "./About/Contact";
+import AboutUs from "./AboutUs";
+import Team from "./Team";
+import Contact from "./Contact";
+import Terms from "./Terms";
+import FAQ from "./FAQ";
+import HelpCenter from "./HelpCenter";
+import Privacy from "./Privacy";
+import SellerSignUp from "./SellerRegister/SellerSignUp";
+import UserSignUp from "./LoginRegister/UserSignUp";
+import SellerLogin from "./SellerRegister/SellerLogin";
+import UserLogin from "./LoginRegister/UserLogin";
 
-export { Home, AboutUs, About, Team, Contact };
+export {
+  Home,
+  AboutUs,
+  Team,
+  Contact,
+  Terms,
+  FAQ,
+  HelpCenter,
+  Privacy,
+  SellerSignUp,
+  UserSignUp,
+  SellerLogin,
+  UserLogin,
+};

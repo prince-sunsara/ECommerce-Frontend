@@ -10,7 +10,7 @@ import { useState } from "react";
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(null);
   const menus = {
-    About: ["About Us", "Team", "Contact"],
+    About: ["About-Us", "Team", "Contact"],
     Categories: [
       "Shoes",
       "Clothing",
@@ -76,7 +76,7 @@ const Navbar = () => {
                     >
                       {menus[menu].map((item, index) => (
                         <Link
-                          to={`/${menu}/${item}`}
+                          to={item === "Contact" ? "/contact-us" : `/${item}`}
                           key={index}
                           className="hover:bg-[#4e4c66] px-3 py-2 rounded-md whitespace-nowrap"
                         >
