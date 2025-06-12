@@ -1,2 +1,7 @@
-const FAQ = () => <h1>FAQ Page</h1>;
+import React from "react";
+
+const FAQ = () => {
+  return <div>FAQ</div>;
+};
+
 export default FAQ;

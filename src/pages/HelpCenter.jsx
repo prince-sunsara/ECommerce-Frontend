@@ -1,2 +1,5 @@
-const HelpCenter = () => <h1>Help Center Page</h1>;
+const HelpCenter = () => {
+  return <div>HelpCenter</div>;
+};
+
 export default HelpCenter;

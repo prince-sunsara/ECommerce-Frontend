@@ -1,2 +1,7 @@
-const Privacy = () => <h1>Privacy Policy Page</h1>;
+import React from "react";
+
+const Privacy = () => {
+  return <div>Privacy</div>;
+};
+
 export default Privacy;

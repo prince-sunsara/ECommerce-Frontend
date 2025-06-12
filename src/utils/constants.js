@@ -14,7 +14,7 @@ export const COMPANY_EMAIL = "majestoteam@.com";
 // Navigation Links
 export const NAV_LINKS = [
   { path: "/about-us", label: "About Us" },
-  { path: "/contact-us", label: "Contact Us" },
+  { path: "/contact-us", label: "Contact" },
   { path: "/terms", label: "Terms & Conditions" },
   { path: "/privacy", label: "Privacy Policy" },
   { path: "/faq", label: "FAQ" },
