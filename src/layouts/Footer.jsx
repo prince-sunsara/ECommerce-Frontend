@@ -53,7 +53,7 @@ const Footer = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full px-3 py-3 rounded-full bg-[#7d5fff] text-white font-medium border border-[#7d5fff] hover:bg-[#2B2A40] hover:text-white transition-all duration-300"
+                  className="w-full px-3 py-3 rounded-full bg-[#7d5fff] text-white font-medium border border-[#7d5fff] hover:bg-[#2B2A40] hover:text-white transition-all duration-300 cursor-pointer"
                 >
                   Submit Now
                 </button>
@@ -78,7 +78,7 @@ const Footer = () => {
               <FaEnvelope className="text-white" />
               <a
                 href={COMPANY_EMAIL}
-                className="hover:underline hover:text-white transition"
+                className="hover:underline hover:text-white transition cursor-pointer"
               >
                 majestoteam@.com
               </a>
@@ -91,7 +91,7 @@ const Footer = () => {
               <p key={item.path} className="group transition-all duration-200">
                 <Link
                   to={item.path}
-                  className="hover:text-[#7d5fff] inline-block pl-0 group-hover:pl-3 transition-all duration-200 before:content-[''] group-hover:before:content-['-'] before:mr-1"
+                  className="hover:text-[#7d5fff] inline-block pl-0 group-hover:pl-3 transition-all duration-200 before:content-[''] group-hover:before:content-['-'] before:mr-1 cursor-pointer"
                 >
                   {item.label}
                 </Link>
