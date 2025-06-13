@@ -1,8 +1,8 @@
 import Home from "./Home";
-import AboutUs from "./AboutUs";
-import Team from "./Team";
+import AboutUs from "./About/AboutUs";
+import Team from "./About/Team";
 import Contact from "./Contact";
-import Terms from "./Terms";
+import TermsAndConditions from "./TermsAndConditions";
 import FAQ from "./FAQ";
 import HelpCenter from "./HelpCenter";
 import Privacy from "./Privacy";
@@ -16,7 +16,7 @@ export {
   AboutUs,
   Team,
   Contact,
-  Terms,
+  TermsAndConditions,
   FAQ,
   HelpCenter,
   Privacy,

@@ -4,8 +4,6 @@ import {
   AboutUs,
   Contact,
   Home,
-  Team,
-  Terms,
   FAQ,
   HelpCenter,
   Privacy,
@@ -13,6 +11,7 @@ import {
   SellerLogin,
   UserSignUp,
   SellerSignUp,
+  TermsAndConditions,
 } from "./pages";
 
 function AppWrapper() {
@@ -45,11 +44,10 @@ function AppWrapper() {
         <Route path="/seller-sign-up" element={<SellerSignUp />} />
 
         <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/team" element={<Team />} />
         <Route path="/contact-us" element={<Contact />} />
 
-        <Route path="/terms" element={<Terms />} />
         <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/help-center" element={<HelpCenter />} />
       </Routes>

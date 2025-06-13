@@ -10,7 +10,6 @@ import { useState } from "react";
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(null);
   const menus = {
-    About: ["About-Us", "Team", "Contact"],
     Categories: [
       "Shoes",
       "Clothing",
@@ -50,6 +49,7 @@ const Navbar = () => {
           <Link to="/" className="hover:text-[#7d5fff]">
             Home
           </Link>
+
           {Object.keys(menus).map((menu) => (
             <div
               key={menu}
@@ -89,6 +89,10 @@ const Navbar = () => {
               )}
             </div>
           ))}
+
+          <Link to="/about-us" className="hover:text-[#7d5fff]">
+            About
+          </Link>
         </div>
 
         {/* Search + Icons */}
