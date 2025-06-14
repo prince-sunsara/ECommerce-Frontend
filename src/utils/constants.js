@@ -16,7 +16,7 @@ export const NAV_LINKS = [
   { path: "/about-us", label: "About Us" },
   { path: "/contact-us", label: "Contact" },
   { path: "/terms-and-conditions", label: "Terms & Conditions" },
-  { path: "/privacy", label: "Privacy Policy" },
+  { path: "/privacy-policy", label: "Privacy Policy" },
   { path: "/faq", label: "FAQ" },
   { path: "/help-center", label: "Help Center" },
 ];

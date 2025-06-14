@@ -5,7 +5,7 @@ import Contact from "./Contact";
 import TermsAndConditions from "./TermsAndConditions";
 import FAQ from "./FAQ";
 import HelpCenter from "./HelpCenter";
-import Privacy from "./Privacy";
+import PrivacyPolicy from "./PrivacyPolicy";
 import SellerSignUp from "./SellerRegister/SellerSignUp";
 import UserSignUp from "./LoginRegister/UserSignUp";
 import SellerLogin from "./SellerRegister/SellerLogin";
@@ -19,7 +19,7 @@ export {
   TermsAndConditions,
   FAQ,
   HelpCenter,
-  Privacy,
+  PrivacyPolicy,
   SellerSignUp,
   UserSignUp,
   SellerLogin,
