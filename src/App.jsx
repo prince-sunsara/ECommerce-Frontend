@@ -11,7 +11,7 @@ import {
   SellerLogin,
   UserSignUp,
   SellerSignUp,
-  TermsAndConditions,
+  OtpVerification,
 } from "./pages";
 
 function AppWrapper() {
@@ -23,6 +23,7 @@ function AppWrapper() {
     "/user-sign-up",
     "/seller-login",
     "/seller-sign-up",
+    "/otp-verification",
   ];
 
   const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
@@ -42,6 +43,7 @@ function AppWrapper() {
         <Route path="/user-sign-up" element={<UserSignUp />} />
         <Route path="/seller-login" element={<SellerLogin />} />
         <Route path="/seller-sign-up" element={<SellerSignUp />} />
+        <Route path="//otp-verification" element={<OtpVerification />} />
 
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<Contact />} />

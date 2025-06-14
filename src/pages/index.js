@@ -7,9 +7,10 @@ import FAQ from "./FAQ";
 import HelpCenter from "./HelpCenter";
 import PrivacyPolicy from "./PrivacyPolicy";
 import SellerSignUp from "./SellerRegister/SellerSignUp";
-import UserSignUp from "./LoginRegister/UserSignUp";
+import UserSignUp from "./UserRegister/UserSignUp";
 import SellerLogin from "./SellerRegister/SellerLogin";
-import UserLogin from "./LoginRegister/UserLogin";
+import UserLogin from "./UserRegister/UserLogin";
+import OtpVerification from "./OtpVerification";
 
 export {
   Home,
@@ -24,4 +25,5 @@ export {
   UserSignUp,
   SellerLogin,
   UserLogin,
+  OtpVerification,
 };

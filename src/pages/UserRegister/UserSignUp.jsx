@@ -1,10 +1,10 @@
 import React from 'react'
-import loginBg from '../../assets/images/login_bg.png'
+import signUpBg from '../../assets/images/sign_up_bg.png'
 
-export default function SellerLogin() {
+export default function UserSignUp() {
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-[var(--primary-bg)] text-white font-inter">
-      {/* Left side (hidden on mobile) */}
+      {/* Left side image (hidden on small screens) */}
       <div className="hidden md:flex md:w-1/2 relative flex-col justify-between">
         <div className="p-8 pt-6 flex justify-between items-center z-10">
           <div className="w-[90px] h-[30px] flex items-center justify-center">
@@ -21,21 +21,36 @@ export default function SellerLogin() {
         <img
           alt="Dark purple desert dunes landscape with purple sky"
           className="absolute inset-0 w-full h-full object-cover z-0 opacity-90"
-          src={loginBg}
+          src={signUpBg}
           width="600"
           height="900"
         />
       </div>
 
-      {/* Right side (form) */}
+      {/* Right side form */}
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center px-6 py-12 sm:px-12 md:px-20 lg:px-24 bg-[var(--primary-bg)]">
         <div className="w-full max-w-md">
-          <h1 className="text-white text-4xl font-semibold mb-3 leading-tight">Login to your account</h1>
+          <h1 className="text-white text-4xl font-semibold mb-3 leading-tight">Create an account</h1>
           <p className="text-[var(--text-light)] text-sm mb-6">
-            Don’t have an account?{" "}
-            <a href="#" className="text-white hover:underline font-normal">Sign Up</a>
+            Already have an account?{" "}
+            <a href="#" className="text-white hover:underline font-normal">Login</a>
           </p>
-          <form className="space-y-4 w-full">
+
+          <form className="space-y-4">
+            <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+              <input
+                type="text"
+                placeholder="First name"
+                required
+                className="bg-[var(--input-bg)] rounded-md px-4 py-3 text-white placeholder-[#cfcfe3] focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)] flex-1"
+              />
+              <input
+                type="text"
+                placeholder="Last name"
+                required
+                className="bg-[var(--input-bg)] rounded-md px-4 py-3 text-white placeholder-[#cfcfe3] focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)] flex-1"
+              />
+            </div>
             <input
               type="email"
               placeholder="Email"
@@ -76,13 +91,13 @@ export default function SellerLogin() {
               type="submit"
               className="w-full bg-[var(--primary-color)] rounded-md py-3 text-white text-lg font-normal hover:bg-[var(--primary-hover)] transition cursor-pointer"
             >
-              Login
+              Create account
             </button>
           </form>
 
           <div className="flex items-center my-8 space-x-4">
             <hr className="flex-grow border-[var(--border-color)]" />
-            <span className="text-[var(--highlight-color)] text-xs whitespace-nowrap">Or login with</span>
+            <span className="text-[var(--highlight-color)] text-xs whitespace-nowrap">Or sign up via</span>
             <hr className="flex-grow border-[var(--border-color)]" />
           </div>
 

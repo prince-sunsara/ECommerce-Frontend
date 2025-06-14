@@ -4,8 +4,8 @@ import signUpBg from '../../assets/images/sign_up_bg.png'
 export default function SellerSignUp() {
     return (
         <div className="min-h-screen flex flex-col md:flex-row bg-[var(--primary-bg)] text-white font-inter">
-            {/* Left side */}
-            <div className="md:w-1/2 relative flex flex-col justify-between">
+            {/* Left side (hidden on mobile) */}
+            <div className="hidden md:flex md:w-1/2 relative flex-col justify-between">
                 <div className="p-8 pt-6 flex justify-between items-center z-10">
                     <div className="w-[90px] h-[30px] flex items-center justify-center">
                         <h1 className="text-white text-3xl font-semibold tracking-wide select-none">Test</h1>
@@ -27,105 +27,107 @@ export default function SellerSignUp() {
                 />
             </div>
 
-            {/* Right side */}
-            <div className="md:w-1/2 flex flex-col justify-center px-8 py-12 sm:px-16 md:px-20 lg:px-24 bg-[var(--primary-bg)]">
-                <h1 className="text-white text-4xl font-semibold mb-3 leading-tight">Create an account</h1>
-                <p className="text-[var(--text-light)] text-sm mb-6">
-                    Already have an account?{" "}
-                    <a href="#" className="text-white hover:underline font-normal">Login</a>
-                </p>
-                <form className="space-y-4">
-                    <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+            {/* Right side (form) */}
+            <div className="w-full md:w-1/2 flex flex-col justify-center items-center px-6 py-12 sm:px-12 md:px-20 lg:px-24 bg-[var(--primary-bg)]">
+                <div className="w-full max-w-md">
+                    <h1 className="text-white text-4xl font-semibold mb-3 leading-tight">Create an account</h1>
+                    <p className="text-[var(--text-light)] text-sm mb-6">
+                        Already have an account?{" "}
+                        <a href="#" className="text-white hover:underline font-normal">Login</a>
+                    </p>
+                    <form className="space-y-4 w-full">
+                        <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+                            <input
+                                type="text"
+                                placeholder="First name"
+                                required
+                                className="bg-[var(--input-bg)] rounded-md px-4 py-3 text-white placeholder-[#cfcfe3] focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)] flex-1"
+                            />
+                            <input
+                                type="text"
+                                placeholder="Last name"
+                                required
+                                className="bg-[var(--input-bg)] rounded-md px-4 py-3 text-white placeholder-[#cfcfe3] focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)] flex-1"
+                            />
+                        </div>
                         <input
-                            type="text"
-                            placeholder="First name"
+                            type="email"
+                            placeholder="Email"
                             required
-                            className="bg-[var(--input-bg)] rounded-md px-4 py-3 text-white placeholder-[#cfcfe3] focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)] flex-1"
+                            className="bg-[var(--input-bg)] rounded-md px-4 py-3 text-white placeholder-[#cfcfe3] w-full focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)]"
                         />
-                        <input
-                            type="text"
-                            placeholder="Last name"
-                            required
-                            className="bg-[var(--input-bg)] rounded-md px-4 py-3 text-white placeholder-[#cfcfe3] focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)] flex-1"
-                        />
+                        <div className="relative w-full">
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                required
+                                className="bg-[var(--input-bg)] rounded-md px-4 py-3 pr-12 text-white placeholder-[#cfcfe3] w-full focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)]"
+                            />
+                            <button
+                                type="button"
+                                aria-label="Toggle password visibility"
+                                className="absolute inset-y-0 right-3 flex items-center text-[#cfcfe3] hover:text-white"
+                                tabIndex={-1}
+                            >
+                                <i className="far fa-eye"></i>
+                            </button>
+                        </div>
+                        <label className="flex items-center space-x-3 text-[var(--text-light)] text-sm">
+                            <input
+                                type="checkbox"
+                                required
+                                defaultChecked
+                                className="w-5 h-5 rounded border-none bg-white text-[var(--primary-bg)] cursor-pointer"
+                            />
+                            <span>
+                                I agree to the{" "}
+                                <a href="#" className="underline hover:text-[var(--link-hover)]">
+                                    Terms &amp; Conditions
+                                </a>
+                            </span>
+                        </label>
+                        <button
+                            type="submit"
+                            className="w-full bg-[var(--primary-color)] rounded-md py-3 text-white text-lg font-normal hover:bg-[var(--primary-hover)] transition cursor-pointer"
+                        >
+                            Create account
+                        </button>
+                    </form>
+
+                    <div className="flex items-center my-8 space-x-4">
+                        <hr className="flex-grow border-[var(--border-color)]" />
+                        <span className="text-[var(--highlight-color)] text-xs whitespace-nowrap">Or sign up via</span>
+                        <hr className="flex-grow border-[var(--border-color)]" />
                     </div>
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        required
-                        className="bg-[var(--input-bg)] rounded-md px-4 py-3 text-white placeholder-[#cfcfe3] w-full focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)]"
-                    />
-                    <div className="relative w-full">
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            required
-                            className="bg-[var(--input-bg)] rounded-md px-4 py-3 pr-12 text-white placeholder-[#cfcfe3] w-full focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)]"
-                        />
+
+                    <div className="flex space-x-4">
                         <button
                             type="button"
-                            aria-label="Toggle password visibility"
-                            className="absolute inset-y-0 right-3 flex items-center text-[#cfcfe3] hover:text-white"
-                            tabIndex={-1}
+                            className="cursor-pointer flex items-center justify-center space-x-2 border border-[var(--border-color)] rounded-md py-3 px-6 w-full hover:border-[var(--ring-color)] transition"
                         >
-                            <i className="far fa-eye"></i>
+                            <img
+                                src="https://storage.googleapis.com/a1aa/image/c754ac72-6d4f-49d9-de94-826702f3bc3f.jpg"
+                                alt="Google logo"
+                                className="w-5 h-5"
+                                width="20"
+                                height="20"
+                            />
+                            <span className="text-white text-sm font-normal">Google</span>
+                        </button>
+                        <button
+                            type="button"
+                            className="cursor-pointer flex items-center justify-center space-x-2 border border-[var(--border-color)] rounded-md py-3 px-6 w-full hover:border-[var(--ring-color)] transition"
+                        >
+                            <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/3/31/Apple_logo_white.svg"
+                                alt="Apple logo"
+                                className="w-5 h-5"
+                                width="20"
+                                height="20"
+                            />
+                            <span className="text-white text-sm font-normal">Apple</span>
                         </button>
                     </div>
-                    <label className="flex items-center space-x-3 text-[var(--text-light)] text-sm">
-                        <input
-                            type="checkbox"
-                            required
-                            defaultChecked
-                            className="w-5 h-5 rounded border-none bg-white text-[var(--primary-bg)] cursor-pointer"
-                        />
-                        <span>
-                            I agree to the{" "}
-                            <a href="#" className="underline hover:text-[var(--link-hover)]">
-                                Terms &amp; Conditions
-                            </a>
-                        </span>
-                    </label>
-                    <button
-                        type="submit"
-                        className="w-full bg-[var(--primary-color)] rounded-md py-3 text-white text-lg font-normal hover:bg-[var(--primary-hover)] transition cursor-pointer"
-                    >
-                        Create account
-                    </button>
-                </form>
-
-                <div className="flex items-center my-8 space-x-4">
-                    <hr className="flex-grow border-[var(--border-color)]" />
-                    <span className="text-[var(--highlight-color)] text-xs whitespace-nowrap">Or sign up wia</span>
-                    <hr className="flex-grow border-[var(--border-color)]" />
-                </div>
-
-                <div className="flex space-x-4">
-                    <button
-                        type="button"
-                        className="cursor-pointer flex items-center justify-center space-x-2 border border-[var(--border-color)] rounded-md py-3 px-6 w-full hover:border-[var(--ring-color)] transition"
-                    >
-                        <img
-                            src="https://storage.googleapis.com/a1aa/image/c754ac72-6d4f-49d9-de94-826702f3bc3f.jpg"
-                            alt="Google logo"
-                            className="w-5 h-5"
-                            width="20"
-                            height="20"
-                        />
-                        <span className="text-white text-sm font-normal">Google</span>
-                    </button>
-                    <button
-                        type="button"
-                        className="cursor-pointer flex items-center justify-center space-x-2 border border-[var(--border-color)] rounded-md py-3 px-6 w-full hover:border-[var(--ring-color)] transition"
-                    >
-                        <img
-                            src="https://upload.wikimedia.org/wikipedia/commons/3/31/Apple_logo_white.svg"
-                            alt="Apple logo"
-                            className="w-5 h-5"
-                            width="20"
-                            height="20"
-                        />
-                        <span className="text-white text-sm font-normal">Apple</span>
-                    </button>
                 </div>
             </div>
         </div>
