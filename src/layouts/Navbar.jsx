@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faCaretDown,
   faCartShopping,
   faSearch,
   faUser,
@@ -58,7 +59,9 @@ const Navbar = () => {
               onMouseLeave={() => setOpenMenu(null)}
             >
               <div className="flex items-center gap-1 cursor-pointer">
-                <span className="hover:text-[#7d5fff]">{menu} ▼ </span>
+                <span className="hover:text-[#7d5fff]">
+                  {menu} <FontAwesomeIcon icon={faCaretDown} />
+                </span>
               </div>
 
               {/* DropDown  */}
