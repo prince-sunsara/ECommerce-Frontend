@@ -4,15 +4,14 @@ import {
   AboutUs,
   Contact,
   Home,
-  Team,
-  Terms,
   FAQ,
   HelpCenter,
-  Privacy,
+  PrivacyPolicy,
   UserLogin,
   SellerLogin,
   UserSignUp,
   SellerSignUp,
+  TermsAndConditions,
   OtpVerification,
 } from "./pages";
 
@@ -25,7 +24,7 @@ function AppWrapper() {
     "/user-sign-up",
     "/seller-login",
     "/seller-sign-up",
-    "/otp-verification"
+    "/otp-verification",
   ];
 
   const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
@@ -45,14 +44,13 @@ function AppWrapper() {
         <Route path="/user-sign-up" element={<UserSignUp />} />
         <Route path="/seller-login" element={<SellerLogin />} />
         <Route path="/seller-sign-up" element={<SellerSignUp />} />
-        <Route path="//otp-verification" element={<OtpVerification />} />
+        <Route path="/otp-verification" element={<OtpVerification />} />
 
         <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/team" element={<Team />} />
         <Route path="/contact-us" element={<Contact />} />
 
-        <Route path="/terms" element={<Terms />} />
-        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/help-center" element={<HelpCenter />} />
       </Routes>

@@ -1,11 +1,11 @@
 import Home from "./Home";
-import AboutUs from "./AboutUs";
-import Team from "./Team";
+import AboutUs from "./About/AboutUs";
+import Team from "./About/Team";
 import Contact from "./Contact";
-import Terms from "./Terms";
+import TermsAndConditions from "./TermsAndConditions";
 import FAQ from "./FAQ";
 import HelpCenter from "./HelpCenter";
-import Privacy from "./Privacy";
+import PrivacyPolicy from "./PrivacyPolicy";
 import SellerSignUp from "./SellerRegister/SellerSignUp";
 import UserSignUp from "./UserRegister/UserSignUp";
 import SellerLogin from "./SellerRegister/SellerLogin";
@@ -17,10 +17,10 @@ export {
   AboutUs,
   Team,
   Contact,
-  Terms,
+  TermsAndConditions,
   FAQ,
   HelpCenter,
-  Privacy,
+  PrivacyPolicy,
   SellerSignUp,
   UserSignUp,
   SellerLogin,

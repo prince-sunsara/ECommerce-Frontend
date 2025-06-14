@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faCaretDown,
   faCartShopping,
   faSearch,
   faUser,
@@ -10,7 +11,6 @@ import { useState } from "react";
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(null);
   const menus = {
-    About: ["About-Us", "Team", "Contact"],
     Categories: [
       "Shoes",
       "Clothing",
@@ -50,6 +50,7 @@ const Navbar = () => {
           <Link to="/" className="hover:text-[#7d5fff]">
             Home
           </Link>
+
           {Object.keys(menus).map((menu) => (
             <div
               key={menu}
@@ -58,7 +59,9 @@ const Navbar = () => {
               onMouseLeave={() => setOpenMenu(null)}
             >
               <div className="flex items-center gap-1 cursor-pointer">
-                <span className="hover:text-[#7d5fff]">{menu} ▼ </span>
+                <span className="hover:text-[#7d5fff]">
+                  {menu} <FontAwesomeIcon icon={faCaretDown} />
+                </span>
               </div>
 
               {/* DropDown  */}
@@ -89,6 +92,10 @@ const Navbar = () => {
               )}
             </div>
           ))}
+
+          <Link to="/about-us" className="hover:text-[#7d5fff]">
+            About
+          </Link>
         </div>
 
         {/* Search + Icons */}
