@@ -65,7 +65,10 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6 text-[1.1rem]">
-            <Link to="/" className="hover:text-[#7d5fff]">
+            <Link
+              to="/"
+              className="hover:text-[#7d5fff] transition-all duration-300"
+            >
               Home
             </Link>
 
@@ -77,7 +80,7 @@ const Navbar = () => {
                 onMouseLeave={() => setOpenMenu(null)}
               >
                 <div
-                  className="flex items-center gap-1 cursor-pointer hover:text-[#7d5fff]"
+                  className="flex items-center gap-1 cursor-pointer hover:text-[#7d5fff] transition-all duration-300"
                   onClick={() => handleMenuToggle(menu)}
                 >
                   {menu} <FontAwesomeIcon icon={faCaretDown} />
@@ -134,13 +137,13 @@ const Navbar = () => {
             <Link to="/user-profile">
               <FontAwesomeIcon
                 icon={faUser}
-                className="text-xl hover:text-[#7D5FFF]"
+                className="text-xl hover:text-[#7D5FFF] transition-all duration-300"
               />
             </Link>
             <Link to="/user-cart">
               <FontAwesomeIcon
                 icon={faCartShopping}
-                className="text-xl hover:text-[#7D5FFF]"
+                className="text-xl hover:text-[#7D5FFF] transition-all duration-300"
               />
             </Link>
           </div>
