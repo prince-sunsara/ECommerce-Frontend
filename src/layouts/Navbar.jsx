@@ -48,7 +48,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="bg-[#2B2A40] text-white px-4 py-4 shadow-md">
-        <div className="max-w-[1280px] mx-auto flex items-center justify-between">
+        <div className="mx-auto flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="text-2xl font-bold">
             ECommerce
@@ -74,7 +74,7 @@ const Navbar = () => {
                 key={menu}
                 className="relative group"
                 onMouseEnter={() => setOpenMenu(menu)}
-                // onMouseLeave={() => setOpenMenu(null)}
+                onMouseLeave={() => setOpenMenu(null)}
               >
                 <div
                   className="flex items-center gap-1 cursor-pointer hover:text-[#7d5fff]"
@@ -86,7 +86,7 @@ const Navbar = () => {
                 {/* Dropdown */}
                 {openMenu === menu && (
                   <div
-                    className={`absolute top-full left-0 mt-2 bg-[#3D3C50] text-sm text-white rounded-lg shadow-lg z-50 p-4 ${
+                    className={`absolute top-5 left-0 mt-2 bg-[#3D3C50] text-sm text-white rounded-lg shadow-lg z-50 p-4 ${
                       menu === "Categories"
                         ? "min-w-[90vw] sm:min-w-[600px]"
                         : "min-w-[200px]"
