@@ -1,10 +1,10 @@
 import React from 'react'
 import loginBg from '../../assets/images/login_bg.png'
 
-export default function SellerLogin() {
+export default function UserLogin() {
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-[var(--primary-bg)] text-white font-inter">
-      {/* Left side (hidden on mobile) */}
+      {/* Left image side (hidden on small screens) */}
       <div className="hidden md:flex md:w-1/2 relative flex-col justify-between">
         <div className="p-8 pt-6 flex justify-between items-center z-10">
           <div className="w-[90px] h-[30px] flex items-center justify-center">
@@ -27,7 +27,7 @@ export default function SellerLogin() {
         />
       </div>
 
-      {/* Right side (form) */}
+      {/* Right form side */}
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center px-6 py-12 sm:px-12 md:px-20 lg:px-24 bg-[var(--primary-bg)]">
         <div className="w-full max-w-md">
           <h1 className="text-white text-4xl font-semibold mb-3 leading-tight">Login to your account</h1>
@@ -35,6 +35,7 @@ export default function SellerLogin() {
             Don’t have an account?{" "}
             <a href="#" className="text-white hover:underline font-normal">Sign Up</a>
           </p>
+
           <form className="space-y-4 w-full">
             <input
               type="email"
