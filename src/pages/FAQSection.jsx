@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
-import faqData from "../utils/faq_data.json";
+import { FAQ_DATA as faqData } from "../utils/constants";
 
 export default function FAQPage() {
   const [activeTab, setActiveTab] = useState("FAQ");
   const [openIndex, setOpenIndex] = useState(null);
 
   return (
-    <div className="bg-[#2B2A40] text-white min-h-screen px-4 py-10">
+    <div className="bg-[#1B182F] text-white min-h-screen px-4 py-10">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-semibold mb-6 text-center">
           How can we help you?
@@ -41,7 +41,7 @@ export default function FAQPage() {
           ))}
         </div>
 
-        <div className="bg-[#1C1B2A] rounded-2xl divide-y divide-[#3D3C50] overflow-hidden">
+        <div className="bg-[#2A293D] rounded-2xl divide-y divide-[#3D3C50] overflow-hidden">
           {faqData[activeTab].map((item, idx) => (
             <div
               key={idx}
