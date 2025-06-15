@@ -3,7 +3,7 @@ import AboutUs from "./About/AboutUs";
 import Team from "./About/Team";
 import Contact from "./Contact";
 import TermsAndConditions from "./TermsAndConditions";
-import FAQ from "./FAQ";
+import FAQSection from "./FAQSection";
 import HelpCenter from "./HelpCenter";
 import PrivacyPolicy from "./PrivacyPolicy";
 import SellerSignUp from "./SellerRegister/SellerSignUp";
@@ -18,7 +18,7 @@ export {
   Team,
   Contact,
   TermsAndConditions,
-  FAQ,
+  FAQSection,
   HelpCenter,
   PrivacyPolicy,
   SellerSignUp,
