@@ -56,27 +56,26 @@ const AboutUs = () => {
   );
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div
+      className="min-h-screen text-white font-sans"
+      style={{
+        backgroundImage: `linear-gradient(rgba(27, 24, 47, 0.8), rgba(27, 24, 47, 0.8)), url('https://images.unsplash.com/photo-1607082349250-6728e485e3bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80')`,
+        backgroundColor: "#2B2A40",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       {/* Hero Section */}
-      <section
-        className="relative h-72 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('https://images.pexels.com/photos/3434539/pexels-photo-3434539.jpeg')",
-        }}
-      >
-        <div className="absolute inset-0 bg-black opacity-40"></div>
-        <div className="relative h-full flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl text-white font-bold text-center">
-            About Our Journey
-          </h1>
-        </div>
+      <section className="relative h-72 bg-cover bg-center flex items-center justify-center bg-[#1B182F]/90 backdrop-blur-md">
+        <h1 className="text-4xl md:text-5xl font-bold text-center text-white">
+          About Our Journey
+        </h1>
       </section>
 
       {/* Company Info */}
-      <section className="py-16 px-6 md:px-20 lg:px-32 bg-white text-gray-800">
+      <section className="py-16 px-6 md:px-20 lg:px-32 bg-[#1C1B2A] text-[#B3B3C1]">
         <div className="max-w-5xl mx-auto space-y-6">
-          <h2 className="text-3xl font-semibold">Who We Are</h2>
+          <h2 className="text-3xl font-bold text-white">Who We Are</h2>
           <p className="text-lg leading-relaxed">
             At E-Commerce, we’re more than just a store — we are a bridge
             between technology and trust. From curated products to responsive
@@ -97,7 +96,7 @@ const AboutUs = () => {
       </section>
 
       {/* Key Stats */}
-      <section className="bg-gray-100 py-16 px-6 md:px-20 lg:px-32">
+      <section className="bg-[#1B182F] py-16 px-6 md:px-20 lg:px-32">
         <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 text-center">
           {[
             { label: "Satisfied Customers", value: "98,000+" },
@@ -105,20 +104,20 @@ const AboutUs = () => {
             { label: "Countries Served", value: "50+" },
             { label: "Team Members", value: "20+" },
           ].map((stat, i) => (
-            <div key={i} className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold text-indigo-600">
+            <div key={i} className="bg-[#2F2E41] p-6 rounded-lg shadow-md">
+              <h3 className="text-2xl font-bold text-[#7D5FFF]">
                 {stat.value}
               </h3>
-              <p className="text-gray-700 mt-2">{stat.label}</p>
+              <p className="text-[#B3B3C1] mt-2">{stat.label}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Team Section */}
-      <section className="py-16 px-6 md:px-20 lg:px-32 bg-white">
+      <section className="py-16 px-6 md:px-20 lg:px-32 bg-[#1C1B2A]">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-semibold text-center mb-10">
+          <h2 className="text-3xl font-semibold text-center mb-10 text-white">
             Meet Our Team
           </h2>
           <div className="space-y-12">
@@ -135,9 +134,11 @@ const AboutUs = () => {
                   className="w-32 h-32 rounded-full shadow-md"
                 />
                 <div>
-                  <h3 className="text-2xl font-semibold">{member.name}</h3>
-                  <p className="text-gray-600 text-lg">{member.role}</p>
-                  <p className="mt-2 text-gray-500 max-w-xl">
+                  <h3 className="text-2xl font-semibold text-white">
+                    {member.name}
+                  </h3>
+                  <p className="text-[#B3B3C1] text-lg">{member.role}</p>
+                  <p className="mt-2 text-[#9A99A9] max-w-xl">
                     {`Hi, I'm ${member.name}, working as a ${member.role}. I contribute to building scalable solutions, improving user experiences, and keeping our application fast and reliable.`}
                   </p>
                 </div>
@@ -148,9 +149,9 @@ const AboutUs = () => {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-16 px-6 md:px-20 lg:px-32 bg-gray-50">
+      <section className="py-16 px-6 md:px-20 lg:px-32 bg-[#1B182F]">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-semibold text-center mb-12">
+          <h2 className="text-3xl font-semibold text-center mb-12 text-white">
             Our History
           </h2>
           <div className="flex flex-col md:flex-row">
@@ -159,10 +160,10 @@ const AboutUs = () => {
                 <div
                   key={idx}
                   onClick={() => setSelectedYear(item.year)}
-                  className={`inline px-4 py-2 cursor-pointer rounded  font-semibold transition ${
+                  className={`inline px-4 py-2 cursor-pointer rounded font-semibold transition ${
                     selectedYear === item.year
-                      ? "text-[#3d3c50] shadow-md"
-                      : " text-indigo-600"
+                      ? "text-[#7D5FFF] bg-[#2F2E41]"
+                      : "text-[#B3B3C1] hover:text-[#7D5FFF]"
                   }`}
                 >
                   {item.year}
@@ -179,7 +180,7 @@ const AboutUs = () => {
                       className="mb-4 rounded-lg shadow-md w-full max-w-xl m-auto md:mx-0"
                     />
                   )}
-                  <p className="text-gray-600 text-lg">
+                  <p className="text-[#B3B3C1] text-lg">
                     {selectedTimelineItem.content}
                   </p>
                 </div>
@@ -190,9 +191,9 @@ const AboutUs = () => {
       </section>
 
       {/* Customer Reviews */}
-      <section className="py-16 px-6 md:px-20 lg:px-32 bg-gray-50">
+      <section className="py-16 px-6 md:px-20 lg:px-32 bg-[#1C1B2A]">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold mb-10">
+          <h2 className="text-3xl font-semibold mb-10 text-white">
             What Our Customers Say
           </h2>
           <div className="space-y-10">
@@ -213,9 +214,9 @@ const AboutUs = () => {
                   "Love the variety and prices. This is my go-to store now for all essentials.",
               },
             ].map((item, i) => (
-              <div key={i} className="bg-white p-6 rounded-xl shadow">
-                <p className="text-gray-700 italic">“{item.review}”</p>
-                <h4 className="mt-4 text-indigo-600 font-semibold">
+              <div key={i} className="bg-[#2F2E41] p-6 rounded-xl shadow">
+                <p className="text-[#B3B3C1] italic">“{item.review}”</p>
+                <h4 className="mt-4 text-[#7D5FFF] font-semibold">
                   — {item.name}
                 </h4>
               </div>
@@ -225,9 +226,11 @@ const AboutUs = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 px-6 md:px-20 lg:px-32 text-center bg-white">
-        <h2 className="text-3xl font-semibold mb-4">Stay Connected With Us</h2>
-        <p className="mb-8 text-gray-600 max-w-xl mx-auto">
+      <section className="py-16 px-6 md:px-20 lg:px-32 text-center bg-[#1B182F]">
+        <h2 className="text-3xl font-semibold mb-4 text-white">
+          Stay Connected With Us
+        </h2>
+        <p className="mb-8 text-[#9A99A9] max-w-xl mx-auto">
           Subscribe to our newsletter and become a part of our growing family.
           Get access to exclusive offers, inspiring stories, and early-bird
           deals!
@@ -236,9 +239,9 @@ const AboutUs = () => {
           <input
             type="email"
             placeholder="Enter your email"
-            className="w-full max-w-md p-3 rounded-l-full border border-gray-300 focus:outline-none"
+            className="w-full max-w-md p-3 rounded-l-full bg-[#2F2E41] text-white placeholder-[#9A99A9] border border-[#3D3C50] focus:outline-none"
           />
-          <button className="px-6 bg-indigo-600 text-white font-semibold rounded-r-full hover:bg-indigo-500 transition">
+          <button className="px-6 bg-[#7D5FFF] text-white font-semibold rounded-r-full hover:bg-[#6A4DE0] transition">
             Subscribe
           </button>
         </div>

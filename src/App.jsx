@@ -4,7 +4,7 @@ import {
   AboutUs,
   Contact,
   Home,
-  FAQ,
+  FAQSection,
   HelpCenter,
   PrivacyPolicy,
   UserLogin,
@@ -51,7 +51,7 @@ function AppWrapper() {
 
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-        <Route path="/faq" element={<FAQ />} />
+        <Route path="/faq" element={<FAQSection />} />
         <Route path="/help-center" element={<HelpCenter />} />
       </Routes>
 
