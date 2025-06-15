@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
-import faqData from "../utils/faq_data.json";
+import { FAQ_DATA as faqData } from "../utils/constants";
 
 export default function FAQPage() {
   const [activeTab, setActiveTab] = useState("FAQ");
