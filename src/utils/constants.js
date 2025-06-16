@@ -218,3 +218,312 @@ export const FAQ_DATA = {
     },
   ],
 };
+
+export const electronicsProducts = [
+  {
+    name: "Noise Smartwatches",
+    price: "From ₹1,099",
+    image:
+      "https://th.bing.com/th/id/OIP.mAJ7J9QJXSx1a4VPJx3JGQAAAA?rs=1&pid=ImgDetMain",
+  },
+  {
+    name: "Monitors",
+    price: "From ₹6,599",
+    image:
+      "https://th.bing.com/th/id/OIP.mAJ7J9QJXSx1a4VPJx3JGQAAAA?rs=1&pid=ImgDetMain",
+  },
+  {
+    name: "Best of Shavers",
+    price: "From ₹1,649",
+    image:
+      "https://th.bing.com/th/id/OIP.mAJ7J9QJXSx1a4VPJx3JGQAAAA?rs=1&pid=ImgDetMain",
+  },
+  {
+    name: "Printers",
+    price: "From ₹2,336",
+    image:
+      "https://th.bing.com/th/id/OIP.mAJ7J9QJXSx1a4VPJx3JGQAAAA?rs=1&pid=ImgDetMain",
+  },
+  {
+    name: "ViewSonic Monitors",
+    price: "From ₹8,000",
+    image:
+      "https://th.bing.com/th/id/OIP.mAJ7J9QJXSx1a4VPJx3JGQAAAA?rs=1&pid=ImgDetMain",
+  },
+  {
+    name: "boAt Smartwatch",
+    price: "From ₹999",
+    image:
+      "https://th.bing.com/th/id/OIP.mAJ7J9QJXSx1a4VPJx3JGQAAAA?rs=1&pid=ImgDetMain",
+  },
+  {
+    name: "Noise Smartwatches",
+    price: "From ₹1,099",
+    image:
+      "https://th.bing.com/th/id/OIP.mAJ7J9QJXSx1a4VPJx3JGQAAAA?rs=1&pid=ImgDetMain",
+  },
+  {
+    name: "Monitors",
+    price: "From ₹6,599",
+    image:
+      "https://th.bing.com/th/id/OIP.mAJ7J9QJXSx1a4VPJx3JGQAAAA?rs=1&pid=ImgDetMain",
+  },
+  {
+    name: "Best of Shavers",
+    price: "From ₹1,649",
+    image:
+      "https://th.bing.com/th/id/OIP.mAJ7J9QJXSx1a4VPJx3JGQAAAA?rs=1&pid=ImgDetMain",
+  },
+  {
+    name: "Printers",
+    price: "From ₹2,336",
+    image:
+      "https://th.bing.com/th/id/OIP.mAJ7J9QJXSx1a4VPJx3JGQAAAA?rs=1&pid=ImgDetMain",
+  },
+  {
+    name: "ViewSonic Monitors",
+    price: "From ₹8,000",
+    image:
+      "https://th.bing.com/th/id/OIP.mAJ7J9QJXSx1a4VPJx3JGQAAAA?rs=1&pid=ImgDetMain",
+  },
+  {
+    name: "boAt Smartwatch",
+    price: "From ₹999",
+    image:
+      "https://th.bing.com/th/id/OIP.mAJ7J9QJXSx1a4VPJx3JGQAAAA?rs=1&pid=ImgDetMain",
+  },
+];
+
+export const beautyFoodToysProducts = [
+  {
+    name: "Lipstick Set",
+    price: "From ₹399",
+    image:
+      "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-madebymath-90946.jpg&fm=jpg",
+  },
+  {
+    name: "Lipstick Set",
+    price: "From ₹399",
+    image:
+      "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-madebymath-90946.jpg&fm=jpg",
+  },
+  {
+    name: "Lipstick Set",
+    price: "From ₹399",
+    image:
+      "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-madebymath-90946.jpg&fm=jpg",
+  },
+  {
+    name: "Lipstick Set",
+    price: "From ₹399",
+    image:
+      "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-madebymath-90946.jpg&fm=jpg",
+  },
+  {
+    name: "Lipstick Set",
+    price: "From ₹399",
+    image:
+      "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-madebymath-90946.jpg&fm=jpg",
+  },
+  {
+    name: "Lipstick Set",
+    price: "From ₹399",
+    image:
+      "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-madebymath-90946.jpg&fm=jpg",
+  },
+  {
+    name: "Lipstick Set",
+    price: "From ₹399",
+    image:
+      "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-madebymath-90946.jpg&fm=jpg",
+  },
+  {
+    name: "Lipstick Set",
+    price: "From ₹399",
+    image:
+      "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-madebymath-90946.jpg&fm=jpg",
+  },
+  {
+    name: "Lipstick Set",
+    price: "From ₹399",
+    image:
+      "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-madebymath-90946.jpg&fm=jpg",
+  },
+  {
+    name: "Lipstick Set",
+    price: "From ₹399",
+    image:
+      "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-madebymath-90946.jpg&fm=jpg",
+  },
+  {
+    name: "Lipstick Set",
+    price: "From ₹399",
+    image:
+      "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-madebymath-90946.jpg&fm=jpg",
+  },
+  {
+    name: "Lipstick Set",
+    price: "From ₹399",
+    image:
+      "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-madebymath-90946.jpg&fm=jpg",
+  },
+  {
+    name: "Lipstick Set",
+    price: "From ₹399",
+    image:
+      "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-madebymath-90946.jpg&fm=jpg",
+  },
+  {
+    name: "Lipstick Set",
+    price: "From ₹399",
+    image:
+      "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-madebymath-90946.jpg&fm=jpg",
+  },
+];
+
+export const sportsHealthProducts = [
+  {
+    name: "Football",
+    price: "From ₹499",
+    image:
+      "https://media.istockphoto.com/id/1188462138/photo/variety-of-sport-accessories-on-wooden-surface.jpg?s=612x612&w=0&k=20&c=y2l7DYNkxbVteZy-Kx_adCzm-soTRbiEypje4j8ENe0=",
+  },
+  {
+    name: "Football",
+    price: "From ₹499",
+    image:
+      "https://media.istockphoto.com/id/1188462138/photo/variety-of-sport-accessories-on-wooden-surface.jpg?s=612x612&w=0&k=20&c=y2l7DYNkxbVteZy-Kx_adCzm-soTRbiEypje4j8ENe0=",
+  },
+  {
+    name: "Football",
+    price: "From ₹499",
+    image:
+      "https://media.istockphoto.com/id/1188462138/photo/variety-of-sport-accessories-on-wooden-surface.jpg?s=612x612&w=0&k=20&c=y2l7DYNkxbVteZy-Kx_adCzm-soTRbiEypje4j8ENe0=",
+  },
+  {
+    name: "Football",
+    price: "From ₹499",
+    image:
+      "https://media.istockphoto.com/id/1188462138/photo/variety-of-sport-accessories-on-wooden-surface.jpg?s=612x612&w=0&k=20&c=y2l7DYNkxbVteZy-Kx_adCzm-soTRbiEypje4j8ENe0=",
+  },
+  {
+    name: "Football",
+    price: "From ₹499",
+    image:
+      "https://media.istockphoto.com/id/1188462138/photo/variety-of-sport-accessories-on-wooden-surface.jpg?s=612x612&w=0&k=20&c=y2l7DYNkxbVteZy-Kx_adCzm-soTRbiEypje4j8ENe0=",
+  },
+  {
+    name: "Football",
+    price: "From ₹499",
+    image:
+      "https://media.istockphoto.com/id/1188462138/photo/variety-of-sport-accessories-on-wooden-surface.jpg?s=612x612&w=0&k=20&c=y2l7DYNkxbVteZy-Kx_adCzm-soTRbiEypje4j8ENe0=",
+  },
+  {
+    name: "Football",
+    price: "From ₹499",
+    image:
+      "https://media.istockphoto.com/id/1188462138/photo/variety-of-sport-accessories-on-wooden-surface.jpg?s=612x612&w=0&k=20&c=y2l7DYNkxbVteZy-Kx_adCzm-soTRbiEypje4j8ENe0=",
+  },
+  {
+    name: "Football",
+    price: "From ₹499",
+    image:
+      "https://media.istockphoto.com/id/1188462138/photo/variety-of-sport-accessories-on-wooden-surface.jpg?s=612x612&w=0&k=20&c=y2l7DYNkxbVteZy-Kx_adCzm-soTRbiEypje4j8ENe0=",
+  },
+  {
+    name: "Football",
+    price: "From ₹499",
+    image:
+      "https://media.istockphoto.com/id/1188462138/photo/variety-of-sport-accessories-on-wooden-surface.jpg?s=612x612&w=0&k=20&c=y2l7DYNkxbVteZy-Kx_adCzm-soTRbiEypje4j8ENe0=",
+  },
+  {
+    name: "Football",
+    price: "From ₹499",
+    image:
+      "https://media.istockphoto.com/id/1188462138/photo/variety-of-sport-accessories-on-wooden-surface.jpg?s=612x612&w=0&k=20&c=y2l7DYNkxbVteZy-Kx_adCzm-soTRbiEypje4j8ENe0=",
+  },
+  {
+    name: "Football",
+    price: "From ₹499",
+    image:
+      "https://media.istockphoto.com/id/1188462138/photo/variety-of-sport-accessories-on-wooden-surface.jpg?s=612x612&w=0&k=20&c=y2l7DYNkxbVteZy-Kx_adCzm-soTRbiEypje4j8ENe0=",
+  },
+  {
+    name: "Football",
+    price: "From ₹499",
+    image:
+      "https://media.istockphoto.com/id/1188462138/photo/variety-of-sport-accessories-on-wooden-surface.jpg?s=612x612&w=0&k=20&c=y2l7DYNkxbVteZy-Kx_adCzm-soTRbiEypje4j8ENe0=",
+  },
+  {
+    name: "Football",
+    price: "From ₹499",
+    image:
+      "https://media.istockphoto.com/id/1188462138/photo/variety-of-sport-accessories-on-wooden-surface.jpg?s=612x612&w=0&k=20&c=y2l7DYNkxbVteZy-Kx_adCzm-soTRbiEypje4j8ENe0=",
+  },
+];
+
+export const seasonsTopPicks = [
+  {
+    id: 1,
+    image: "https://justabill.blog/wp-content/uploads/2021/04/random.jpg",
+    name: "Dry Fruit, Nut & Seed Mix 1kg",
+    discount: "Min. 50% Off",
+    link: "#",
+  },
+  {
+    id: 2,
+    image: "https://justabill.blog/wp-content/uploads/2021/04/random.jpg",
+    name: "Women's Party Wear Sarees",
+    discount: "Min. 50% Off",
+    link: "#",
+  },
+  {
+    id: 3,
+    image: "https://justabill.blog/wp-content/uploads/2021/04/random.jpg",
+    name: "Casual Shirts for Men",
+    discount: "Min. 50% Off",
+    link: "#",
+  },
+  {
+    id: 4,
+    image: "https://justabill.blog/wp-content/uploads/2021/04/random.jpg",
+    name: "Table Fan Home & Office",
+    discount: "Min. 50% Off",
+    link: "#",
+  },
+];
+
+export const hotDealsOnFashion = [
+  {
+    id: 5,
+    image:
+      "https://img.buzzfeed.com/buzzfeed-static/static/2020-01/13/20/asset/7e4eedb15f20/sub-buzz-77-1578948330-3.png?downsize=900:*&output-format=auto&output-quality=auto",
+    name: "Kids' Combos And Cosplay",
+    discount: "Min. 50% Off",
+    link: "#",
+  },
+  {
+    id: 6,
+    image:
+      "https://img.buzzfeed.com/buzzfeed-static/static/2020-01/13/20/asset/7e4eedb15f20/sub-buzz-77-1578948330-3.png?downsize=900:*&output-format=auto&output-quality=auto",
+    name: "Men's Casual Shoes",
+    discount: "Min. 70% Off",
+    link: "#",
+  },
+  {
+    id: 7,
+    image:
+      "https://img.buzzfeed.com/buzzfeed-static/static/2020-01/13/20/asset/7e4eedb15f20/sub-buzz-77-1578948330-3.png?downsize=900:*&output-format=auto&output-quality=auto",
+    name: "Backpacks & Travel Bags",
+    discount: "Min. 70% Off",
+    link: "#",
+  },
+  {
+    id: 8,
+    image:
+      "https://img.buzzfeed.com/buzzfeed-static/static/2020-01/13/20/asset/7e4eedb15f20/sub-buzz-77-1578948330-3.png?downsize=900:*&output-format=auto&output-quality=auto",
+    name: "Watches For Men & Women",
+    discount: "Min. 50% Off",
+    link: "#",
+  },
+];

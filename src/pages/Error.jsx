@@ -6,7 +6,7 @@ export default function Anime404() {
     <div className="min-h-screen flex flex-col items-center justify-center bg-[#1a172eff] text-white px-4">
       {/* Cute Anime Illustration */}
       <img
-        src="404.png"
+        src="/images/error/404.png"
         alt="Sad anime character"
         className="w-48 h-48 sm:w-64 sm:h-64 mb-12"
       />
