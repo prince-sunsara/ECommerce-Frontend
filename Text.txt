@@ -5,7 +5,6 @@ Form section background (right side): #1C1B2A
 Left image section overlay: #1B182F
 
 🟣 Button & Highlight Colors:
-"Create account" button color: #7D5FFF
 Google/Apple button borders: #3D3C50
 Checkbox tick background (selected): #7D5FFF
 

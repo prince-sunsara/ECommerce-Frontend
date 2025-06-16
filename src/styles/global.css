@@ -1,0 +1,8 @@
+/* Swiper custom dot styles */
+.swiper-pagination-bullet {
+  background: #3d3c50;
+  opacity: 1;
+}
+.swiper-pagination-bullet-active {
+  background: #7d5fff !important;
+}
