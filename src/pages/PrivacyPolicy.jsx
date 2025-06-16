@@ -41,7 +41,7 @@ const getSectionContent = (id) => {
 const PrivacyPolicy = () => {
   return (
     <div className="bg-white text-gray-800 min-h-screen">
-      {/* Header */}
+      {/* header */}
       <header
         className="w-full h-[125px] sm:h-[400px] lg:h-[400px] bg-cover bg-center bg-no-repeat flex items-center justify-center text-center shadow"
         style={{ backgroundImage: `url(${PrivacyBg})` }}
