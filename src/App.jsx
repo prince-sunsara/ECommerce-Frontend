@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+} from "react-router";
 import { Navbar, Footer } from "./layouts";
 import {
   AboutUs,
@@ -13,6 +19,7 @@ import {
   SellerSignUp,
   TermsAndConditions,
   OtpVerification,
+  Error,
 } from "./pages";
 
 function AppWrapper() {
@@ -25,6 +32,7 @@ function AppWrapper() {
     "/seller-login",
     "/seller-sign-up",
     "/otp-verification",
+    "/404",
   ];
 
   const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
@@ -53,6 +61,11 @@ function AppWrapper() {
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/faq" element={<FAQSection />} />
         <Route path="/help-center" element={<HelpCenter />} />
+
+        <Route path="/404" element={<Error />} />
+
+        {/* Redirect unknown routes to 404 */}
+        <Route path="*" element={<Navigate to="/404" />} />
       </Routes>
 
       {!shouldHideNavbar && (

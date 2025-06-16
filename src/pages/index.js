@@ -11,6 +11,7 @@ import UserSignUp from "./UserRegister/UserSignUp";
 import SellerLogin from "./SellerRegister/SellerLogin";
 import UserLogin from "./UserRegister/UserLogin";
 import OtpVerification from "./OtpVerification";
+import Error from "./Error";
 
 export {
   Home,
@@ -26,4 +27,5 @@ export {
   SellerLogin,
   UserLogin,
   OtpVerification,
+  Error,
 };
