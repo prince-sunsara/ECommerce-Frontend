@@ -21,7 +21,7 @@ export default function OtpVerification() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[var(--primary-bg)] text-white font-inter px-4">
-      <div className="w-full max-w-md bg-[var(--primary-bg)] px-4 py-10 sm:px-8 md:px-10 border border-white rounded-xl">
+      <div className="w-full max-w-md bg-[var(--primary-bg)] px-4 py-10 sm:px-8 md:px-10 border border-[var(--ring-color)] rounded-xl">
         <h1 className="text-white text-3xl font-semibold mb-3 text-center">
           Verify OTP
         </h1>
