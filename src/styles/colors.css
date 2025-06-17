@@ -12,7 +12,7 @@
   --highlight-color: #FFD666;
   --button-text-color: #081220;
   --border-bg: #d2c88b;
-  --border-gradient: linear-gradient(90deg, #d9b95b, #f4d88b, #d9b95b);
+  --hero-bg: #121418; 
 }
 
 body {
