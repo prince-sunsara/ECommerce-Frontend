@@ -1,22 +1,28 @@
-import loginBg from "../../assets/images/login_bg.png";
+import loginBg from "../../assets/images/login-signup.png";
+import { Link, useNavigate } from "react-router";
 
 export default function SellerLogin() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/");
+  };
   return (
-    <div className="min-h-screen flex justify-center flex-col md:flex-row bg-[var(--primary-bg)] text-white font-inter">
-      {/* Left side (hidden on mobile) */}
+    <div className="min-h-screen flex flex-col md:flex-row bg-[var(--primary-bg)] text-white font-inter justify-center">
+      {/* Left image side (hidden on small screens) */}
       <div className="hidden md:flex md:w-1/2 relative flex-col justify-between">
         <div className="p-8 pt-6 flex justify-between items-center z-10">
-          <div className="w-[90px] h-[30px] flex items-center justify-center">
+          <div className="w-[200px] h-[30px] flex items-center justify-center">
             <h1 className="text-white text-3xl font-semibold tracking-wide select-none">
-              Test
+              ECOMMERCE
             </h1>
           </div>
           <button
             type="button"
+            onClick={handleClick}
             className="px-4 py-1.5 bg-[var(--primary-color)] rounded-md text-white text-sm font-normal hover:bg-[var(--primary-hover)] transition flex items-center w-max cursor-pointer"
           >
             Back to website
-            <i className="fas fa-caret-down ml-2 text-white text-xs"></i>
           </button>
         </div>
         <img
@@ -28,7 +34,7 @@ export default function SellerLogin() {
         />
       </div>
 
-      {/* Right side (form) */}
+      {/* Right form side */}
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center px-6 py-12 sm:px-12 md:px-20 lg:px-24 bg-[var(--primary-bg)]">
         <div className="w-full max-w-md">
           <h1 className="text-white text-4xl font-semibold mb-3 leading-tight">
@@ -36,10 +42,11 @@ export default function SellerLogin() {
           </h1>
           <p className="text-[var(--text-light)] text-sm mb-6">
             Don’t have an account?{" "}
-            <a href="#" className="text-white hover:underline font-normal">
+            <Link to="/seller-sign-up" className="text-white hover:underline font-normal">
               Sign Up
-            </a>
+            </Link>
           </p>
+
           <form className="space-y-4 w-full">
             <input
               type="email"
@@ -72,12 +79,12 @@ export default function SellerLogin() {
               />
               <span>
                 I agree to the{" "}
-                <a
-                  href="#"
+                <Link
+                  to="/terms-and-conditions"
                   className="underline hover:text-[var(--link-hover)]"
                 >
                   Terms &amp; Conditions
-                </a>
+                </Link>
               </span>
             </label>
             <button
