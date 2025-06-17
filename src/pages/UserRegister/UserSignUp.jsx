@@ -1,7 +1,12 @@
-import React from "react";
-import signUpBg from "../../assets/images/sign_up_bg.png";
-
+import signUpBg from "../../assets/images/login-signup.png";
+import { Link, useNavigate } from "react-router";
 export default function UserSignUp() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/"); // Navigates to home page
+  };
+
   return (
     <div className="min-h-screen flex justify-center flex-col md:flex-row bg-[var(--primary-bg)] text-white font-inter">
       {/* Left side image (hidden on small screens) */}
@@ -12,9 +17,10 @@ export default function UserSignUp() {
           className="absolute inset-0 w-full h-full object-cover z-0 opacity-90"
         />
         <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center z-10">
-          <div className="text-2xl font-semibold">Test</div>
+          <div className="text-2xl font-semibold">ECOMMERCE</div>
           <button
             type="button"
+            onClick={handleClick}
             className="px-4 py-2 bg-[var(--primary-color)] rounded-md text-white text-sm hover:bg-[var(--primary-hover)] transition"
           >
             Back to website
@@ -30,9 +36,9 @@ export default function UserSignUp() {
           </h1>
           <p className="text-sm text-[var(--text-light)] mb-6">
             Already have an account?{" "}
-            <a href="#" className="text-white hover:underline">
+            <Link to="/user-login" className="text-white hover:underline">
               Login
-            </a>
+            </Link>
           </p>
 
           <form className="space-y-4">
@@ -50,6 +56,20 @@ export default function UserSignUp() {
                 className="bg-[var(--input-bg)] rounded-md px-4 py-3 text-white placeholder-[#cfcfe3] focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)] flex-1 md:w-1/2"
               />
             </div>
+
+            <input
+              type="text"
+              placeholder="Username"
+              required
+              className="bg-[var(--input-bg)] rounded-md px-4 py-3 w-full text-white placeholder-[#cfcfe3] focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)]"
+            />
+
+            <input
+              type="tel"
+              placeholder="Phone number"
+              required
+              className="bg-[var(--input-bg)] rounded-md px-4 py-3 w-full text-white placeholder-[#cfcfe3] focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)]"
+            />
 
             <input
               type="email"
@@ -83,12 +103,11 @@ export default function UserSignUp() {
               />
               <span>
                 I agree to the{" "}
-                <a
-                  href="#"
+                <Link to="/terms-and-conditions"
                   className="underline hover:text-[var(--link-hover)]"
                 >
                   Terms & Conditions
-                </a>
+                </Link>
               </span>
             </label>
 
