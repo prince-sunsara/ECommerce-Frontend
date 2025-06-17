@@ -1,186 +1,174 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCaretDown,
   faCartShopping,
   faSearch,
   faUser,
-  faBars,
   faXmark,
+  faStore,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
-  const [openMenu, setOpenMenu] = useState(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [userDrawerOpen, setUserDrawerOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // simulate login
 
-  const menus = {
-    Categories: [
-      "Shoes",
-      "Clothing",
-      "Electronics",
-      "Home & Kitchen",
-      "Beauty & Personal Care",
-      "Books",
-      "Mobile Phones",
-      "Laptops & Computers",
-      "Watches",
-      "Jewellery",
-      "Toys & Games",
-      "Sports & Fitness",
-      "Automotive",
-      "Health & Wellness",
-      "Grocery & Essentials",
-      "Baby Products",
-      "Furniture",
-      "Stationery & Office Supplies",
-      "Cameras & Accessories",
-      "Musical Instruments",
-    ],
-    Shop: ["Men", "Women", "Kids"],
-    Pages: ["FAQ", "404", "Terms"],
-  };
-
-  const handleMenuToggle = (menu) => {
-    setOpenMenu((prev) => (prev === menu ? null : menu));
-  };
+  // Close user drawer on outside click
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        userDrawerOpen &&
+        !e.target.closest(".user-drawer") &&
+        !e.target.closest(".fa-user")
+      ) {
+        setUserDrawerOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [userDrawerOpen]);
 
   return (
     <nav className="bg-[var(--primary-bg)] text-[var(--primary-color)] px-4 py-4 shadow-md">
-      <div className="mx-auto flex items-center justify-between w-full max-w-screen-xl">
-        <Link to="/" className="text-2xl font-bold text-[var(--primary-color)]">
+      <div className="mx-auto w-full max-w-screen-xl flex items-center justify-between gap-4">
+        {/* Left: Logo */}
+        <Link
+          to="/"
+          className="text-2xl font-bold text-[var(--primary-color)] whitespace-nowrap"
+        >
           ECommerce
         </Link>
 
-        <div className="md:hidden">
-          <FontAwesomeIcon
-            icon={mobileMenuOpen ? faXmark : faBars}
-            className="text-2xl text-[var(--primary-color)] cursor-pointer"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          />
-        </div>
-
-        <div className="hidden md:flex items-center gap-10 text-[1.1rem]">
-          <Link
-            to="/"
-            className="font-medium hover:text-[var(--link-hover)] transition-all duration-300"
-          >
-            Home
-          </Link>
-
-          {Object.keys(menus).map((menu) => (
-            <div
-              key={menu}
-              className="relative group"
-              onMouseEnter={() => setOpenMenu(menu)}
-              onMouseLeave={() => setOpenMenu(null)}
-            >
-              <div
-                className="flex items-center gap-1 cursor-pointer hover:text-[var(--link-hover)] transition-all duration-300"
-                onClick={() => handleMenuToggle(menu)}
-              >
-                {menu} <FontAwesomeIcon icon={faCaretDown} />
-              </div>
-              {openMenu === menu && (
-                <div
-                  className={`absolute top-5 left-0 mt-2 bg-[var(--input-bg)] text-sm text-white rounded-lg shadow-lg z-50 p-4 ${
-                    menu === "Categories"
-                      ? "min-w-[90vw] sm:min-w-[600px]"
-                      : "min-w-[200px]"
-                  }`}
-                >
-                  <div
-                    className={`grid gap-3 ${
-                      menu === "Categories"
-                        ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
-                        : "grid-cols-1"
-                    }`}
-                  >
-                    {menus[menu].map((item, index) => (
-                      <Link
-                        key={index}
-                        to={`/${item
-                          .toLowerCase()
-                          .replace(/ & /g, "-")
-                          .replace(/ /g, "-")}`}
-                        className="hover:bg-[var(--border-color)] px-3 py-2 rounded-md whitespace-nowrap"
-                      >
-                        {item}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-
-        <div className="hidden md:flex items-center gap-6">
-          <div className="flex items-center border border-[var(--primary-color)] rounded-full px-4 py-1">
+        {/* Search bar (for medium and above) */}
+        <div className="hidden md:flex flex-1 justify-center">
+          <div className="flex items-center border border-[var(--primary-color)] rounded-full px-4 py-2 w-full max-w-lg">
             <input
               type="text"
               placeholder="Search items"
-              className="bg-transparent text-[var(--text-light)] placeholder:text-[var(--text-dark-light)] focus:outline-none w-full"
+              className="bg-transparent w-full text-[var(--text-light)] placeholder:text-[var(--text-dark-light)] focus:outline-none"
             />
             <FontAwesomeIcon
               icon={faSearch}
               className="ml-2 text-[var(--primary-color)] hover:text-[var(--highlight-color)] cursor-pointer"
             />
           </div>
+        </div>
 
+        {/* Right: Icons */}
+        <div className="flex items-center gap-5">
           <Link to="/user-cart" className="relative">
             <FontAwesomeIcon
               icon={faCartShopping}
               className="text-xl text-[var(--primary-color)] hover:text-[var(--link-hover)] transition"
             />
             <span className="absolute -top-2 -right-2 bg-[var(--highlight-color)] text-[var(--button-text-color)] text-xs px-1.5 rounded-full">
-              2
+              0
             </span>
           </Link>
+
+          <Link
+            to="/become-seller"
+            className="text-sm md:text-base font-medium hover:text-[var(--link-hover)] text-center"
+          >
+            <FontAwesomeIcon
+              icon={faStore}
+              className="text-xl text-[var(--primary-color)] hover:text-[var(--link-hover)] transition mr-2"
+            />
+            Become a Seller
+          </Link>
+
+          <FontAwesomeIcon
+            icon={faUser}
+            className="text-xl cursor-pointer hover:text-[var(--link-hover)] fa-user"
+            onClick={() => setUserDrawerOpen(true)}
+          />
         </div>
       </div>
 
-      {mobileMenuOpen && (
-        <div className="md:hidden mt-4 bg-[var(--input-bg)] p-4 rounded-lg space-y-2">
-          <Link to="/" className="block hover:text-[var(--link-hover)]">
-            Home
-          </Link>
-          {Object.keys(menus).map((menu, idx) => (
-            <div key={idx}>
-              <div
-                className="flex justify-between items-center cursor-pointer py-2"
-                onClick={() => handleMenuToggle(menu)}
-              >
-                {menu}
-                <FontAwesomeIcon icon={faCaretDown} />
-              </div>
-              {openMenu === menu && (
-                <div className="pl-4 space-y-1">
-                  {menus[menu].map((item, index) => (
-                    <Link
-                      key={index}
-                      to={`/${item
-                        .toLowerCase()
-                        .replace(/ & /g, "-")
-                        .replace(/ /g, "-")}`}
-                      className="block text-sm hover:text-[var(--highlight-color)]"
-                    >
-                      {item}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
+      {/* Mobile Search bar (visible only below md) */}
+      <div className="md:hidden">
+        <div className="flex items-center border border-[var(--primary-color)] rounded-full px-4 py-2">
+          <input
+            type="text"
+            placeholder="Search items"
+            className="bg-transparent w-full text-[var(--text-light)] placeholder:text-[var(--text-dark-light)] focus:outline-none"
+          />
+          <FontAwesomeIcon
+            icon={faSearch}
+            className="ml-2 text-[var(--primary-color)] hover:text-[var(--highlight-color)] cursor-pointer"
+          />
+        </div>
+      </div>
 
-          <div className="flex items-center gap-3 pt-2">
-            <Link to="/user-profile">
-              <FontAwesomeIcon icon={faUser} className="text-xl text-[var(--primary-color)]" />
-            </Link>
-            <Link to="/user-cart">
-              <FontAwesomeIcon icon={faCartShopping} className="text-xl text-[var(--primary-color)]" />
-            </Link>
-          </div>
+      {/* Side Drawer for User Options */}
+      {userDrawerOpen && (
+        <div className="fixed top-0 right-0 h-full w-72 bg-[var(--input-bg)] shadow-lg z-50 p-6 transition-all duration-300 ease-in-out user-drawer">
+          <button
+            className="absolute top-4 right-4 text-white text-xl"
+            onClick={() => setUserDrawerOpen(false)}
+          >
+            <FontAwesomeIcon icon={faXmark} />
+          </button>
+
+          <h3 className="text-lg font-semibold mb-4 text-[var(--highlight-color)]">
+            User Panel
+          </h3>
+
+          {!isLoggedIn ? (
+            <div className="space-y-4">
+              <Link
+                to="/signup"
+                className="block hover:text-[var(--highlight-color)]"
+              >
+                Sign Up
+              </Link>
+              <Link
+                to="/login"
+                className="block hover:text-[var(--highlight-color)]"
+              >
+                Login
+              </Link>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <Link
+                to="/profile"
+                className="block hover:text-[var(--highlight-color)]"
+              >
+                My Profile
+              </Link>
+              <Link
+                to="/wishlist"
+                className="block hover:text-[var(--highlight-color)]"
+              >
+                Wishlist
+              </Link>
+              <Link
+                to="/orders"
+                className="block hover:text-[var(--highlight-color)]"
+              >
+                Orders
+              </Link>
+              <Link
+                to="/categories"
+                className="block hover:text-[var(--highlight-color)]"
+              >
+                Categories
+              </Link>
+              <Link
+                to="/settings"
+                className="block hover:text-[var(--highlight-color)]"
+              >
+                Settings
+              </Link>
+              <button
+                onClick={() => setIsLoggedIn(false)}
+                className="text-red-500 hover:text-red-600"
+              >
+                Logout
+              </button>
+            </div>
+          )}
         </div>
       )}
     </nav>
