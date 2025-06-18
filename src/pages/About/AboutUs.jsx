@@ -34,7 +34,7 @@ const AboutUs = () => {
     {
       year: "2011",
       content:
-        "ECommerce graduates from the prestigious Y Combinator startup accelerator under the mentorship of Paul Graham and the YC Partnership. Vidyard goes on to become one of Y Combinator’s top companies.",
+        "ECommerce graduates from Y Combinator under the mentorship of Paul Graham. We became one of YC’s top-performing startups.",
       image: "https://picsum.photos/id/2/400/200",
     },
     {
@@ -57,23 +57,30 @@ const AboutUs = () => {
 
   return (
     <div
-      className="min-h-screen text-white font-sans"
+      className="min-h-screen font-sans"
       style={{
-        backgroundImage: `linear-gradient(rgba(27, 24, 47, 0.8), rgba(27, 24, 47, 0.8)), url('https://images.unsplash.com/photo-1607082349250-6728e485e3bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80')`,
-        backgroundColor: "#2B2A40",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundColor: "var(--primary-bg)",
+        color: "var(--text-light)",
       }}
     >
       {/* Hero Section */}
-      <section className="relative h-72 bg-cover bg-center flex items-center justify-center bg-[#1B182F]/90 backdrop-blur-md">
-        <h1 className="text-4xl md:text-5xl font-bold text-center text-white">
-          About Our Journey
-        </h1>
+      <section className="relative h-30 sm:h-72 flex items-center justify-center text-white">
+        {/* Background image with opacity */}
+        <div className="absolute inset-0 bg-[url('/images/about/map.png')] bg-cover opacity-50 "></div>
+
+        {/* Overlay content */}
+        <div className="relative z-10">
+          <h1 className="text-4xl md:text-5xl font-bold text-center">
+            About Our Journey
+          </h1>
+        </div>
       </section>
 
       {/* Company Info */}
-      <section className="py-16 px-6 md:px-20 lg:px-32 bg-[#1C1B2A] text-[#B3B3C1]">
+      <section
+        className="py-16 px-6 md:px-20 lg:px-32"
+        style={{ backgroundColor: "var(--input-bg)" }}
+      >
         <div className="max-w-5xl mx-auto space-y-6">
           <h2 className="text-3xl font-bold text-white">Who We Are</h2>
           <p className="text-lg leading-relaxed">
@@ -89,33 +96,48 @@ const AboutUs = () => {
           <p className="text-lg leading-relaxed">
             Our platform is designed with simplicity and security in mind,
             giving our customers peace of mind while shopping for their favorite
-            products. Every transaction is a step forward in building long-term
-            trust and satisfaction.
+            products.
           </p>
         </div>
       </section>
 
       {/* Key Stats */}
-      <section className="bg-[#1B182F] py-16 px-6 md:px-20 lg:px-32">
+      <section
+        className="py-16 px-6 md:px-20 lg:px-32"
+        style={{ backgroundColor: "var(--hero-bg)" }}
+      >
         <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 text-center">
           {[
-            { label: "Satisfied Customers", value: "98,000+" },
-            { label: "Total Orders", value: "150,000+" },
-            { label: "Countries Served", value: "50+" },
-            { label: "Team Members", value: "20+" },
+            { label: "Satisfied Customers", value: "0" },
+            { label: "Total Orders", value: "0" },
+            { label: "Countries Served", value: "0" },
+            { label: "Team Members", value: "0" },
           ].map((stat, i) => (
-            <div key={i} className="bg-[#2F2E41] p-6 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold text-[#7D5FFF]">
+            <div
+              key={i}
+              className="p-6 rounded-lg shadow-md"
+              style={{
+                backgroundColor: "var(--input-bg)",
+                border: "1px solid var(--border-color)",
+              }}
+            >
+              <h3
+                className="text-2xl font-bold"
+                style={{ color: "var(--highlight-color)" }}
+              >
                 {stat.value}
               </h3>
-              <p className="text-[#B3B3C1] mt-2">{stat.label}</p>
+              <p className="mt-2">{stat.label}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Team Section */}
-      <section className="py-16 px-6 md:px-20 lg:px-32 bg-[#1C1B2A]">
+      <section
+        className="py-16 px-6 md:px-20 lg:px-32"
+        style={{ backgroundColor: "var(--input-bg)" }}
+      >
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-semibold text-center mb-10 text-white">
             Meet Our Team
@@ -137,8 +159,16 @@ const AboutUs = () => {
                   <h3 className="text-2xl font-semibold text-white">
                     {member.name}
                   </h3>
-                  <p className="text-[#B3B3C1] text-lg">{member.role}</p>
-                  <p className="mt-2 text-[#9A99A9] max-w-xl">
+                  <p
+                    className="text-lg"
+                    style={{ color: "var(--text-dark-light)" }}
+                  >
+                    {member.role}
+                  </p>
+                  <p
+                    className="mt-2 max-w-xl"
+                    style={{ color: "var(--text-light)" }}
+                  >
                     {`Hi, I'm ${member.name}, working as a ${member.role}. I contribute to building scalable solutions, improving user experiences, and keeping our application fast and reliable.`}
                   </p>
                 </div>
@@ -149,7 +179,10 @@ const AboutUs = () => {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-16 px-6 md:px-20 lg:px-32 bg-[#1B182F]">
+      <section
+        className="py-16 px-6 md:px-20 lg:px-32"
+        style={{ backgroundColor: "var(--hero-bg)" }}
+      >
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-semibold text-center mb-12 text-white">
             Our History
@@ -162,15 +195,15 @@ const AboutUs = () => {
                   onClick={() => setSelectedYear(item.year)}
                   className={`inline px-4 py-2 cursor-pointer rounded font-semibold transition ${
                     selectedYear === item.year
-                      ? "text-[#7D5FFF] bg-[#2F2E41]"
-                      : "text-[#B3B3C1] hover:text-[#7D5FFF]"
+                      ? "bg-[#1C1F26] text-[var(--highlight-color)]"
+                      : "text-[var(--text-light)] hover:text-[var(--highlight-color)]"
                   }`}
                 >
                   {item.year}
                 </div>
               ))}
             </div>
-            <div className="md:w-3/4 mt-10 md:mt-0 md:pl-16 space-y-6 text-center md:text-justify">
+            <div className="md:w-3/4 mt-10 md:mt-0 md:pl-16 space-y-6 text-center md:text-left">
               {selectedTimelineItem && (
                 <div>
                   {selectedTimelineItem.image && (
@@ -180,9 +213,7 @@ const AboutUs = () => {
                       className="mb-4 rounded-lg shadow-md w-full max-w-xl m-auto md:mx-0"
                     />
                   )}
-                  <p className="text-[#B3B3C1] text-lg">
-                    {selectedTimelineItem.content}
-                  </p>
+                  <p className="text-lg">{selectedTimelineItem.content}</p>
                 </div>
               )}
             </div>
@@ -190,8 +221,11 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Customer Reviews */}
-      <section className="py-16 px-6 md:px-20 lg:px-32 bg-[#1C1B2A]">
+      {/* Reviews */}
+      <section
+        className="py-16 px-6 md:px-20 lg:px-32"
+        style={{ backgroundColor: "var(--input-bg)" }}
+      >
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl font-semibold mb-10 text-white">
             What Our Customers Say
@@ -214,9 +248,18 @@ const AboutUs = () => {
                   "Love the variety and prices. This is my go-to store now for all essentials.",
               },
             ].map((item, i) => (
-              <div key={i} className="bg-[#2F2E41] p-6 rounded-xl shadow">
-                <p className="text-[#B3B3C1] italic">“{item.review}”</p>
-                <h4 className="mt-4 text-[#7D5FFF] font-semibold">
+              <div
+                key={i}
+                className="p-6 rounded-xl shadow"
+                style={{
+                  backgroundColor: "var(--primary-bg)",
+                  border: "1px solid var(--border-color)",
+                }}
+              >
+                <p className="italic text-[var(--text-dark-light)]">
+                  “{item.review}”
+                </p>
+                <h4 className="mt-4 font-semibold text-[var(--highlight-color)]">
                   — {item.name}
                 </h4>
               </div>
@@ -226,11 +269,14 @@ const AboutUs = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 px-6 md:px-20 lg:px-32 text-center bg-[#1B182F]">
+      <section
+        className="py-16 px-6 md:px-20 lg:px-32 text-center"
+        style={{ backgroundColor: "var(--hero-bg)" }}
+      >
         <h2 className="text-3xl font-semibold mb-4 text-white">
           Stay Connected With Us
         </h2>
-        <p className="mb-8 text-[#9A99A9] max-w-xl mx-auto">
+        <p className="mb-8 max-w-xl mx-auto text-[var(--text-dark-light)]">
           Subscribe to our newsletter and become a part of our growing family.
           Get access to exclusive offers, inspiring stories, and early-bird
           deals!
@@ -239,9 +285,9 @@ const AboutUs = () => {
           <input
             type="email"
             placeholder="Enter your email"
-            className="w-full max-w-md p-3 rounded-l-full bg-[#2F2E41] text-white placeholder-[#9A99A9] border border-[#3D3C50] focus:outline-none"
+            className="w-full max-w-md p-3 rounded-l-full border border-[var(--border-color)] bg-[var(--input-bg)] text-white placeholder-[var(--text-dark-light)] focus:outline-none"
           />
-          <button className="px-6 bg-[#7D5FFF] text-white font-semibold rounded-r-full hover:bg-[#6A4DE0] transition">
+          <button className="px-6 font-semibold rounded-r-full bg-[var(--primary-color)] text-[var(--button-text-color)] hover:bg-[var(--primary-hover)] transition cursor-pointer">
             Subscribe
           </button>
         </div>

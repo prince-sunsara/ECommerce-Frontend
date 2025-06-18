@@ -1,23 +1,17 @@
 const Contact = () => {
   return (
-    <div
-      className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center text-white font-sans bg-cover bg-center"
-      style={{
-        backgroundImage: `url('https://www.transparenttextures.com/patterns/dark-mosaic.png')`,
-        backgroundColor: "#2B2A40",
-      }}
-    >
+    <div className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center bg-[var(--hero-bg)] text-[var(--text-light)] font-sans ">
       {/* Left Section */}
-      <div className="w-full md:w-1/2 p-10 flex flex-col justify-center bg-[#1B182F]/80 h-full backdrop-blur-md">
+      <div className="w-full md:w-1/2 p-10 flex flex-col justify-center bg-[var(--hero-bg)]/80 h-full backdrop-blur-md">
         <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
           Let’s Talk About Your Needs
         </h1>
-        <p className="text-[#B3B3C1] max-w-lg mb-6 text-lg">
+        <p className="text-[var(--text-dark-light)] max-w-lg mb-6 text-lg">
           Whether you have questions about our products, shipping, or want a
           personalized solution, we’re here to help. Drop your details and we’ll
           reach out within 24 hours.
         </p>
-        <ul className="mb-6 text-[#9A99A9] space-y-2">
+        <ul className="mb-6 text-[var(--text-dark-light)] space-y-2">
           <li>
             <strong>Email:</strong> support@ecommerce.com
           </li>
@@ -46,9 +40,9 @@ const Contact = () => {
       </div>
 
       {/* Right Form Section */}
-      <div className="w-full md:w-1/2 bg-[#1C1B2A] p-10 rounded-md shadow-md max-w-lg">
+      <div className="w-full md:w-1/2 bg-[var(--input-bg)] p-10 rounded-md shadow-md max-w-lg">
         <h2 className="text-2xl font-bold mb-1">Get a Quote</h2>
-        <p className="text-[#B3B3C1] mb-6">
+        <p className="text-[var(--text-dark-light)] mb-6">
           Our experts will respond within 24 hours.
         </p>
 
@@ -57,12 +51,12 @@ const Contact = () => {
             <input
               type="text"
               placeholder="First Name"
-              className="bg-[#2F2E41] text-white placeholder-[#9A99A9] w-full px-4 py-3 rounded-md outline-none focus:ring-2 focus:ring-[#7D5FFF]"
+              className="bg-[var(--hero-bg)] text-[var(--text-light)] placeholder-[var(--text-dark-light)] w-full px-4 py-3 rounded-md outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
             />
             <input
               type="text"
               placeholder="Last Name"
-              className="bg-[#2F2E41] text-white placeholder-[#9A99A9] w-full px-4 py-3 rounded-md outline-none focus:ring-2 focus:ring-[#7D5FFF]"
+              className="bg-[var(--hero-bg)] text-[var(--text-light)] placeholder-[var(--text-dark-light)] w-full px-4 py-3 rounded-md outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
             />
           </div>
 
@@ -70,24 +64,24 @@ const Contact = () => {
             <input
               type="email"
               placeholder="Email"
-              className="bg-[#2F2E41] text-white placeholder-[#9A99A9] w-full px-4 py-3 rounded-md outline-none focus:ring-2 focus:ring-[#7D5FFF]"
+              className="bg-[var(--hero-bg)] text-[var(--text-light)] placeholder-[var(--text-dark-light)] w-full px-4 py-3 rounded-md outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
             />
             <input
               type="text"
               placeholder="Phone Number"
-              className="bg-[#2F2E41] text-white placeholder-[#9A99A9] w-full px-4 py-3 rounded-md outline-none focus:ring-2 focus:ring-[#7D5FFF]"
+              className="bg-[var(--hero-bg)] text-[var(--text-light)] placeholder-[var(--text-dark-light)] w-full px-4 py-3 rounded-md outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
             />
           </div>
 
           <textarea
             rows="4"
             placeholder="How can we help you?"
-            className="bg-[#2F2E41] text-white placeholder-[#9A99A9] w-full px-4 py-3 rounded-md resize-none outline-none focus:ring-2 focus:ring-[#7D5FFF]"
+            className="bg-[var(--hero-bg)] text-[var(--text-light)] placeholder-[var(--text-dark-light)] w-full px-4 py-3 rounded-md resize-none outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
           ></textarea>
 
           <button
             type="submit"
-            className="bg-[#7D5FFF] text-white w-full py-3 rounded-md font-medium hover:bg-[#6A4DE0] transition"
+            className="bg-[var(--primary-color)] text-[var(--button-text-color)] w-full py-3 rounded-md font-medium hover:bg-[var(--primary-hover)] transition"
           >
             Get Quote
           </button>
