@@ -527,3 +527,82 @@ export const hotDealsOnFashion = [
     link: "#",
   },
 ];
+// Terms & condtion constant
+export const TERMS_SECTIONS = [
+  { id: "introduction", label: "Introduction" },
+  { id: "eligibility", label: "Eligibility to Use" },
+  { id: "account", label: "Account Responsibilities" },
+  { id: "orders", label: "Orders & Payments" },
+  { id: "returns", label: "Returns & Refunds" },
+  { id: "pricing", label: "Pricing & Availability" },
+  { id: "usage", label: "Acceptable Usage" },
+  { id: "termination", label: "Termination" },
+  { id: "disclaimer", label: "Disclaimer of Liability" },
+  { id: "contact", label: "Contact Us" },
+];
+
+export const getTermsContent = (id) => {
+  switch (id) {
+    case "introduction":
+      return "Please read these terms carefully before using our platform. By continuing, you agree to be bound by these terms. These Terms & Conditions govern your access to and use of our eCommerce platform, including browsing, purchasing, and account management. By accessing or using our services, you agree to be legally bound by these terms.";
+    case "eligibility":
+      return "Users must be at least 18 years of age or have legal parental/guardian consent to use this site. We reserve the right to deny service to anyone at our discretion.";
+    case "account":
+      return "You are responsible for maintaining the confidentiality of your account login and for all activities that occur under your account. Notify us immediately of any unauthorized use.";
+    case "orders":
+      return "All orders placed are subject to availability and acceptance. Prices, product descriptions, and availability are subject to change without notice.";
+    case "returns":
+      return "You may return most new, unopened items within 7 days of delivery for a full refund. Items must be in original packaging. Return shipping costs may apply.";
+    case "pricing":
+      return "We strive to provide accurate pricing, but errors may occur. If a product is listed at an incorrect price, we reserve the right to refuse or cancel any orders placed.";
+    case "usage":
+      return "You agree not to use our services for any illegal activities, distribute harmful content, or engage in fraudulent behavior. Violations will result in account suspension.";
+    case "termination":
+      return "We may terminate or suspend access to our services immediately, without prior notice or liability, for any breach of these Terms.";
+    case "disclaimer":
+      return "Our site and services are provided 'as is' without warranties of any kind. We are not liable for any damages resulting from the use or inability to use our platform.";
+    case "contact":
+      return "For any questions regarding these terms, please contact us at support@ecommerce.com or call +1 (800) 456-7890.";
+    default:
+      return "";
+  }
+};
+
+// Privacy policy constat
+export const POLICY_SECTIONS = [
+  { id: "introduction", label: "Introduction" },
+  { id: "dataCollection", label: "Data Collection" },
+  { id: "dataUsage", label: "Use of Data" },
+  { id: "cookies", label: "Cookies Policy" },
+  { id: "thirdParties", label: "Third-Party Sharing" },
+  { id: "security", label: "Data Security" },
+  { id: "rights", label: "Your Rights" },
+  { id: "changes", label: "Policy Changes" },
+  { id: "contact", label: "Contact Us" },
+];
+
+// Section content based on ID
+export const getPlicyContent = (id) => {
+  switch (id) {
+    case "introduction":
+      return "Your privacy matters to us. Here's how we collect, use, and protect your data. This Privacy Policy outlines how we handle your data when you use our platform. We are committed to protecting your personal information.";
+    case "dataCollection":
+      return "We collect data such as name, email, phone number, and address during registration or while using our services.";
+    case "dataUsage":
+      return "Your data is used to provide better service, process transactions, and personalize your experience.";
+    case "cookies":
+      return "We use cookies to improve site functionality and enhance user experience. You can manage cookie preferences in your browser.";
+    case "thirdParties":
+      return "We may share minimal data with third-party partners only for payment, shipping, or analytics — always under strict agreements.";
+    case "security":
+      return "We implement encryption and secure servers to keep your personal data safe from unauthorized access.";
+    case "rights":
+      return "You have the right to access, modify, or delete your data anytime. Contact our support team for assistance.";
+    case "changes":
+      return "We may update this policy periodically. All changes will be reflected on this page with a revision date.";
+    case "contact":
+      return "For questions, please contact us at privacy@ecommerce.com or call +1 (800) 123-4567.";
+    default:
+      return "";
+  }
+};

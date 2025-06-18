@@ -1,69 +1,61 @@
-import termsBg from "../assets/images/terms_and_conditions.png";
-//  Section data for sidebar and content
-const sections = [
-  { id: "introduction", label: "Introduction" },
-  { id: "eligibility", label: "Eligibility to Use" },
-  { id: "account", label: "Account Responsibilities" },
-  { id: "orders", label: "Orders & Payments" },
-  { id: "returns", label: "Returns & Refunds" },
-  { id: "pricing", label: "Pricing & Availability" },
-  { id: "usage", label: "Acceptable Usage" },
-  { id: "termination", label: "Termination" },
-  { id: "disclaimer", label: "Disclaimer of Liability" },
-  { id: "contact", label: "Contact Us" },
-];
-const getSectionContent = (id) => {
-  switch (id) {
-    case "introduction":
-      return "Please read these terms carefully before using our platform.           Bycontinuing, you agree to be bound by these terms. These Terms & Conditions govern your access to and use of our eCommerce platform, including browsing, purchasing, and account management. By accessing or using our services, you agree to be legally bound by these terms.";
-    case "eligibility":
-      return "Users must be at least 18 years of age or have legal parental/guardian consent to use this site. We reserve the right to deny service to anyone at our discretion.";
-    case "account":
-      return "You are responsible for maintaining the confidentiality of your account login and for all activities that occur under your account. Notify us immediately of any unauthorized use.";
-    case "orders":
-      return "All orders placed are subject to availability and acceptance. Prices, product descriptions, and availability are subject to change without notice.";
-    case "returns":
-      return "You may return most new, unopened items within 7 days of delivery for a full refund. Items must be in original packaging. Return shipping costs may apply.";
-    case "pricing":
-      return "We strive to provide accurate pricing, but errors may occur. If a product is listed at an incorrect price, we reserve the right to refuse or cancel any orders placed.";
-    case "usage":
-      return "You agree not to use our services for any illegal activities, distribute harmful content, or engage in fraudulent behavior. Violations will result in account suspension.";
-    case "termination":
-      return "We may terminate or suspend access to our services immediately, without prior notice or liability, for any breach of these Terms.";
-    case "disclaimer":
-      return "Our site and services are provided 'as is' without warranties of any kind. We are not liable for any damages resulting from the use or inability to use our platform.";
-    case "contact":
-      return "For any questions regarding these terms, please contact us at support@ecommerce.com or call +1 (800) 456-7890.";
-    default:
-      return "";
-  }
-};
+import React from "react";
+import { TERMS_SECTIONS, getTermsContent } from "../utils/constants.js";
 
-// 🔷 Main Component
 const TermsAndConditions = () => {
   return (
-    <div className="bg-white text-gray-800">
-      {/* Header */}
-      <header
-        className="w-full h-[125px] sm:h-[400px] lg:h-[500px] bg-cover bg-center bg-no-repeat flex items-center justify-center text-center shadow"
-        style={{
-          backgroundImage: `url(${termsBg})`,
-        }}
-      ></header>
+    <div className="min-h-screen bg-[var(--primary-bg)] text-[var(--text-light)] font-sans scroll-smooth">
+      {/* =================== HEADER =================== */}
+      <header className="w-full h-[220px] sm:h-[280px] md:h-[320px] bg-cover bg-center flex items-center justify-center text-center px-4 sm:px-6 relative overflow-hidden shadow">
+        {/* Animated background overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary-hover)]/60 to-transparent animate-pulse" />
 
-      {/* Main Layout */}
-      <main className="flex flex-col md:flex-row max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 gap-10">
-        {/* Left Sidebar Table of Contents */}
-        <aside className="md:w-1/4 sticky top-24 h-fit bg-gray-50 p-5 rounded-xl border border-gray-300 shadow-sm">
-          <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+        {/* Header content */}
+        <div className="z-10">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold font-['Playfair_Display'] text-[var(--highlight-color)] drop-shadow">
+            Terms & Conditions
+          </h1>
+          <p className="mt-3 text-sm sm:text-base md:text-lg max-w-xl mx-auto font-light font-['Inter'] text-[var(--text-dark-light)] hover:text-[var(--link-hover)] transition duration-300">
+            Understand our policies before using our services.
+          </p>
+          {/* Decorative underline */}
+          <div className="mt-4 w-20 h-[3px] bg-[var(--highlight-color)] rounded-full transition-all duration-500 hover:w-36 hover:bg-[var(--link-hover)] mx-auto" />
+        </div>
+      </header>
+
+      {/* ---------- Table of Contents ---------- */}
+      <div className="block md:hidden max-w-3xl mx-auto px-4 sm:px-6 py-6">
+        <div className="bg-[var(--input-bg)] p-4 rounded-xl border border-[var(--border-color)] shadow-sm">
+          <h2 className="text-lg sm:text-xl font-semibold mb-4 border-b pb-2 border-[var(--border-color)] text-[var(--highlight-color)] font-serif">
             Table of Contents
           </h2>
           <ul className="space-y-2">
-            {sections.map((section) => (
+            {TERMS_SECTIONS.map((section) => (
               <li key={section.id}>
                 <a
                   href={`#${section.id}`}
-                  className="block px-3 py-2 rounded-md text-gray-700 hover:bg-blue-100 hover:text-blue-800 font-medium transition"
+                  className="block px-3 py-2 rounded-md text-[var(--text-light)] hover:bg-[var(--primary-hover)] hover:text-[var(--highlight-color)] hover:font-semibold hover:pl-8 hover:border-l-4 hover:border-[var(--highlight-color)] transition-all duration-300"
+                >
+                  {section.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* ---------- Main Content Layout (Sidebar + Content) ---------- */}
+      <main className="flex flex-col md:flex-row max-w-7xl mx-auto px-4 sm:px-6 py-10 gap-10">
+        {/* Sidebar for Large Screens */}
+        <aside className="hidden md:block md:w-1/4 sticky top-24 h-fit bg-[var(--input-bg)] p-5 rounded-xl border border-[var(--border-color)] shadow-sm">
+          <h2 className="text-lg sm:text-xl font-semibold mb-4 border-b pb-2 border-[var(--border-color)] text-[var(--highlight-color)] font-serif">
+            Table of Contents
+          </h2>
+          <ul className="space-y-2">
+            {TERMS_SECTIONS.map((section) => (
+              <li key={section.id}>
+                <a
+                  href={`#${section.id}`}
+                  className="block px-3 py-2 rounded-md text-[var(--text-light)] hover:bg-[var(--primary-hover)] hover:text-[var(--highlight-color)] hover:font-semibold hover:pl-8 hover:border-l-4 hover:border-[var(--highlight-color)] transition-all duration-300"
                 >
                   {section.label}
                 </a>
@@ -72,15 +64,19 @@ const TermsAndConditions = () => {
           </ul>
         </aside>
 
-        {/* Right Side Section Content */}
-        <section className="md:w-3/4 space-y-12">
-          {sections.map((section) => (
-            <div key={section.id} id={section.id} className="scroll-mt-24">
-              <h3 className="text-2xl font-bold text-blue-800 mb-3 border-b pb-1 border-blue-200">
+        {/* Content Section */}
+        <section className="w-full md:w-3/4 space-y-10">
+          {TERMS_SECTIONS.map((section) => (
+            <div
+              key={section.id}
+              id={section.id}
+              className="scroll-mt-24 bg-[var(--input-bg)] rounded-xl p-5 sm:p-6 shadow transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg group"
+            >
+              <h3 className="text-xl sm:text-2xl font-bold mb-3 border-b pb-1 border-[var(--border-color)] text-[var(--highlight-color)] font-['Playfair_Display'] group-hover:text-[var(--link-hover)] transition-all">
                 {section.label}
               </h3>
-              <p className="text-gray-700 leading-relaxed text-justify">
-                {getSectionContent(section.id)}
+              <p className="leading-relaxed text-justify text-[15px] sm:text-[16px] text-[var(--text-dark-light)] tracking-wide font-['Poppins'] group-hover:text-[var(--highlight-color)] transition-all">
+                {getTermsContent(section.id)}
               </p>
             </div>
           ))}
@@ -89,7 +85,5 @@ const TermsAndConditions = () => {
     </div>
   );
 };
-
-// 🔹 Section Content Handler
 
 export default TermsAndConditions;

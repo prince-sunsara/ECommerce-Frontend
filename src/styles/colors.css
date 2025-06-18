@@ -1,18 +1,18 @@
 @import "tailwindcss";
 :root {
   --primary-bg: #091120;
-  --input-bg: #1C1F26;
+  --input-bg: #1c1f26;
   --primary-color: #c7a459;
   --primary-hover: #8f7233;
   --ring-color: #E6C76F;
   --text-light: #d6d4bf;
   --text-dark-light: #dad5c3;
-  --border-color: #3E3E4B;
-  --link-hover: #FFE28F;
-  --highlight-color: #FFD666;
+  --border-color: #3e3e4b;
+  --link-ho: #ffe28f;
+  --highlight-color: #ffd666;
   --button-text-color: #081220;
   --border-bg: #d2c88b;
-  --hero-bg: #121418; 
+  --hero-bg: #121418;
 }
 
 body {
