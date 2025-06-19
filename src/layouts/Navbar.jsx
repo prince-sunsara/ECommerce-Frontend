@@ -10,7 +10,6 @@ import {
   faHeart,
   faThLarge,
   faCog,
-  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import { Logout } from "../components";
 import { useAuth } from "../context/AuthContext";
@@ -20,7 +19,7 @@ import { useCart } from "../context/CartContext";
 const Navbar = () => {
   const [userDrawerOpen, setUserDrawerOpen] = useState(false);
   const [animateDrawer, setAnimateDrawer] = useState(false);
-  const { logout, isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
 
   // Animate drawer
   useEffect(() => {
