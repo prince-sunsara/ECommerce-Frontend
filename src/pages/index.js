@@ -28,4 +28,6 @@ export {
   UserLogin,
   OtpVerification,
   Error,
+  Settings,
+  CartPage,
 };
