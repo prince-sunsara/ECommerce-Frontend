@@ -12,6 +12,7 @@ import SellerLogin from "./SellerRegister/SellerLogin";
 import UserLogin from "./UserRegister/UserLogin";
 import OtpVerification from "./OtpVerification";
 import Error from "./Error";
+import CartPage from "./CartPage";
 
 export {
   Home,
@@ -28,4 +29,5 @@ export {
   UserLogin,
   OtpVerification,
   Error,
+  CartPage,
 };

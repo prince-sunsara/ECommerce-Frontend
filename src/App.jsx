@@ -20,6 +20,7 @@ import {
   TermsAndConditions,
   OtpVerification,
   Error,
+  CartPage,
 } from "./pages";
 
 function AppWrapper() {
@@ -61,6 +62,7 @@ function AppWrapper() {
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/faq" element={<FAQSection />} />
         <Route path="/help-center" element={<HelpCenter />} />
+        <Route path="/user-cart" element={<CartPage />}></Route>
 
         <Route path="/404" element={<Error />} />
 
