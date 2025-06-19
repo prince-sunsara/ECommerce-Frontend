@@ -162,13 +162,6 @@ const Navbar = () => {
             <>
               <div className="flex flex-col gap-4 border border-[var(--highlight-color)] rounded-lg p-4">
                 <Link
-                  to="/profile"
-                  className="flex items-center gap-3 hover:text-[var(--highlight-color)]"
-                >
-                  <FontAwesomeIcon icon={faUser} />
-                  <span>My Profile</span>
-                </Link>
-                <Link
                   to="/wishlist"
                   className="flex items-center gap-3 hover:text-[var(--highlight-color)]"
                 >
