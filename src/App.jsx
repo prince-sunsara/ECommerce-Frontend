@@ -20,7 +20,9 @@ import {
   TermsAndConditions,
   OtpVerification,
   Error,
+  Settings,
 } from "./pages";
+import { AuthProvider } from "./context/AuthContext.jsx";
 
 function AppWrapper() {
   const location = useLocation();
@@ -56,6 +58,7 @@ function AppWrapper() {
 
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<Contact />} />
+        <Route path="/settings" element={<Settings />} />
 
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
@@ -80,7 +83,9 @@ function AppWrapper() {
 export default function App() {
   return (
     <BrowserRouter>
-      <AppWrapper />
+      <AuthProvider>
+        <AppWrapper />
+      </AuthProvider>
     </BrowserRouter>
   );
 }
