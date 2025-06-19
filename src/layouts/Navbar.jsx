@@ -102,7 +102,7 @@ const Navbar = () => {
             )}
           </Link>
           <Link
-            to="/become-seller"
+            to="/seller"
             className="text-sm md:text-base font-medium hover:text-[var(--link-ho)]"
           >
             <FontAwesomeIcon
