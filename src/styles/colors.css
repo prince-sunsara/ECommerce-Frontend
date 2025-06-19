@@ -4,7 +4,7 @@
   --input-bg: #1c1f26;
   --primary-color: #c7a459;
   --primary-hover: #8f7233;
-  --ring-color: #E6C76F;
+  --ring-color: #e6c76f;
   --text-light: #d6d4bf;
   --text-dark-light: #dad5c3;
   --border-color: #3e3e4b;
@@ -13,6 +13,7 @@
   --button-text-color: #081220;
   --border-bg: #d2c88b;
   --hero-bg: #121418;
+  --logout-text: red;
 }
 
 body {
