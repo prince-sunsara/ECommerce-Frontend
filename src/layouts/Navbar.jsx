@@ -164,6 +164,7 @@ const Navbar = () => {
                 <Link
                   to="/wishlist"
                   className="flex items-center gap-3 hover:text-[var(--highlight-color)]"
+                  onClick={() => setUserDrawerOpen(!userDrawerOpen)}
                 >
                   <FontAwesomeIcon icon={faHeart} />
                   <span>Wishlist</span>
@@ -171,6 +172,7 @@ const Navbar = () => {
                 <Link
                   to="/orders"
                   className="flex items-center gap-3 hover:text-[var(--highlight-color)]"
+                  onClick={() => setUserDrawerOpen(!userDrawerOpen)}
                 >
                   <FontAwesomeIcon icon={faThLarge} />
                   <span>Orders</span>
@@ -178,6 +180,7 @@ const Navbar = () => {
                 <Link
                   to="/categories"
                   className="flex items-center gap-3 hover:text-[var(--highlight-color)]"
+                  onClick={() => setUserDrawerOpen(!userDrawerOpen)}
                 >
                   <FontAwesomeIcon icon={faCog} />
                   <span>Categories</span>
@@ -185,6 +188,7 @@ const Navbar = () => {
                 <Link
                   to="/settings"
                   className="flex items-center gap-3 hover:text-[var(--highlight-color)]"
+                  onClick={() => setUserDrawerOpen(!userDrawerOpen)}
                 >
                   <FontAwesomeIcon icon={faBars} />
                   <span>Settings</span>
@@ -192,7 +196,10 @@ const Navbar = () => {
               </div>
 
               {/* Reusable Logout */}
-              <div className="mt-6">
+              <div
+                className="mt-6"
+                onClick={() => setUserDrawerOpen(!userDrawerOpen)}
+              >
                 <Logout />
               </div>
             </>
@@ -201,12 +208,14 @@ const Navbar = () => {
               <Link
                 to="/user-login"
                 className="text-center border border-[var(--highlight-color)] text-[var(--highlight-color)] rounded-md px-4 py-2 transition-all duration-300 hover:bg-[var(--highlight-color)] hover:text-black"
+                onClick={() => setUserDrawerOpen(!userDrawerOpen)}
               >
                 Sign Up
               </Link>
               <Link
                 to="/user-sign-up"
                 className="text-center border border-[var(--highlight-color)] text-[var(--highlight-color)] rounded-md px-4 py-2 transition-all duration-300 hover:bg-[var(--highlight-color)] hover:text-black"
+                onClick={() => setUserDrawerOpen(!userDrawerOpen)}
               >
                 Login
               </Link>
