@@ -12,22 +12,24 @@ import {
   faCog,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
+import { Logout } from "../components";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const [userDrawerOpen, setUserDrawerOpen] = useState(false);
   const [animateDrawer, setAnimateDrawer] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Simulated login state
+  const { logout, isLoggedIn } = useAuth();
 
-  // Animate drawer open/close
+  // Animate drawer
   useEffect(() => {
     if (userDrawerOpen) {
-      setTimeout(() => setAnimateDrawer(true), 10); // trigger enter animation
+      setTimeout(() => setAnimateDrawer(true), 10);
     } else {
       setAnimateDrawer(false);
     }
   }, [userDrawerOpen]);
 
-  // Close on outside click
+  // Close drawer on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (
@@ -42,10 +44,9 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [userDrawerOpen]);
 
-  // Handle close with animation delay
   const handleDrawerClose = () => {
     setAnimateDrawer(false);
-    setTimeout(() => setUserDrawerOpen(false), 1000); // match transition duration
+    setTimeout(() => setUserDrawerOpen(false), 300); // shorter animation delay
   };
 
   return (
@@ -58,7 +59,7 @@ const Navbar = () => {
           ECommerce
         </Link>
 
-        {/* Search Bar (desktop only) */}
+        {/* Search Bar (Desktop) */}
         <div className="hidden md:flex flex-1 justify-center">
           <div className="flex items-center border border-[var(--primary-color)] rounded-full px-4 py-2 w-full max-w-lg">
             <input
@@ -73,12 +74,12 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Right Icons */}
+        {/* Icons Section */}
         <div className="flex items-center gap-5">
           <Link to="/user-cart" className="relative">
             <FontAwesomeIcon
               icon={faCartShopping}
-              className="text-xl hover:text-[var(--link-hover)]"
+              className="text-xl hover:text-[var(--link-ho)]"
             />
             <span className="absolute -top-2 -right-2 bg-[var(--highlight-color)] text-[var(--button-text-color)] text-xs px-1.5 rounded-full">
               0
@@ -87,25 +88,25 @@ const Navbar = () => {
 
           <Link
             to="/become-seller"
-            className="text-sm md:text-base font-medium hover:text-[var(--link-hover)] text-center"
+            className="text-sm md:text-base font-medium hover:text-[var(--link-ho)]"
           >
             <FontAwesomeIcon
               icon={faStore}
-              className="text-xl hover:text-[var(--link-hover)] transition mr-2"
+              className="text-xl transition mr-2"
             />
             Become a Seller
           </Link>
 
           <FontAwesomeIcon
             icon={faUser}
-            className="text-xl cursor-pointer hover:text-[var(--link-hover)] fa-user"
+            className="text-xl cursor-pointer hover:text-[var(--link-ho)] fa-user"
             onClick={() => setUserDrawerOpen(true)}
           />
         </div>
       </div>
 
-      {/* Mobile search bar */}
-      <div className="md:hidden mt-4">
+      {/* Mobile Search */}
+      <div className="md:hidden mt-4 px-2">
         <div className="flex items-center border border-[var(--primary-color)] rounded-full px-4 py-2">
           <input
             type="text"
@@ -122,24 +123,25 @@ const Navbar = () => {
       {/* Side Drawer */}
       {userDrawerOpen && (
         <div
-          className={`fixed top-0 right-0 h-full w-80 bg-[var(--input-bg)] text-[var(--primary-color)] z-50 p-6 user-drawer border-l border-[var(--highlight-color)] shadow-xl transition-transform duration-1000 ${
+          className={`fixed top-0 right-0 h-full w-80 bg-[var(--input-bg)] text-[var(--primary-color)] z-50 p-6 user-drawer border-l border-[var(--highlight-color)] shadow-xl transition-transform duration-300 ${
             animateDrawer ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          {/* Header */}
+          {/* Drawer Header */}
           <div className="relative mb-6">
             <h3 className="text-3xl font-semibold border border-[var(--highlight-color)] rounded-md py-3 text-center">
               User Panel
             </h3>
             <button
-              className="absolute top-1/2 -translate-y-1/2 right-3 text-[var(--highlight-color)] text-xl cursor-pointer"
+              className="absolute top-1/2 -translate-y-1/2 right-3 text-[var(--highlight-color)] text-xl"
               onClick={handleDrawerClose}
+              aria-label="Close Menu"
             >
               <FontAwesomeIcon icon={faXmark} />
             </button>
           </div>
 
-          {/* Content */}
+          {/* Drawer Content */}
           {isLoggedIn ? (
             <>
               <div className="flex flex-col gap-4 border border-[var(--highlight-color)] rounded-lg p-4">
@@ -180,12 +182,10 @@ const Navbar = () => {
                 </Link>
               </div>
 
-              <button
-                onClick={() => setIsLoggedIn(false)}
-                className="mt-6 border border-[var(--logout-text)] text-[var(--logout-text)] hover:text-white hover:bg-[var(--logout-text)] rounded-md px-4 py-2 transition-all cursor-pointer"
-              >
-                Logout
-              </button>
+              {/* Reusable Logout */}
+              <div className="mt-6">
+                <Logout />
+              </div>
             </>
           ) : (
             <div className="border border-[var(--highlight-color)] rounded-lg p-4 flex flex-col gap-4">
