@@ -14,6 +14,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Logout } from "../components";
 import { useAuth } from "../context/AuthContext";
+// 👈 Import context
+import { useCart } from "../context/CartContext";
 
 const Navbar = () => {
   const [userDrawerOpen, setUserDrawerOpen] = useState(false);
@@ -30,6 +32,10 @@ const Navbar = () => {
   }, [userDrawerOpen]);
 
   // Close drawer on outside click
+  // 👈 Access cart from context
+  const { cartItems } = useCart();
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  // Close user drawer on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (
@@ -76,7 +82,7 @@ const Navbar = () => {
 
         {/* Icons Section */}
         <div className="flex items-center gap-5">
-          <Link to="/user-cart" className="relative">
+          {/*<Link to="/user-cart" className="relative">
             <FontAwesomeIcon
               icon={faCartShopping}
               className="text-xl hover:text-[var(--link-ho)]"
@@ -84,8 +90,18 @@ const Navbar = () => {
             <span className="absolute -top-2 -right-2 bg-[var(--highlight-color)] text-[var(--button-text-color)] text-xs px-1.5 rounded-full">
               0
             </span>
+          </Link> */}
+          <Link to="/user-cart" className="relative">
+            <FontAwesomeIcon
+              icon={faCartShopping}
+              className="text-xl text-[var(--primary-color)] hover:text-[var(--link-hover)] transition"
+            />
+            {totalItems > 0 && (
+              <span className="absolute -top-2 -right-2 bg-[var(--highlight-color)] text-[var(--button-text-color)] text-xs px-1.5 rounded-full">
+                {totalItems}
+              </span>
+            )}
           </Link>
-
           <Link
             to="/become-seller"
             className="text-sm md:text-base font-medium hover:text-[var(--link-ho)]"

@@ -21,6 +21,7 @@ import {
   OtpVerification,
   Error,
   Settings,
+  CartPage,
 } from "./pages";
 import { AuthProvider } from "./context/AuthContext.jsx";
 
@@ -64,6 +65,7 @@ function AppWrapper() {
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/faq" element={<FAQSection />} />
         <Route path="/help-center" element={<HelpCenter />} />
+        <Route path="/user-cart" element={<CartPage />}></Route>
 
         <Route path="/404" element={<Error />} />
 
