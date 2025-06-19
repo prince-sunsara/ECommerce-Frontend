@@ -30,8 +30,7 @@ const Navbar = () => {
     }
   }, [userDrawerOpen]);
 
-  // Close drawer on outside click
-  // 👈 Access cart from context
+  // Access cart from context
   const { cartItems } = useCart();
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   // Close user drawer on outside click

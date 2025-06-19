@@ -15,6 +15,7 @@ const defaultCartItems = [
     price: 129,
     quantity: 1,
     image: "./src/assets/images/handbag.png",
+    selected: true,
   },
   {
     id: 2,
@@ -27,21 +28,22 @@ const defaultCartItems = [
     price: 120,
     quantity: 1,
     image: "./src/assets/images/watch.png",
+    selected: true,
   },
 ];
-
+// Mange  cart state
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(defaultCartItems);
 
   const addToCart = (item) => {
     setCartItems((prev) => {
-      const existingItem = prev.find((i) => i.id === item.id);
-      if (existingItem) {
+      const existing = prev.find((i) => i.id === item.id);
+      if (existing) {
         return prev.map((i) =>
           i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
         );
       }
-      return [...prev, { ...item, quantity: 1 }];
+      return [...prev, { ...item, quantity: 1, selected: true }];
     });
   };
 
@@ -63,23 +65,38 @@ export const CartProvider = ({ children }) => {
     );
   };
 
+  const toggleSelection = (id) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, selected: !item.selected } : item
+      )
+    );
+  };
+
   const removeItem = (id) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
   return (
     <CartContext.Provider
-      value={{ cartItems, setCartItems, addToCart, updateQuantity, removeItem }}
+      value={{
+        cartItems,
+        setCartItems,
+        addToCart,
+        updateQuantity,
+        removeItem,
+        toggleSelection,
+      }}
     >
       {children}
     </CartContext.Provider>
   );
 };
-
+// useCart Custom hook
 export const useCart = () => {
   const context = useContext(CartContext);
   if (context === undefined) {
-    throw new Error("useContext must be provide within CartProvider");
+    throw new Error("useContext must be used within CartProvider");
   }
   return context;
 };
