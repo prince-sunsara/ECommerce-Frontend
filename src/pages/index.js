@@ -1,6 +1,5 @@
 import Home from "./Home/Home";
 import AboutUs from "./About/AboutUs";
-import Team from "./About/Team";
 import Contact from "./Contact";
 import TermsAndConditions from "./TermsAndConditions";
 import FAQSection from "./FAQSection";
@@ -16,7 +15,6 @@ import Error from "./Error";
 export {
   Home,
   AboutUs,
-  Team,
   Contact,
   TermsAndConditions,
   FAQSection,

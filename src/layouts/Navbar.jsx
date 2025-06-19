@@ -143,23 +143,38 @@ const Navbar = () => {
           {isLoggedIn ? (
             <>
               <div className="flex flex-col gap-4 border border-[var(--highlight-color)] rounded-lg p-4">
-                <Link to="/profile" className="flex items-center gap-3 hover:text-[var(--highlight-color)]">
+                <Link
+                  to="/profile"
+                  className="flex items-center gap-3 hover:text-[var(--highlight-color)]"
+                >
                   <FontAwesomeIcon icon={faUser} />
                   <span>My Profile</span>
                 </Link>
-                <Link to="/wishlist" className="flex items-center gap-3 hover:text-[var(--highlight-color)]">
+                <Link
+                  to="/wishlist"
+                  className="flex items-center gap-3 hover:text-[var(--highlight-color)]"
+                >
                   <FontAwesomeIcon icon={faHeart} />
                   <span>Wishlist</span>
                 </Link>
-                <Link to="/orders" className="flex items-center gap-3 hover:text-[var(--highlight-color)]">
+                <Link
+                  to="/orders"
+                  className="flex items-center gap-3 hover:text-[var(--highlight-color)]"
+                >
                   <FontAwesomeIcon icon={faThLarge} />
                   <span>Orders</span>
                 </Link>
-                <Link to="/categories" className="flex items-center gap-3 hover:text-[var(--highlight-color)]">
+                <Link
+                  to="/categories"
+                  className="flex items-center gap-3 hover:text-[var(--highlight-color)]"
+                >
                   <FontAwesomeIcon icon={faCog} />
                   <span>Categories</span>
                 </Link>
-                <Link to="/settings" className="flex items-center gap-3 hover:text-[var(--highlight-color)]">
+                <Link
+                  to="/settings"
+                  className="flex items-center gap-3 hover:text-[var(--highlight-color)]"
+                >
                   <FontAwesomeIcon icon={faBars} />
                   <span>Settings</span>
                 </Link>
@@ -167,7 +182,7 @@ const Navbar = () => {
 
               <button
                 onClick={() => setIsLoggedIn(false)}
-                className="mt-6 border border-red-500 text-red-500 hover:text-white hover:bg-red-500 rounded-md px-4 py-2 transition-all cursor-pointer"
+                className="mt-6 border border-[var(--logout-text)] text-[var(--logout-text)] hover:text-white hover:bg-[var(--logout-text)] rounded-md px-4 py-2 transition-all cursor-pointer"
               >
                 Logout
               </button>
