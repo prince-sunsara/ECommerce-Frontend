@@ -10,7 +10,6 @@ import {
   faHeart,
   faThLarge,
   faCog,
-  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import { Logout } from "../components";
 import { useAuth } from "../context/AuthContext";
@@ -20,7 +19,7 @@ import { useCart } from "../context/CartContext";
 const Navbar = () => {
   const [userDrawerOpen, setUserDrawerOpen] = useState(false);
   const [animateDrawer, setAnimateDrawer] = useState(false);
-  const { logout, isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
 
   // Animate drawer
   useEffect(() => {
@@ -162,6 +161,14 @@ const Navbar = () => {
             <>
               <div className="flex flex-col gap-4 border border-[var(--highlight-color)] rounded-lg p-4">
                 <Link
+                  to="/settings"
+                  className="flex items-center gap-3 hover:text-[var(--highlight-color)]"
+                  onClick={() => setUserDrawerOpen(!userDrawerOpen)}
+                >
+                  <FontAwesomeIcon icon={faUser} />
+                  <span>Account</span>
+                </Link>
+                <Link
                   to="/wishlist"
                   className="flex items-center gap-3 hover:text-[var(--highlight-color)]"
                   onClick={() => setUserDrawerOpen(!userDrawerOpen)}
@@ -184,14 +191,6 @@ const Navbar = () => {
                 >
                   <FontAwesomeIcon icon={faCog} />
                   <span>Categories</span>
-                </Link>
-                <Link
-                  to="/settings"
-                  className="flex items-center gap-3 hover:text-[var(--highlight-color)]"
-                  onClick={() => setUserDrawerOpen(!userDrawerOpen)}
-                >
-                  <FontAwesomeIcon icon={faBars} />
-                  <span>Settings</span>
                 </Link>
               </div>
 
