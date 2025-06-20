@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./About.css";
 
 const AboutUs = () => {
   const [selectedYear, setSelectedYear] = useState("2010");
@@ -7,20 +8,25 @@ const AboutUs = () => {
     {
       name: "Mitesh Amin",
       role: "Full Stack Developer",
-      image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Mitesh",
-      direction: "left",
+      image: "https://wallpapercave.com/wp/wp9426322.jpg",
+      description:
+        "Mitesh is our versatile Full Stack Developer, specializing in building robust and scalable web applications. He excels at connecting the dots between front-end user interfaces and back-end logic, ensuring seamless functionality and high performance.",
     },
     {
       name: "Jimmy",
       role: "Full Stack Developer",
-      image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Jimmy",
-      direction: "right",
+      image:
+        "https://th.bing.com/th/id/OIP.sUNbRqgCvXXiSTWS6KOigQHaNK?rs=1&pid=ImgDetMain",
+      description:
+        "Jimmy is a dedicated Full Stack Developer with a passion for creating efficient and user-friendly solutions. His expertise spans across various technologies, allowing him to contribute significantly to every phase of application development.",
     },
     {
       name: "Asmita Patel",
       role: "Frontend Developer",
-      image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Asmita",
-      direction: "left",
+      image:
+        "https://wallpapercrafter.com/desktop/384740-Anime-Chainsaw-Man-Phone-Wallpaper.jpg",
+      description:
+        "Asmita is our talented Frontend Developer, focused on crafting engaging and intuitive user experiences. She brings designs to life with clean, efficient code and a keen eye for detail, ensuring our interfaces are both beautiful and functional.",
     },
   ];
 
@@ -104,9 +110,12 @@ const AboutUs = () => {
       {/* Key Stats */}
       <section
         className="py-16 px-6 md:px-20 lg:px-32"
-        style={{ backgroundColor: "var(--hero-bg)" }}
+        style={{
+          backgroundColor: "var(--hero-bg)",
+          color: "var(--primary-color)",
+        }}
       >
-        <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 text-center">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-8 text-center">
           {[
             { label: "Satisfied Customers", value: "0" },
             { label: "Total Orders", value: "0" },
@@ -115,19 +124,29 @@ const AboutUs = () => {
           ].map((stat, i) => (
             <div
               key={i}
-              className="p-6 rounded-lg shadow-md"
+              className="
+          p-6 rounded-lg shadow-lg cursor-pointer
+          transition-all duration-300 ease-in-out
+          transform hover:-translate-y-2 hover:shadow-xl hover:scale-105
+          relative overflow-hidden group
+        "
               style={{
                 backgroundColor: "var(--input-bg)",
                 border: "1px solid var(--border-color)",
               }}
             >
+              <div
+                className="absolute inset-0 border-2 rounded-lg pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ borderColor: "var(--highlight-color)" }}
+              ></div>
+
               <h3
-                className="text-2xl font-bold"
-                style={{ color: "var(--highlight-color)" }}
+                className="text-2xl font-bold transition-colors duration-300 group-hover:text-white"
+                style={{ color: "var(--highlight-color)" }} // Highlight color for the number
               >
                 {stat.value}
               </h3>
-              <p className="mt-2">{stat.label}</p>
+              <p className="mt-2 text-gray-300">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -142,35 +161,16 @@ const AboutUs = () => {
           <h2 className="text-3xl font-semibold text-center mb-10 text-white">
             Meet Our Team
           </h2>
-          <div className="space-y-12">
+          {/* main content  */}
+          <div className="my-[40px] md:my-[100px] flex flex-wrap justify-around">
             {teamMembers.map((member, index) => (
-              <div
-                key={index}
-                className={`flex flex-col md:flex-row ${
-                  member.direction === "right" ? "md:flex-row-reverse" : ""
-                } items-center md:items-start gap-10`}
-              >
-                <img
-                  src={member.image}
-                  alt="Profile"
-                  className="w-32 h-32 rounded-full shadow-md"
-                />
-                <div>
-                  <h3 className="text-2xl font-semibold text-white">
-                    {member.name}
-                  </h3>
-                  <p
-                    className="text-lg"
-                    style={{ color: "var(--text-dark-light)" }}
-                  >
-                    {member.role}
-                  </p>
-                  <p
-                    className="mt-2 max-w-xl"
-                    style={{ color: "var(--text-light)" }}
-                  >
-                    {`Hi, I'm ${member.name}, working as a ${member.role}. I contribute to building scalable solutions, improving user experiences, and keeping our application fast and reliable.`}
-                  </p>
+              <div className="card" key={index}>
+                <div className="img-container">
+                  <img src={member?.image} alt={member?.name} />
+                </div>
+                <div className="card-details">
+                  <h2>{member?.name}</h2>
+                  <p>{member?.description}</p>
                 </div>
               </div>
             ))}
