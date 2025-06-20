@@ -1,11 +1,11 @@
-import loginBg from "../../assets/images/login-signup.png";
+import loginBg from "../../../assets/images/login_bg.png";
 import { Link, useNavigate } from "react-router";
 
-export default function SellerLogin() {
+export default function UserLogin() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/");
+    navigate("/"); // Navigates to home page
   };
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-[var(--primary-bg)] text-white font-inter justify-center">
@@ -42,7 +42,10 @@ export default function SellerLogin() {
           </h1>
           <p className="text-[var(--text-light)] text-sm mb-6">
             Don’t have an account?{" "}
-            <Link to="/seller-sign-up" className="text-white hover:underline font-normal">
+            <Link
+              to="/user-sign-up"
+              className="text-white hover:underline font-normal"
+            >
               Sign Up
             </Link>
           </p>

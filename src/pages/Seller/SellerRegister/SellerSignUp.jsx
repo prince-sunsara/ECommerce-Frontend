@@ -1,12 +1,12 @@
-import signUpBg from "../../assets/images/login-signup.png";
+import signUpBg from "../../../assets/images/login-signup.png";
 import { Link, useNavigate } from "react-router";
-export default function UserSignUp() {
+
+export default function SellerSignUp() {
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate("/"); // Navigates to home page
   };
-
   return (
     <div className="min-h-screen flex justify-center flex-col md:flex-row bg-[var(--primary-bg)] text-white font-inter">
       {/* Left side image (hidden on small screens) */}
@@ -36,7 +36,7 @@ export default function UserSignUp() {
           </h1>
           <p className="text-sm text-[var(--text-light)] mb-6">
             Already have an account?{" "}
-            <Link to="/user-login" className="text-white hover:underline">
+            <Link to="/seller-login" className="text-white hover:underline">
               Login
             </Link>
           </p>
@@ -103,7 +103,8 @@ export default function UserSignUp() {
               />
               <span>
                 I agree to the{" "}
-                <Link to="/terms-and-conditions"
+                <Link
+                  to="/terms-and-conditions"
                   className="underline hover:text-[var(--link-hover)]"
                 >
                   Terms & Conditions
