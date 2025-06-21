@@ -5,7 +5,7 @@ const CartContext = createContext();
 
 const defaultCartItems = [
   {
-    id: 1,
+    id: 104,
     name: "Leather Handbag",
     brand: "Fossil",
     description: "Premium leather handbag with modern design.",
@@ -18,7 +18,7 @@ const defaultCartItems = [
     selected: true,
   },
   {
-    id: 2,
+    id: 103,
     name: "Classic Watch",
     brand: "Titan",
     description: "Water resistant analog watch with metal strap.",
