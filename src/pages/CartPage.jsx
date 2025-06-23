@@ -96,44 +96,36 @@ const CartPage = () => {
 
                 {/* Quantity */}
                 <div className="flex justify-center items-center gap-2 text-sm">
-                  {item.quantity > 1 ? (
-                    <>
-                      <button
-                        onClick={() => updateQuantity(item.id, "dec")}
-                        className="p-1 sm:p-2 bg-[var(--primary-hover)] hover:bg-[var(--highlight-color)] text-[var(--button-text-color)] rounded-full"
-                      >
-                        <FaMinus />
-                      </button>
-                      <span className="font-semibold text-sm sm:text-base">
-                        {item.quantity}
-                      </span>
-                      <button
-                        onClick={() => updateQuantity(item.id, "inc")}
-                        className="p-1 sm:p-2 bg-[var(--primary-hover)] hover:bg-[var(--highlight-color)] text-[var(--button-text-color)] rounded-full"
-                      >
-                        <FaPlus />
-                      </button>
-                    </>
+                  {/* 👇 Minus OR Delete */}
+                  {item.quantity === 1 ? (
+                    <button
+                      onClick={() => removeItem(item.id)}
+                      className="ml-2 text-red-500 hover:text-red-700"
+                      title="Remove"
+                    >
+                      <FaTrash />
+                    </button>
                   ) : (
-                    <>
-                      <span className="font-semibold text-sm sm:text-base">
-                        {item.quantity}
-                      </span>
-                      <button
-                        onClick={() => removeItem(item.id)}
-                        className="ml-2 text-red-500 hover:text-red-700"
-                        title="Remove"
-                      >
-                        <FaTrash />
-                      </button>
-                      <button
-                        onClick={() => updateQuantity(item.id, "inc")}
-                        className="p-1 sm:p-2 bg-[var(--primary-hover)] hover:bg-[var(--highlight-color)] text-[var(--button-text-color)] rounded-full"
-                      >
-                        <FaPlus />
-                      </button>
-                    </>
+                    <button
+                      onClick={() => updateQuantity(item.id, "dec")}
+                      className="p-1 sm:p-2 bg-[var(--primary-hover)] hover:bg-[var(--highlight-color)] text-[var(--button-text-color)] rounded-full"
+                    >
+                      <FaMinus />
+                    </button>
                   )}
+
+                  {/* Quantity */}
+                  <span className="font-semibold text-sm sm:text-base">
+                    {item.quantity}
+                  </span>
+
+                  {/* Always show + button */}
+                  <button
+                    onClick={() => updateQuantity(item.id, "inc")}
+                    className="p-1 sm:p-2 bg-[var(--primary-hover)] hover:bg-[var(--highlight-color)] text-[var(--button-text-color)] rounded-full"
+                  >
+                    <FaPlus />
+                  </button>
                 </div>
 
                 {/* Delivery */}

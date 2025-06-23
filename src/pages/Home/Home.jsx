@@ -8,7 +8,8 @@ function Home() {
           Elevate Your Style
         </h1>
         <p className="mt-4 text-lg sm:text-xl text-[var(--text-dark-light)]">
-          Discover the most luxurious and trending products handpicked just for you.
+          Discover the most luxurious and trending products handpicked just for
+          you.
         </p>
         <Link
           to="/shop"
