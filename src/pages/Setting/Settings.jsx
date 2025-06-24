@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PersonalInfo from "./PersonalInfo";
-import EmailsAndPassword from "./EmailsAndPassword";
+import CredentialsSettings from "./CredentialsSettings";
 import Notifications from "./Notifications";
 import AddressBook from "./AddressBook";
 import PaymentMethods from "./PaymentMethods";
@@ -8,7 +8,7 @@ import { Logout } from "../../components";
 
 const SettingMenuList = [
   "Personal Info",
-  "Emails & Password",
+  "Credential Settings",
   "Notifications",
   "Address Book",
   "Payment Methods",
@@ -16,7 +16,7 @@ const SettingMenuList = [
 
 const pageComponents = {
   "Personal Info": PersonalInfo,
-  "Emails & Password": EmailsAndPassword,
+  "Credential Settings": CredentialsSettings,
   Notifications: Notifications,
   "Address Book": AddressBook,
   "Payment Methods": PaymentMethods,
