@@ -50,7 +50,7 @@ export default function UserLogin() {
       setModalData({
         type: "success",
         title: "Welcome!",
-        message: `Hi ${response.data.data.loggedInUser.firstname}, you're logged in successfully.`,
+        message: `Hi ${response.data.data.loggedInUser.firstName}, you're logged in successfully.`,
       });
       setModalOpen(true);
     } catch (err) {

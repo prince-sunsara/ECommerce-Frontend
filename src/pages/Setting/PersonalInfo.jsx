@@ -1,36 +1,44 @@
-import { useState } from "react";
-import { Input, Select } from "../../components"; // Ensure these components are correctly imported
+import { useState, useEffect } from "react";
+import { Input, Select } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
-import { useEffect } from "react";
 import { useUser } from "../../context/UserContext";
+import StatusModal from "../../components/StatusModal";
 import axios from "axios";
+
 const PersonalInfo = () => {
-  const { user } = useUser();
-  // --- State for Personal Info Fields (First Name, Last Name, etc.) ---
+  const { user, setUser } = useUser();
+
   const [editModeInfo, setEditModeInfo] = useState(false);
   const [loadingInfo, setLoadingInfo] = useState(false);
   const [formData, setFormData] = useState({
-    firstName: "Arafat",
-    lastName: "Nayeem",
-    username: "arafat_nayeem",
-    gender: "Male",
-    dateOfBirth: "1990-01-01",
-    email: "hello@filllo.co", // Display only
-    phone: "+880 1681 788 203", // Display only
+    firstName: "",
+    lastName: "",
+    username: "",
+    gender: "",
+    dateOfBirth: "",
+    email: "",
+    phone: "",
   });
 
-  // --- State for Profile Image ---
   const [editModeImage, setEditModeImage] = useState(false);
   const [loadingImage, setLoadingImage] = useState(false);
   const [file, setFile] = useState(null);
   const [profileImage, setProfileImage] = useState("https://i.pravatar.cc/100");
-  // A temporary state to hold the new image URL before saving
-  const [tempProfileImage, setTempProfileImage] = useState(
-    "https://i.pravatar.cc/100"
-  );
+  const [tempProfileImage, setTempProfileImage] = useState(profileImage);
+
+  // --- Modal States ---
+  const [modal, setModal] = useState({
+    isOpen: false,
+    type: "success",
+    title: "",
+    message: "",
+    onClose: () => setModal({ ...modal, isOpen: false }),
+  });
+
+  const [confirmModalOpen, setConfirmModalOpen] = useState(false);
+
   useEffect(() => {
-    console.log("User:- ", user)
     setFormData({
       firstName: user?.firstName || "",
       lastName: user?.lastName || "",
@@ -41,38 +49,90 @@ const PersonalInfo = () => {
       phone: user?.phone || "",
     });
 
-    if (user.avatar) {
+    if (user?.avatar) {
       setProfileImage(user.avatar);
     }
-  }, [user])
-  // --- Handlers for Personal Info Fields ---
+  }, [user]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSaveInfo = () => {
+  const handleSaveInfo = async () => {
     setLoadingInfo(true);
-    setTimeout(() => {
-      setLoadingInfo(false);
+    try {
+      const { firstName, lastName, username, gender, dateOfBirth } = formData;
+
+      const res = await axios.patch(
+        "/api/v1/users/account/change/details",
+        {
+          firstName,
+          lastName,
+          username,
+          gender,
+          birthdate: dateOfBirth,
+        },
+        { withCredentials: true }
+      );
+
+      setUser(res.data.data);
       setEditModeInfo(false);
-      console.log("Saving personal data:", formData);
-      // In a real app, send formData to your backend
-    }, 1000);
+
+      setModal({
+        isOpen: true,
+        type: "success",
+        title: "Profile Updated",
+        message: "Your personal information has been updated successfully.",
+        onClose: () => setModal({ ...modal, isOpen: false }),
+      });
+    } catch (error) {
+      setModal({
+        isOpen: true,
+        type: "error",
+        title: "Update Failed",
+        message: error.response?.data?.message || "Something went wrong.",
+        onClose: () => setModal({ ...modal, isOpen: false }),
+      });
+    } finally {
+      setLoadingInfo(false);
+    }
   };
 
-  const handleCancelInfo = () => {
-    // Reset formData to its last saved state or initial state if needed
-    // For simplicity, we'll just exit edit mode here.
-    setEditModeInfo(false);
+  const handleDeleteAccount = async () => {
+    try {
+      const res = await axios.delete("/api/v1/users/account/delete", {
+        withCredentials: true,
+      });
+
+      setUser(null);
+
+      setModal({
+        isOpen: true,
+        type: "success",
+        title: "Account Deleted",
+        message: res.data.message || "Your account has been deleted successfully.",
+        onClose: () => {
+          setModal({ ...modal, isOpen: false });
+          window.location.href = "/";
+        },
+      });
+    } catch (error) {
+      setModal({
+        isOpen: true,
+        type: "error",
+        title: "Deletion Failed",
+        message: error.response?.data?.message || "Something went wrong.",
+        onClose: () => setModal({ ...modal, isOpen: false }),
+      });
+    }
   };
 
-  // --- Handlers for Profile Image ---
   const handleImageFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setTempProfileImage(URL.createObjectURL(file)); // Show preview
-      setFile(file)
+      setTempProfileImage(URL.createObjectURL(file));
+      setFile(file);
     }
   };
 
@@ -82,44 +142,48 @@ const PersonalInfo = () => {
     try {
       setLoadingImage(true);
 
-      const formData = new FormData();
-      formData.append("avatar", file);
+      const formDataData = new FormData();
+      formDataData.append("avatar", file);
 
       const response = await axios.patch(
-        "/v1/users/account/change/avatar",
-        formData,
-        {
-          withCredentials: true,
-        }
+        "/api/v1/users/account/change/avatar",
+        formDataData,
+        { withCredentials: true }
       );
 
-      const updatedUser = response.data.data; // assuming backend returns updated user data
-
-      console.log("Upload success:", updatedUser);
-
-      setUser(updatedUser); // ✅ update global user
-      setProfileImage(updatedUser.avatar); // ✅ show new image immediately
+      setUser(response.data.data);
+      setProfileImage(response.data.data.avatar);
       setEditModeImage(false);
+
+      // ✅ Show success modal
+      setModal({
+        isOpen: true,
+        type: "success",
+        title: "Profile Image Updated",
+        message: "Your profile picture has been updated successfully.",
+        onClose: () => setModal((prev) => ({ ...prev, isOpen: false })),
+      });
     } catch (error) {
-      console.error("Upload failed:", error.response?.data || error.message);
+      setModal({
+        isOpen: true,
+        type: "error",
+        title: "Upload Failed",
+        message: error.response?.data?.message || "Could not upload profile image.",
+        onClose: () => setModal((prev) => ({ ...prev, isOpen: false })),
+      });
     } finally {
       setLoadingImage(false);
     }
   };
 
-  const handleCancelImage = () => {
-    setTempProfileImage(profileImage); // Revert to current saved image
-    setEditModeImage(false);
-  };
-
   return (
     <>
       <main className="flex-1 p-6">
+        {/* Profile Image Section */}
         <div className="bg-[var(--input-bg)] rounded-lg p-6 shadow-md">
-          {/* Section: Profile Image */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-3">
             {editModeImage ? (
-              <div className="flex gap-4  ml-auto">
+              <div className="flex gap-4 ml-auto">
                 <button
                   onClick={handleSaveImage}
                   className="px-4 py-1 text-sm rounded bg-[var(--highlight-color)] text-[var(--button-text-color)] font-semibold hover:bg-[var(--primary-hover)] transition duration-300"
@@ -127,7 +191,7 @@ const PersonalInfo = () => {
                   {loadingImage ? "Saving..." : "Save"}
                 </button>
                 <button
-                  onClick={handleCancelImage}
+                  onClick={() => setEditModeImage(false)}
                   className="text-sm hover:underline text-red-400 transition duration-300"
                 >
                   Cancel
@@ -137,7 +201,7 @@ const PersonalInfo = () => {
               <button
                 onClick={() => {
                   setEditModeImage(true);
-                  setTempProfileImage(profileImage); // Initialize temp with current image
+                  setTempProfileImage(profileImage);
                 }}
                 className="px-4 py-1 text-sm rounded bg-[var(--primary-color)] text-[var(--button-text-color)] hover:bg-[var(--primary-hover)] transition duration-300 ml-auto"
               >
@@ -146,10 +210,9 @@ const PersonalInfo = () => {
             )}
           </div>
 
-          {/* Profile Image Upload */}
           <div className="flex justify-center items-center gap-4 mb-6">
             <img
-              src={editModeImage ? tempProfileImage : profileImage} // Show temp image if in edit mode
+              src={editModeImage ? tempProfileImage : profileImage}
               alt="User"
               className="w-40 h-40 rounded-full object-cover border-2 border-[var(--border-bg)]"
             />
@@ -167,12 +230,10 @@ const PersonalInfo = () => {
           </div>
         </div>
 
-        {/* Section: Personal Information Fields */}
+        {/* Personal Info Section */}
         <div className="mb-8 p-4 rounded-md border border-[var(--border-color)]">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-3">
-            <h2 className="text-xl font-bold text-[var(--highlight-color)]">
-              Personal Details
-            </h2>
+            <h2 className="text-xl font-bold text-[var(--highlight-color)]">Personal Details</h2>
             {editModeInfo ? (
               <div className="flex gap-4">
                 <button
@@ -182,7 +243,7 @@ const PersonalInfo = () => {
                   {loadingInfo ? "Saving..." : "Save"}
                 </button>
                 <button
-                  onClick={handleCancelInfo}
+                  onClick={() => setEditModeInfo(false)}
                   className="text-sm hover:underline text-red-400 transition duration-300"
                 >
                   Cancel
@@ -198,87 +259,50 @@ const PersonalInfo = () => {
             )}
           </div>
 
-          {/* Form Inputs for Personal Info */}
           <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Input
-              label="First Name"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              disabled={!editModeInfo}
-            />
-            <Input
-              label="Last Name"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              disabled={!editModeInfo}
-            />
-            <Input
-              label="Username"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              disabled={!editModeInfo}
-            />
-            <Select
-              label="Gender"
-              name="gender"
-              value={formData.gender}
-              onChange={handleChange}
-              disabled={!editModeInfo}
-              options={["Male", "Female", "Other", "Prefer not to say"]}
-            />
-            <Input
-              label="Date of Birth"
-              name="dateOfBirth"
-              type="date"
-              value={formData.dateOfBirth}
-              onChange={handleChange}
-              disabled={!editModeInfo}
-            />
-
-            {/* Email Address - Always disabled */}
-            <Input
-              label="Email Address"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              disabled={true}
-              helpText="Email can only be changed in 'Account Security' settings."
-            />
-            {/* Phone Number - Always disabled */}
-            <Input
-              label="Phone Number"
-              name="phone"
-              type="tel"
-              value={formData.phone}
-              onChange={handleChange}
-              disabled={true}
-              helpText="Phone number can only be changed in 'Account Security' settings."
-            />
+            <Input label="First Name" name="firstName" value={formData.firstName} onChange={handleChange} disabled={!editModeInfo} />
+            <Input label="Last Name" name="lastName" value={formData.lastName} onChange={handleChange} disabled={!editModeInfo} />
+            <Input label="Username" name="username" value={formData.username} onChange={handleChange} disabled={!editModeInfo} />
+            <Select label="Gender" name="gender" value={formData.gender} onChange={handleChange} disabled={!editModeInfo} options={["Male", "Female", "Other", "Prefer not to say"]} />
+            <Input label="Date of Birth" name="dateOfBirth" type="date" value={formData.dateOfBirth} onChange={handleChange} disabled={!editModeInfo} />
+            <Input label="Email Address" name="email" type="email" value={formData.email} onChange={handleChange} disabled helpText="Email can only be changed in 'Account Security' settings." />
+            <Input label="Phone Number" name="phone" type="tel" value={formData.phone} onChange={handleChange} disabled helpText="Phone number can only be changed in 'Account Security' settings." />
           </form>
         </div>
 
-        {/* Delete Account (remains as is) */}
+        {/* Delete Account Section */}
         <div className="mt-10 bg-[#2e2f35] p-4 rounded-md border-l-4 border-red-500">
-          <h3 className="text-lg font-semibold text-red-400 mb-2">
-            Delete Account
-          </h3>
+          <h3 className="text-lg font-semibold text-red-400 mb-2">Delete Account</h3>
           <p className="text-sm mb-2 text-[var(--text-light)]">
-            After making a deletion request, you will have
-            <span className="font-bold">6 months</span> to recover this account.
+            After making a deletion request, you will have <span className="font-bold">6 months</span> to recover this account.
           </p>
           <p className="text-xs mb-4 text-[var(--text-dark-light)]">
-            Deleting your account will permanently remove all your data and
-            history.
+            Deleting your account will permanently remove all your data and history.
           </p>
-          <button className="text-[var(--logout-text)] hover:text-red-400 font-medium cursor-pointer transition duration-300">
+          <button
+            className="text-[var(--logout-text)] hover:text-red-400 font-medium cursor-pointer transition duration-300"
+            onClick={() => setConfirmModalOpen(true)}
+          >
             Permanently Delete Account
           </button>
         </div>
       </main>
+
+      {/* Confirmation Modal */}
+      <StatusModal
+        isOpen={confirmModalOpen}
+        type="error"
+        title="Confirm Deletion"
+        message="Are you sure you want to permanently delete your account? This action cannot be undone."
+        buttonText="Yes, Delete"
+        onClose={() => {
+          setConfirmModalOpen(false);
+          handleDeleteAccount();
+        }}
+      />
+
+      {/* Status Modal */}
+      <StatusModal {...modal} />
     </>
   );
 };

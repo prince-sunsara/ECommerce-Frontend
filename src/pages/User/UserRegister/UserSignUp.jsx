@@ -3,7 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useFormContext } from "../../../context/FormContext";
 import { useState } from "react";
 import axios from "axios";
-import StatusModal from "../../../components/StatusModal"; // Adjust the path
+import StatusModal from "../../../components/StatusModal";
+
+// Font Awesome for eye icon
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export default function UserSignUp() {
   const navigate = useNavigate();
@@ -11,6 +15,7 @@ export default function UserSignUp() {
 
   const [error, setError] = useState("");
   const [agreeTerms, setAgreeTerms] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const [modal, setModal] = useState({
     isOpen: false,
     type: "success",
@@ -87,7 +92,6 @@ export default function UserSignUp() {
       const response = await axios.post("/api/v1/users/register", fullForm, {
         withCredentials: true,
       });
-      console.log("signup Success:", response);
       if (response.data.success) {
         setModal({
           isOpen: true,
@@ -99,7 +103,6 @@ export default function UserSignUp() {
         });
       }
     } catch (err) {
-      console.error("Signup Failed:", err);
       setModal({
         isOpen: true,
         type: "error",
@@ -204,15 +207,24 @@ export default function UserSignUp() {
               className="bg-[var(--input-bg)] rounded-md px-4 py-3 w-full text-white placeholder-[#cfcfe3] focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)]"
             />
 
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={formData.password || ""}
-              onChange={handleChange}
-              required
-              className="bg-[var(--input-bg)] rounded-md px-4 py-3 w-full text-white placeholder-[#cfcfe3] focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)]"
-            />
+            {/* Password with show/hide icon */}
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                name="password"
+                value={formData.password || ""}
+                onChange={handleChange}
+                required
+                className="bg-[var(--input-bg)] rounded-md px-4 py-3 w-full text-white placeholder-[#cfcfe3] focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)] pr-12"
+              />
+              <span
+                onClick={() => setShowPassword((prev) => !prev)}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-[var(--text-light)] hover:text-white"
+              >
+                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+              </span>
+            </div>
 
             <label className="flex items-center space-x-3 text-sm text-[var(--text-light)]">
               <input
