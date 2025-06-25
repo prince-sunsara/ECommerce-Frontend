@@ -51,7 +51,7 @@ const defaultWishlistItems = [
 ];
 
 export const WishlistProvider = ({ children }) => {
-  const [wishlist, setWishlist] = useState(defaultWishlistItems); // ✅ set static initial wishlist
+  const [wishlist, setWishlist] = useState(defaultWishlistItems); // set static initial wishlist
 
   const addToWishlist = (product) => {
     setWishlist((prev) => {
