@@ -2,8 +2,11 @@ import { useState } from "react";
 import { Input, Select } from "../../components"; // Ensure these components are correctly imported
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
-
+import { useEffect } from "react";
+import { useUser } from "../../context/UserContext";
+import axios from "axios";
 const PersonalInfo = () => {
+  const { user } = useUser();
   // --- State for Personal Info Fields (First Name, Last Name, etc.) ---
   const [editModeInfo, setEditModeInfo] = useState(false);
   const [loadingInfo, setLoadingInfo] = useState(false);
@@ -20,12 +23,28 @@ const PersonalInfo = () => {
   // --- State for Profile Image ---
   const [editModeImage, setEditModeImage] = useState(false);
   const [loadingImage, setLoadingImage] = useState(false);
+  const [file, setFile] = useState(null);
   const [profileImage, setProfileImage] = useState("https://i.pravatar.cc/100");
   // A temporary state to hold the new image URL before saving
   const [tempProfileImage, setTempProfileImage] = useState(
     "https://i.pravatar.cc/100"
   );
+  useEffect(() => {
+    console.log("User:- ", user)
+    setFormData({
+      firstName: user?.firstName || "",
+      lastName: user?.lastName || "",
+      username: user?.username || "",
+      gender: user?.gender || "",
+      dateOfBirth: user?.birthdate || "",
+      email: user?.email || "",
+      phone: user?.phone || "",
+    });
 
+    if (user.avatar) {
+      setProfileImage(user.avatar);
+    }
+  }, [user])
   // --- Handlers for Personal Info Fields ---
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,18 +72,39 @@ const PersonalInfo = () => {
     const file = e.target.files[0];
     if (file) {
       setTempProfileImage(URL.createObjectURL(file)); // Show preview
+      setFile(file)
     }
   };
 
-  const handleSaveImage = () => {
-    setLoadingImage(true);
-    setTimeout(() => {
-      setProfileImage(tempProfileImage); // Commit the new image
-      setLoadingImage(false);
+  const handleSaveImage = async () => {
+    if (!file) return;
+
+    try {
+      setLoadingImage(true);
+
+      const formData = new FormData();
+      formData.append("avatar", file);
+
+      const response = await axios.patch(
+        "/v1/users/account/change/avatar",
+        formData,
+        {
+          withCredentials: true,
+        }
+      );
+
+      const updatedUser = response.data.data; // assuming backend returns updated user data
+
+      console.log("Upload success:", updatedUser);
+
+      setUser(updatedUser); // ✅ update global user
+      setProfileImage(updatedUser.avatar); // ✅ show new image immediately
       setEditModeImage(false);
-      console.log("Saving profile image:", profileImage);
-      // In a real app, upload the image file to your backend
-    }, 1000);
+    } catch (error) {
+      console.error("Upload failed:", error.response?.data || error.message);
+    } finally {
+      setLoadingImage(false);
+    }
   };
 
   const handleCancelImage = () => {

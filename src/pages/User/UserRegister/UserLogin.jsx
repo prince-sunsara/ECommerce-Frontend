@@ -1,12 +1,24 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Make sure you're using react-router-dom not react-router
+import { Link, useNavigate } from "react-router-dom";
 import loginBg from "../../../assets/images/login-signup.png";
-import { useFormContext } from "../../../context/formContext";
+import { useFormContext } from "../../../context/FormContext";
+import { useUser } from "../../../context/UserContext";
+import axios from "axios";
+import StatusModal from "../../../components/StatusModal";
 
 export default function UserLogin() {
   const navigate = useNavigate();
+  const [userResponse, setUserResponse] = useState(null)
   const { formData, updateFormData, clearFormData } = useFormContext();
-  const [showPassword, setShowPassword] = useState(false); // toggle for password
+  const [showPassword, setShowPassword] = useState(false);
+  const { setUser } = useUser();
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalData, setModalData] = useState({
+    type: "success",
+    title: "",
+    message: "",
+  });
 
   const handleClick = () => {
     navigate("/");
@@ -18,16 +30,38 @@ export default function UserLogin() {
   };
 
   const togglePassword = () => {
-    setShowPassword(prev => !prev);
+    setShowPassword((prev) => !prev);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setUser(userResponse);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("Login Success:", formData);
+      const response = await axios.post("/api/v1/users/login", formData, {
+        withCredentials: true,
+      });
+
       clearFormData();
+      setUserResponse(response.data.data.loggedInUser)
+      setModalData({
+        type: "success",
+        title: "Welcome!",
+        message: `Hi ${response.data.data.loggedInUser.firstname}, you're logged in successfully.`,
+      });
+      setModalOpen(true);
     } catch (err) {
       console.error("Login Failed:", err);
+
+      setModalData({
+        type: "error",
+        title: "Login Failed!",
+        message: err?.response?.data?.message || "Something went wrong!",
+      });
+      setModalOpen(true);
     }
   };
 
@@ -100,7 +134,11 @@ export default function UserLogin() {
                 onClick={togglePassword}
                 className="absolute inset-y-0 right-3 flex items-center text-[#cfcfe3] hover:text-white cursor-pointer"
               >
-                <i className={`far ${showPassword ? "fa-eye-slash" : "fa-eye"}`}></i>
+                <i
+                  className={`far ${
+                    showPassword ? "fa-eye-slash" : "fa-eye"
+                  }`}
+                ></i>
               </button>
             </div>
 
@@ -164,6 +202,16 @@ export default function UserLogin() {
           </div>
         </div>
       </div>
+
+      {/* Status Modal */}
+      <StatusModal
+        isOpen={modalOpen}
+        onClose={handleCloseModal}
+        type={modalData.type}
+        title={modalData.title}
+        message={modalData.message}
+        buttonText="Continue"
+      />
     </div>
   );
 }
