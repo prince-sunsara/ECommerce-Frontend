@@ -1,5 +1,10 @@
+import { useState } from "react";
+import Sells from "./Sells";
+import SellerLanding from "./SellerLanding";
+
 const Seller = () => {
-  return <div>Seller</div>;
+  const [sellerLogin, setSellerLogin] = useState(true);
+  return <>{sellerLogin ? <Sells /> : <SellerLanding />}</>;
 };
 
 export default Seller;

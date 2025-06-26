@@ -1,4 +1,4 @@
-import loginBg from "../../assets/images/login-signup.png";
+import loginBg from "../../../assets/images/login-signup.png";
 import { Link, useNavigate } from "react-router";
 
 export default function SellerLogin() {
@@ -42,7 +42,10 @@ export default function SellerLogin() {
           </h1>
           <p className="text-[var(--text-light)] text-sm mb-6">
             Don’t have an account?{" "}
-            <Link to="/seller-sign-up" className="text-white hover:underline font-normal">
+            <Link
+              to="/seller-sign-up"
+              className="text-white hover:underline font-normal"
+            >
               Sign Up
             </Link>
           </p>

@@ -1,15 +1,39 @@
-import loginBg from "../../assets/images/login-signup.png";
-import { Link, useNavigate } from "react-router";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom"; // Make sure you're using react-router-dom not react-router
+import loginBg from "../../../assets/images/login-signup.png";
+import { useFormContext } from "../../../context/formContext";
 
 export default function UserLogin() {
   const navigate = useNavigate();
+  const { formData, updateFormData, clearFormData } = useFormContext();
+  const [showPassword, setShowPassword] = useState(false); // toggle for password
 
   const handleClick = () => {
-    navigate("/"); // Navigates to home page
+    navigate("/");
   };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    updateFormData(name, value);
+  };
+
+  const togglePassword = () => {
+    setShowPassword(prev => !prev);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      console.log("Login Success:", formData);
+      clearFormData();
+    } catch (err) {
+      console.error("Login Failed:", err);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-[var(--primary-bg)] text-white font-inter justify-center">
-      {/* Left image side (hidden on small screens) */}
+      {/* Left image side */}
       <div className="hidden md:flex md:w-1/2 relative flex-col justify-between">
         <div className="p-8 pt-6 flex justify-between items-center z-10">
           <div className="w-[200px] h-[30px] flex items-center justify-center">
@@ -26,7 +50,7 @@ export default function UserLogin() {
           </button>
         </div>
         <img
-          alt="Dark purple desert dunes landscape with purple sky"
+          alt="Login background"
           className="absolute inset-0 w-full h-full object-cover z-0 opacity-90"
           src={loginBg}
           width="600"
@@ -42,34 +66,44 @@ export default function UserLogin() {
           </h1>
           <p className="text-[var(--text-light)] text-sm mb-6">
             Don’t have an account?{" "}
-            <Link to="/user-sign-up" className="text-white hover:underline font-normal">
+            <Link
+              to="/user-sign-up"
+              className="text-white hover:underline font-normal"
+            >
               Sign Up
             </Link>
           </p>
 
-          <form className="space-y-4 w-full">
+          <form className="space-y-4 w-full" onSubmit={handleSubmit}>
             <input
               type="email"
+              name="email"
               placeholder="Email"
+              value={formData.email || ""}
+              onChange={handleChange}
               required
               className="bg-[var(--input-bg)] rounded-md px-4 py-3 text-white placeholder-[#cfcfe3] w-full focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)]"
             />
+
             <div className="relative w-full">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
+                name="password"
                 placeholder="Password"
+                value={formData.password || ""}
+                onChange={handleChange}
                 required
                 className="bg-[var(--input-bg)] rounded-md px-4 py-3 pr-12 text-white placeholder-[#cfcfe3] w-full focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)]"
               />
               <button
                 type="button"
-                aria-label="Toggle password visibility"
-                className="absolute inset-y-0 right-3 flex items-center text-[#cfcfe3] hover:text-white"
-                tabIndex={-1}
+                onClick={togglePassword}
+                className="absolute inset-y-0 right-3 flex items-center text-[#cfcfe3] hover:text-white cursor-pointer"
               >
-                <i className="far fa-eye"></i>
+                <i className={`far ${showPassword ? "fa-eye-slash" : "fa-eye"}`}></i>
               </button>
             </div>
+
             <label className="flex items-center space-x-3 text-[var(--text-light)] text-sm">
               <input
                 type="checkbox"
@@ -87,6 +121,7 @@ export default function UserLogin() {
                 </Link>
               </span>
             </label>
+
             <button
               type="submit"
               className="w-full bg-[var(--primary-color)] rounded-md py-3 text-white text-lg font-normal hover:bg-[var(--primary-hover)] transition cursor-pointer"
@@ -112,8 +147,6 @@ export default function UserLogin() {
                 src="https://storage.googleapis.com/a1aa/image/c754ac72-6d4f-49d9-de94-826702f3bc3f.jpg"
                 alt="Google logo"
                 className="w-5 h-5"
-                width="20"
-                height="20"
               />
               <span className="text-white text-sm font-normal">Google</span>
             </button>
@@ -125,8 +158,6 @@ export default function UserLogin() {
                 src="https://upload.wikimedia.org/wikipedia/commons/3/31/Apple_logo_white.svg"
                 alt="Apple logo"
                 className="w-5 h-5"
-                width="20"
-                height="20"
               />
               <span className="text-white text-sm font-normal">Apple</span>
             </button>
