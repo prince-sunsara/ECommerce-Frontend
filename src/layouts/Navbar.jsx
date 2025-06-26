@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useUser } from "../context/UserContext";
 import {
   faCartShopping,
   faSearch,
@@ -12,15 +13,13 @@ import {
   faCog,
 } from "@fortawesome/free-solid-svg-icons";
 import { Logout } from "../components";
-import { useAuth } from "../context/AuthContext";
 // 👈 Import context
 import { useCart } from "../context/CartContext";
 
 const Navbar = () => {
   const [userDrawerOpen, setUserDrawerOpen] = useState(false);
   const [animateDrawer, setAnimateDrawer] = useState(false);
-  const { isLoggedIn } = useAuth();
-
+  const { user, loading } = useUser();
   // Animate drawer
   useEffect(() => {
     if (userDrawerOpen) {
@@ -156,7 +155,7 @@ const Navbar = () => {
           </div>
 
           {/* Drawer Content */}
-          {isLoggedIn ? (
+          {user ? (
             <>
               <div className="flex flex-col gap-4 border border-[var(--highlight-color)] rounded-lg p-4">
                 <Link
@@ -204,14 +203,14 @@ const Navbar = () => {
           ) : (
             <div className="border border-[var(--highlight-color)] rounded-lg p-4 flex flex-col gap-4">
               <Link
-                to="/user-login"
+                to="/user-sign-up"
                 className="text-center border border-[var(--highlight-color)] text-[var(--highlight-color)] rounded-md px-4 py-2 transition-all duration-300 hover:bg-[var(--highlight-color)] hover:text-black"
                 onClick={() => setUserDrawerOpen(!userDrawerOpen)}
               >
                 Sign Up
               </Link>
               <Link
-                to="/user-sign-up"
+                to="/user-login"
                 className="text-center border border-[var(--highlight-color)] text-[var(--highlight-color)] rounded-md px-4 py-2 transition-all duration-300 hover:bg-[var(--highlight-color)] hover:text-black"
                 onClick={() => setUserDrawerOpen(!userDrawerOpen)}
               >
