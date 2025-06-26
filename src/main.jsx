@@ -9,7 +9,9 @@ import { FormProvider } from "./context/formContext.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <CartProvider>
-      <App />
+      <WishlistProvider>
+        <App />
+      </WishlistProvider>
     </CartProvider>
   </StrictMode>
 );
