@@ -20,8 +20,16 @@ import {
   TermsAndConditions,
   OtpVerification,
   Error,
+  Settings,
   CartPage,
+  Categories,
+  Orders,
+  Wishlist,
+  Seller,
 } from "./pages";
+import { AuthProvider } from "./context/AuthContext.jsx";
+import GuestOnlyRoute from "./routes/GuestOnlyRoute.jsx"; // ✅ added
+import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
 function AppWrapper() {
   const location = useLocation();
@@ -48,24 +56,48 @@ function AppWrapper() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-
-        <Route path="/user-login" element={<UserLogin />} />
-        <Route path="/user-sign-up" element={<UserSignUp />} />
-        <Route path="/seller-login" element={<SellerLogin />} />
-        <Route path="/seller-sign-up" element={<SellerSignUp />} />
+        <Route
+          path="/user-login"
+          element={
+            <GuestOnlyRoute>
+              <UserLogin />
+            </GuestOnlyRoute>
+          }
+        />
+        <Route
+          path="/user-sign-up"
+          element={
+            <GuestOnlyRoute>
+              <UserSignUp />
+            </GuestOnlyRoute>
+          }
+        />
+        <Route
+          path="/seller-login"
+          element={
+            <SellerLogin />
+          }
+        />
+        <Route
+          path="/seller-sign-up"
+          element={
+            <SellerSignUp />
+          }
+        />
+        <Route path="/seller" element={<Seller />} />
         <Route path="/otp-verification" element={<OtpVerification />} />
-
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<Contact />} />
-
+        <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/faq" element={<FAQSection />} />
         <Route path="/help-center" element={<HelpCenter />} />
-        <Route path="/user-cart" element={<CartPage />}></Route>
-
+        <Route path="/user-cart" element={<CartPage />} />
+        <Route path="wishlist" element={<Wishlist />} />
+        <Route path="orders" element={<Orders />} />
+        <Route path="categories" element={<Categories />} />
         <Route path="/404" element={<Error />} />
-
         {/* Redirect unknown routes to 404 */}
         <Route path="*" element={<Navigate to="/404" />} />
       </Routes>
@@ -82,7 +114,9 @@ function AppWrapper() {
 export default function App() {
   return (
     <BrowserRouter>
-      <AppWrapper />
+      <AuthProvider>
+        <AppWrapper />
+      </AuthProvider>
     </BrowserRouter>
   );
 }

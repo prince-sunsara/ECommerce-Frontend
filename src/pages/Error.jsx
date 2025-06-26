@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Anime404() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#1a172eff] text-white px-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[var(--primary-bg)] text-[var(--text-light)] px-4">
       {/* Cute Anime Illustration */}
       <img
         src="/images/error/404.png"
@@ -12,10 +12,10 @@ export default function Anime404() {
       />
 
       {/* Hero */}
-      <h1 className="text-5xl sm:text-8xl font-extrabold mb-6 animate-pulse">
+      <h1 className="text-5xl sm:text-8xl font-extrabold mb-6 animate-pulse text-[var(--highlight-color)]">
         404 Error
       </h1>
-      <p className="text-xl sm:text-2xl mb-12 text-center">
+      <p className="text-xl sm:text-2xl mb-12 text-center text-[var(--text-dark-light)]">
         Oops! We can't find this page.
       </p>
 
@@ -23,7 +23,7 @@ export default function Anime404() {
       <div className="flex gap-4">
         <Link
           to="/"
-          className="flex gap-2 bg-[#7d5fff] border-[#7d5fff] text-[#3d3c50] px-6 py-3 rounded-4xl text-xl items-center font-bold hover:border hover:text-[#7d5fff] hover:bg-transparent"
+          className="flex gap-2 bg-[var(--highlight-color)] border border-[var(--highlight-color)] text-[var(--button-text-color)] px-6 py-3 rounded-3xl text-xl items-center font-bold hover:text-[var(--highlight-color)] hover:bg-transparent hover:border-[var(--highlight-color)] transition"
         >
           <ChevronLeftCircle /> Go to Home Page
         </Link>
