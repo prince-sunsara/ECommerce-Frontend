@@ -1,4 +1,4 @@
-import Home from "./Home/Home";
+import Home from "./Home";
 import AboutUs from "./About/AboutUs";
 import Contact from "./Contact";
 import TermsAndConditions from "./TermsAndConditions";

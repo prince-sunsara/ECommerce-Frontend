@@ -1,5 +1,5 @@
 import React from "react";
-import Slider from "../components/Slider.jsx";
+import Slider from "../Slider";
 // ✅ Hero Banner Slider Data
 const heroSlides = [
   {
