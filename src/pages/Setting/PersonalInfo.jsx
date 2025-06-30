@@ -111,7 +111,8 @@ const PersonalInfo = () => {
         isOpen: true,
         type: "success",
         title: "Account Deleted",
-        message: res.data.message || "Your account has been deleted successfully.",
+        message:
+          res.data.message || "Your account has been deleted successfully.",
         onClose: () => {
           setModal({ ...modal, isOpen: false });
           window.location.href = "/";
@@ -168,7 +169,8 @@ const PersonalInfo = () => {
         isOpen: true,
         type: "error",
         title: "Upload Failed",
-        message: error.response?.data?.message || "Could not upload profile image.",
+        message:
+          error.response?.data?.message || "Could not upload profile image.",
         onClose: () => setModal((prev) => ({ ...prev, isOpen: false })),
       });
     } finally {
@@ -233,7 +235,9 @@ const PersonalInfo = () => {
         {/* Personal Info Section */}
         <div className="mb-8 p-4 rounded-md border border-[var(--border-color)]">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-3">
-            <h2 className="text-xl font-bold text-[var(--highlight-color)]">Personal Details</h2>
+            <h2 className="text-xl font-bold text-[var(--highlight-color)]">
+              Personal Details
+            </h2>
             {editModeInfo ? (
               <div className="flex gap-4">
                 <button
@@ -260,24 +264,76 @@ const PersonalInfo = () => {
           </div>
 
           <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Input label="First Name" name="firstName" value={formData.firstName} onChange={handleChange} disabled={!editModeInfo} />
-            <Input label="Last Name" name="lastName" value={formData.lastName} onChange={handleChange} disabled={!editModeInfo} />
-            <Input label="Username" name="username" value={formData.username} onChange={handleChange} disabled={!editModeInfo} />
-            <Select label="Gender" name="gender" value={formData.gender} onChange={handleChange} disabled={!editModeInfo} options={["Male", "Female", "Other", "Prefer not to say"]} />
-            <Input label="Date of Birth" name="dateOfBirth" type="date" value={formData.dateOfBirth} onChange={handleChange} disabled={!editModeInfo} />
-            <Input label="Email Address" name="email" type="email" value={formData.email} onChange={handleChange} disabled helpText="Email can only be changed in 'Account Security' settings." />
-            <Input label="Phone Number" name="phone" type="tel" value={formData.phone} onChange={handleChange} disabled helpText="Phone number can only be changed in 'Account Security' settings." />
+            <Input
+              label="First Name"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              disabled={!editModeInfo}
+            />
+            <Input
+              label="Last Name"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              disabled={!editModeInfo}
+            />
+            <Input
+              label="Username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              disabled={!editModeInfo}
+            />
+            <Select
+              label="Gender"
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+              disabled={!editModeInfo}
+              options={["Male", "Female", "Other", "Prefer not to say"]}
+            />
+            <Input
+              label="Date of Birth"
+              name="dateOfBirth"
+              type="date"
+              value={formData.dateOfBirth}
+              onChange={handleChange}
+              disabled={!editModeInfo}
+            />
+            <Input
+              label="Email Address"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+              disabled
+              helpText="Email can only be changed in 'Account Security' settings."
+            />
+            <Input
+              label="Phone Number"
+              name="phone"
+              type="tel"
+              value={formData.phone}
+              onChange={handleChange}
+              disabled
+              helpText="Phone number can only be changed in 'Account Security' settings."
+            />
           </form>
         </div>
 
         {/* Delete Account Section */}
         <div className="mt-10 bg-[#2e2f35] p-4 rounded-md border-l-4 border-red-500">
-          <h3 className="text-lg font-semibold text-red-400 mb-2">Delete Account</h3>
+          <h3 className="text-lg font-semibold text-red-400 mb-2">
+            Delete Account
+          </h3>
           <p className="text-sm mb-2 text-[var(--text-light)]">
-            After making a deletion request, you will have <span className="font-bold">6 months</span> to recover this account.
+            After making a deletion request, you will have{" "}
+            <span className="font-bold">6 months</span> to recover this account.
           </p>
           <p className="text-xs mb-4 text-[var(--text-dark-light)]">
-            Deleting your account will permanently remove all your data and history.
+            Deleting your account will permanently remove all your data and
+            history.
           </p>
           <button
             className="text-[var(--logout-text)] hover:text-red-400 font-medium cursor-pointer transition duration-300"

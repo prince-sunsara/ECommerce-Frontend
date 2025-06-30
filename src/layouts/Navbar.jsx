@@ -101,12 +101,14 @@ const Navbar = () => {
           </Link>
           <Link
             to="/seller"
-            className="text-sm md:text-base font-medium hover:text-[var(--link-ho)]"
+            className="text-sm md:text-base font-medium hover:text-[var(--link-ho)] text-center"
           >
-            <FontAwesomeIcon
-              icon={faStore}
-              className="text-xl transition mr-2"
-            />
+            <span className="hidden md:block">
+              <FontAwesomeIcon
+                icon={faStore}
+                className="text-xl transition mr-2"
+              />
+            </span>
             Become a Seller
           </Link>
 

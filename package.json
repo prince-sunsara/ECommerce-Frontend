@@ -15,11 +15,8 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@tailwindcss/vite": "^4.1.8",
-<<<<<<< HEAD
-    "framer-motion": "^12.19.1",
-=======
     "axios": "^1.10.0",
->>>>>>> 68d5e341dc7b17b693190136cff71545f11dc193
+    "framer-motion": "^12.19.2",
     "lucide-react": "^0.515.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
