@@ -1,7 +1,11 @@
 import { useRef } from "react";
+import { useLocation, useNavigate } from "react-router";
 
 export default function OtpVerification() {
   const inputsRef = useRef([]);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { returnTo, tab } = location.state || {};
 
   const handleChange = (e, index) => {
     const value = e.target.value;
@@ -17,6 +21,11 @@ export default function OtpVerification() {
     if (e.key === "Backspace" && !e.target.value && index > 0) {
       inputsRef.current[index - 1].focus();
     }
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    navigate(`${returnTo}?tab=${tab}`);
   };
 
   return (
@@ -49,6 +58,7 @@ export default function OtpVerification() {
           <button
             type="submit"
             className="w-full bg-[var(--primary-color)] rounded-md py-3 text-white text-lg font-normal hover:bg-[var(--primary-hover)] transition cursor-pointer"
+            onClick={handleClick}
           >
             Verify OTP
           </button>

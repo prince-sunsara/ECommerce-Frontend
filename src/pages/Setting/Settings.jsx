@@ -5,6 +5,7 @@ import Notifications from "./Notifications";
 import AddressBook from "./AddressBook";
 import PaymentMethods from "./PaymentMethods";
 import { Logout } from "../../components";
+import { useLocation, useNavigate } from "react-router";
 
 const SettingMenuList = [
   "Personal Info",
@@ -23,9 +24,18 @@ const pageComponents = {
 };
 
 const Settings = () => {
-  const [activePage, setActivePage] = useState("Personal Info");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const queriParams = new URLSearchParams(location.search);
+  const defaultTab = queriParams.get("tab") || "Personal Info";
 
+  const [activePage, setActivePage] = useState(defaultTab);
   const ActiveComponent = pageComponents[activePage];
+
+  const handleTabClick = (tab) => {
+    setActivePage(tab);
+    navigate(`/settings?tab=${encodeURIComponent(tab)}`);
+  };
 
   return (
     <div className="min-h-screen bg-[var(--hero-bg)] text-[var(--text-light)] flex flex-col md:flex-row">
@@ -38,7 +48,7 @@ const Settings = () => {
           {SettingMenuList.map((item) => (
             <li
               key={item}
-              onClick={() => setActivePage(item)}
+              onClick={() => handleTabClick(item)}
               className={`cursor-pointer px-3 py-2 rounded-md font-medium transition-all duration-200 ease-in-out
                 ${
                   activePage === item

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const CredentialsSettings = () => {
   // --- States for Email & Mobile Section ---
@@ -25,6 +26,8 @@ const CredentialsSettings = () => {
 
   const [passwordChangeOtpSent, setPasswordChangeOtpSent] = useState(false);
   const [passwordChangeOtp, setPasswordChangeOtp] = useState("");
+
+  const navigate = useNavigate();
 
   // --- Generic Input Component (can be replaced by your shared Input component) ---
   const StyledInput = ({
@@ -53,15 +56,18 @@ const CredentialsSettings = () => {
   // --- Handlers for Email & Mobile Section ---
   const handleSendEmailOtp = () => {
     setLoadingEmailMobile(true);
-    // Simulate sending OTP to newEmail
-    const simulatedOtp = "123456"; // In real app, this comes from backend
+    const simulatedOtp = Math.floor(Math.random() * 1000000);
+    // console.log(simulatedOtp);
+
     setTimeout(() => {
       setLoadingEmailMobile(false);
       setEmailOtpSent(true);
       alert(`OTP sent to ${tempNewEmail}: ${simulatedOtp}`);
-      // Store simulatedOtp in state or a ref for verification (for demo only)
-      // In a real app, backend verifies OTP
     }, 1000);
+
+    navigate("/otp-verification", {
+      state: { returnTo: "/settings", tab: "Credential Settings" },
+    });
   };
 
   const handleSendMobileOtp = () => {
