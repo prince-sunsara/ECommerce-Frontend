@@ -135,9 +135,8 @@ export default function UserLogin() {
                 className="absolute inset-y-0 right-3 flex items-center text-[#cfcfe3] hover:text-white cursor-pointer"
               >
                 <i
-                  className={`far ${
-                    showPassword ? "fa-eye-slash" : "fa-eye"
-                  }`}
+                  className={`far ${showPassword ? "fa-eye-slash" : "fa-eye"
+                    }`}
                 ></i>
               </button>
             </div>
@@ -179,6 +178,9 @@ export default function UserLogin() {
           <div className="flex space-x-4">
             <button
               type="button"
+              onClick={() => {
+                window.location.href = "http://localhost:4000/v1/users/google";
+              }}
               className="cursor-pointer flex items-center justify-center space-x-2 border border-[var(--border-color)] rounded-md py-3 px-6 w-full hover:border-[var(--ring-color)] transition"
             >
               <img

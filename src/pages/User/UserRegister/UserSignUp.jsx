@@ -89,17 +89,13 @@ export default function UserSignUp() {
     };
 
     try {
-      const response = await axios.post("/api/v1/users/register", fullForm, {
-        withCredentials: true,
+      const otpRes = await axios.post("/api/v1/users/send-otp", {
+        email: fullForm.email,
       });
-      if (response.data.success) {
-        setModal({
-          isOpen: true,
-          type: "success",
-          title: "Oh Yeah!",
-          message: "You have successfully registered.",
-          buttonText: "Ok",
-          callback: () => navigate("/user-login"),
+
+      if (otpRes.data.success) {
+        navigate("/otp-verification", {
+          state: { formData: fullForm },
         });
       }
     } catch (err) {
@@ -263,6 +259,9 @@ export default function UserSignUp() {
           <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
             <button
               type="button"
+              onClick={() => {
+                window.location.href = "http://localhost:4000/v1/users/google";
+              }}
               className="flex items-center justify-center space-x-2 border border-[var(--border-color)] rounded-md py-3 px-6 w-full hover:border-[var(--ring-color)] transition"
             >
               <img

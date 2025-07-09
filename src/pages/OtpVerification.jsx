@@ -1,13 +1,36 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import StatusModal from "../components/StatusModal";
 
 export default function OtpVerification() {
   const inputsRef = useRef([]);
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  const [modal, setModal] = useState({
+    isOpen: false,
+    type: "success",
+    title: "",
+    message: "",
+    buttonText: "Ok",
+    callback: () => {},
+  });
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const formData = location?.state?.formData;
+
+  useEffect(() => {
+    if (!formData) navigate("/user-sign-up");
+  }, [formData, navigate]);
 
   const handleChange = (e, index) => {
     const value = e.target.value;
-    if (!/^\d*$/.test(value)) return; // Only allow digits
+    if (!/^\d*$/.test(value)) return;
 
-    // Move to next input if value is filled
+    const newOtp = [...otp];
+    newOtp[index] = value;
+    setOtp(newOtp);
+
     if (value && index < inputsRef.current.length - 1) {
       inputsRef.current[index + 1].focus();
     }
@@ -19,6 +42,58 @@ export default function OtpVerification() {
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const enteredOtp = otp.join("");
+
+    if (enteredOtp.length < 6) {
+      setModal({
+        isOpen: true,
+        type: "error",
+        title: "Incomplete OTP",
+        message: "Please enter the full 6-digit OTP.",
+        buttonText: "Try Again",
+        callback: () => {},
+      });
+      return;
+    }
+
+    try {
+      // Step 1: Verify OTP
+      const verifyRes = await axios.post("/api/v1/users/verify-otp", {
+        email: formData.email,
+        otp: enteredOtp,
+      });
+
+      if (verifyRes.data.success) {
+        // Step 2: Register user
+        const registerRes = await axios.post("/api/v1/users/register", formData, {
+          withCredentials: true,
+        });
+
+        if (registerRes.data.success) {
+          setModal({
+            isOpen: true,
+            type: "success",
+            title: "Registration Successful",
+            message: "Your account has been created!",
+            buttonText: "Login",
+            callback: () => navigate("/user-login"),
+          });
+        }
+      }
+    } catch (err) {
+      setModal({
+        isOpen: true,
+        type: "error",
+        title: "Verification Failed",
+        message: err?.response?.data?.message || "Invalid OTP or Server error.",
+        buttonText: "Retry",
+        callback: () => {},
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-[var(--primary-bg)] text-white font-inter px-4">
       <div className="w-full max-w-md bg-[var(--primary-bg)] px-4 py-10 sm:px-8 md:px-10 border border-[var(--ring-color)] rounded-xl">
@@ -26,10 +101,10 @@ export default function OtpVerification() {
           Verify OTP
         </h1>
         <p className="text-[var(--text-light)] text-sm mb-6 text-center">
-          Enter the 6-digit code sent to your email/phone.
+          Enter the 6-digit code sent to your email.
         </p>
 
-        <form className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div className="flex justify-between max-w-sm mx-auto">
             {Array.from({ length: 6 }).map((_, idx) => (
               <input
@@ -38,6 +113,7 @@ export default function OtpVerification() {
                 type="text"
                 maxLength={1}
                 inputMode="numeric"
+                value={otp[idx]}
                 className="w-10 h-10 sm:w-14 sm:h-14 text-center text-xl rounded-md bg-[var(--input-bg)] text-white placeholder-[#cfcfe3] focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)]"
                 placeholder="•"
                 onChange={(e) => handleChange(e, idx)}
@@ -56,11 +132,36 @@ export default function OtpVerification() {
 
         <div className="text-center mt-6 text-sm text-[var(--text-light)]">
           Didn’t receive the code?{" "}
-          <a href="#" className="text-white hover:underline">
+          <button
+            onClick={async () => {
+              await axios.post("/api/v1/users/send-otp", { email: formData?.email });
+              setModal({
+                isOpen: true,
+                type: "info",
+                title: "OTP Sent",
+                message: "A new OTP has been sent to your email.",
+                buttonText: "Ok",
+                callback: () => {},
+              });
+            }}
+            className="text-white hover:underline"
+          >
             Resend
-          </a>
+          </button>
         </div>
       </div>
+
+      <StatusModal
+        isOpen={modal.isOpen}
+        type={modal.type}
+        title={modal.title}
+        message={modal.message}
+        buttonText={modal.buttonText}
+        onClose={() => {
+          setModal({ ...modal, isOpen: false });
+          modal.callback?.();
+        }}
+      />
     </div>
   );
 }
