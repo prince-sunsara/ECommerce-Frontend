@@ -22,7 +22,7 @@ export default function UserSignUp() {
     title: "",
     message: "",
     buttonText: "Ok",
-    callback: () => {},
+    callback: () => { },
   });
 
   const handleClick = () => {
@@ -89,15 +89,16 @@ export default function UserSignUp() {
     };
 
     try {
+      navigate("/otp-verification", {
+        state: {
+          formData: fullForm,
+          reqestedFrom: "signup"
+        },
+      });
       const otpRes = await axios.post("/api/v1/users/send-otp", {
         email: fullForm.email,
       });
 
-      if (otpRes.data.success) {
-        navigate("/otp-verification", {
-          state: { formData: fullForm },
-        });
-      }
     } catch (err) {
       setModal({
         isOpen: true,
@@ -105,7 +106,7 @@ export default function UserSignUp() {
         title: "Signup Failed!",
         message: err?.response?.data?.message || "Something went wrong",
         buttonText: "Ok",
-        callback: () => {},
+        callback: () => { },
       });
     }
 

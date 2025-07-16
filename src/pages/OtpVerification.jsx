@@ -28,18 +28,27 @@ export default function OtpVerification() {
     if (!/^\d*$/.test(value)) return;
 
     const newOtp = [...otp];
-    newOtp[index] = value;
+    newOtp[index] = value.slice(-1); // Only 1 digit
     setOtp(newOtp);
 
-    if (value && index < inputsRef.current.length - 1) {
-      inputsRef.current[index + 1].focus();
+    if (value && index < 5) {
+      inputsRef.current[index + 1]?.focus();
     }
   };
 
   const handleKeyDown = (e, index) => {
-    if (e.key === "Backspace" && !e.target.value && index > 0) {
-      inputsRef.current[index - 1].focus();
+    if (e.key === "Backspace" && !otp[index] && index > 0) {
+      inputsRef.current[index - 1]?.focus();
     }
+  };
+
+  const handlePaste = (e) => {
+    const pasteData = e.clipboardData.getData("text").trim();
+    if (!/^\d{6}$/.test(pasteData)) return;
+
+    const newOtp = pasteData.split("");
+    setOtp(newOtp);
+    inputsRef.current[5]?.focus();
   };
 
   const handleSubmit = async (e) => {
@@ -47,7 +56,7 @@ export default function OtpVerification() {
     const enteredOtp = otp.join("");
 
     if (enteredOtp.length < 6) {
-      setModal({
+      return setModal({
         isOpen: true,
         type: "error",
         title: "Incomplete OTP",
@@ -55,24 +64,21 @@ export default function OtpVerification() {
         buttonText: "Try Again",
         callback: () => {},
       });
-      return;
     }
 
     try {
-      // Step 1: Verify OTP
       const verifyRes = await axios.post("/api/v1/users/verify-otp", {
         email: formData.email,
         otp: enteredOtp,
       });
 
-      if (verifyRes.data.success) {
-        // Step 2: Register user
+      if (verifyRes.data.success && location?.state?.reqestedFrom === "signup") {
         const registerRes = await axios.post("/api/v1/users/register", formData, {
           withCredentials: true,
         });
 
         if (registerRes.data.success) {
-          setModal({
+          return setModal({
             isOpen: true,
             type: "success",
             title: "Registration Successful",
@@ -97,25 +103,27 @@ export default function OtpVerification() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[var(--primary-bg)] text-white font-inter px-4">
       <div className="w-full max-w-md bg-[var(--primary-bg)] px-4 py-10 sm:px-8 md:px-10 border border-[var(--ring-color)] rounded-xl">
-        <h1 className="text-white text-3xl font-semibold mb-3 text-center">
-          Verify OTP
-        </h1>
-        <p className="text-[var(--text-light)] text-sm mb-6 text-center">
+        <h1 className="text-3xl font-semibold mb-3 text-center">Verify OTP</h1>
+        <p className="text-sm mb-6 text-center text-[var(--text-light)]">
           Enter the 6-digit code sent to your email.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="flex justify-between max-w-sm mx-auto">
-            {Array.from({ length: 6 }).map((_, idx) => (
+          <div
+            className="flex justify-between max-w-sm mx-auto"
+            onPaste={handlePaste}
+          >
+            {otp.map((value, idx) => (
               <input
                 key={idx}
                 ref={(el) => (inputsRef.current[idx] = el)}
                 type="text"
-                maxLength={1}
                 inputMode="numeric"
-                value={otp[idx]}
-                className="w-10 h-10 sm:w-14 sm:h-14 text-center text-xl rounded-md bg-[var(--input-bg)] text-white placeholder-[#cfcfe3] focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)]"
+                pattern="\d*"
+                maxLength={1}
+                value={value}
                 placeholder="•"
+                className="w-10 h-10 sm:w-14 sm:h-14 text-center text-xl rounded-md bg-[var(--input-bg)] text-white placeholder-[#cfcfe3] focus:outline-none focus:ring-2 focus:ring-[var(--ring-color)]"
                 onChange={(e) => handleChange(e, idx)}
                 onKeyDown={(e) => handleKeyDown(e, idx)}
               />
@@ -124,7 +132,7 @@ export default function OtpVerification() {
 
           <button
             type="submit"
-            className="w-full bg-[var(--primary-color)] rounded-md py-3 text-white text-lg font-normal hover:bg-[var(--primary-hover)] transition cursor-pointer"
+            className="w-full bg-[var(--primary-color)] rounded-md py-3 text-lg font-normal hover:bg-[var(--primary-hover)] transition"
           >
             Verify OTP
           </button>
@@ -134,7 +142,9 @@ export default function OtpVerification() {
           Didn’t receive the code?{" "}
           <button
             onClick={async () => {
-              await axios.post("/api/v1/users/send-otp", { email: formData?.email });
+              await axios.post("/api/v1/users/send-otp", {
+                email: formData?.email,
+              });
               setModal({
                 isOpen: true,
                 type: "info",
