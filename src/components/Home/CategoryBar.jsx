@@ -76,12 +76,9 @@ const menuItems = [
 ];
 
 const CategoryBar = () => {
-  const [hoveredIndex, setHoveredIndex] = useState(null); // Index of hovered menu item
-  const wrapperRef = useRef(null); // Ref for outside click detection
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const wrapperRef = useRef(null);
 
-  const hoveredItem = hoveredIndex !== null ? menuItems[hoveredIndex] : null;
-
-  // Close submenu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
@@ -93,21 +90,24 @@ const CategoryBar = () => {
   }, []);
 
   return (
-    <div className="relative w-full bg-white shadow z-50" ref={wrapperRef}>
-      {/* Scrollable Horizontal Category Bar */}
+    <div
+      className="relative w-full bg-[var(--bg-color)] shadow"
+      ref={wrapperRef}
+    >
       <div className="w-full flex justify-center">
-        <div className="flex overflow-x-auto gap-4 sm:gap-6 px-2 sm:px-4 py-3 sm:py-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent max-w-screen-xl">
+        <div className="flex overflow-x-auto gap-4 sm:gap-6 px-2 sm:px-4 py-3 sm:py-4 scrollbar-thin  scrollbar-track-transparent max-w-screen-xl">
           {menuItems.map((cat, index) => {
             const isHovered = hoveredIndex === index;
             const hasSub = cat.subMenu && cat.subMenu.length > 0;
 
             return (
-              <div
+              <span
                 key={index}
-                className="flex-shrink-0 group text-center cursor-pointer"
+                className="  text-center cursor-pointer "
                 onMouseEnter={() => setHoveredIndex(index)}
+                // onMouseLeave={() => setHoveredIndex(null)}
               >
-                <div className="w-20 sm:w-24 md:w-28 relative transition-transform duration-300 hover:scale-105">
+                <div className="w-20 sm:w-24 md:w-28 transition-transform duration-300 hover:scale-105">
                   <img
                     src={cat.image}
                     alt={cat.name}
@@ -122,47 +122,43 @@ const CategoryBar = () => {
                     )}
                   </span>
                 </div>
-              </div>
+
+                {/* Submenu - only shown when hovered */}
+                {hasSub && isHovered && (
+                  <div
+                    className="absolute -translate-x-1  bg-[var(--primary-bg)] border border-[var(--border-color)] shadow-2xl py-4 px-4 sm:px-2 rounded-xl z-50 "
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                  >
+                    <div className="flex flex-wrap sm:flex-nowrap gap-4 sm:gap-5 max-w-screen-md mx-auto">
+                      {cat.subMenu.map((section, sIdx) => (
+                        <div
+                          key={sIdx}
+                          className="min-w-[150px] sm:min-w-[180px] max-w-[220px] flex flex-col"
+                        >
+                          <h4 className="text-sm font-semibold text-[var(--highlight-color)] mb-2 sm:mb-3 uppercase tracking-wide border-b border-[var(--border-color)] pb-1">
+                            {section.title}
+                          </h4>
+                          <ul className="space-y-1 sm:space-y-2 mt-1 sm:mt-2">
+                            {section.items.map((item, i) => (
+                              <li
+                                key={i}
+                                className="text-sm text-[var(--text-light)] px-3 py-1 rounded-md hover:bg-[var(--highlight-color)] hover:text-[var(--button-text-color)] transition duration-200 cursor-pointer"
+                              >
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </span>
             );
           })}
         </div>
       </div>
-
-      {/* Mega Menu Dropdown (on hover) */}
-      {hoveredItem && hoveredItem.subMenu && (
-        <div
-          className="absolute top-full mt-2 sm:mt-4 bg-[var(--primary-bg)] border border-[var(--border-color)] shadow-2xl py-4 sm:py-6 px-4 sm:px-8 rounded-xl z-50 max-w-[95vw] sm:max-w-fit overflow-x-auto animate-fadeIn"
-          style={{
-            left: "50%",
-            transform: "translateX(-50%)",
-          }}
-          onMouseEnter={() => setHoveredIndex(hoveredIndex)}
-          onMouseLeave={() => setHoveredIndex(null)}
-        >
-          <div className="flex flex-wrap sm:flex-nowrap gap-4 sm:gap-10">
-            {hoveredItem.subMenu.map((section, idx) => (
-              <div
-                key={idx}
-                className="min-w-[150px] sm:min-w-[180px] max-w-[220px] flex flex-col"
-              >
-                <h4 className="text-sm font-semibold text-[var(--highlight-color)] mb-2 sm:mb-3 uppercase tracking-wide border-b border-[var(--border-color)] pb-1">
-                  {section.title}
-                </h4>
-                <ul className="space-y-1 sm:space-y-2 mt-1 sm:mt-2">
-                  {section.items.map((item, i) => (
-                    <li
-                      key={i}
-                      className="text-sm text-[var(--text-light)] px-3 py-1 rounded-md hover:bg-[var(--highlight-color)] hover:text-[var(--button-text-color)] transition duration-200 cursor-pointer"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 };

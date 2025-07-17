@@ -1,5 +1,5 @@
 import React from "react";
-import Slider from "../Slider";
+import MainSlider from "../MainSlider";
 // ✅ Hero Banner Slider Data
 const heroSlides = [
   {
@@ -48,7 +48,7 @@ const heroSlides = [
 const HeroBanner = () => {
   return (
     <section className="w-full">
-      <Slider
+      <MainSlider
         slides={heroSlides}
         autoSlide={true}
         slideInterval={2000}

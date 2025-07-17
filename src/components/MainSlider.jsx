@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const Slider = ({
+const MainSlider = ({
   slides = [],
   autoSlide = true,
   slideInterval = 3000,
@@ -112,4 +112,4 @@ const Slider = ({
   );
 };
 
-export default Slider;
+export default MainSlider;

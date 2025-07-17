@@ -64,9 +64,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-sm">
           {/* ----- Company Info ----- */}
           <div>
-            <h1 className="text-3xl font-bold mb-2 text-[var(--highlight-color)]">
-              E-Commerce
-            </h1>
+            <Link
+              to="/"
+              className="text-3xl font-bold mb-2 text-[var(--highlight-color)] whitespace-nowrap"
+              onClick={() => window.scrollTo(0, 0)}
+            >
+              ECommerce
+            </Link>
+
             <p className="text-[var(--text-dark-light)] mb-4">
               Experience fast delivery, unbeatable prices, and the widest range.
             </p>
@@ -98,6 +103,7 @@ const Footer = () => {
                 <Link
                   to={item.path}
                   className="hover:text-[var(--primary-color)] inline-block pl-0 group-hover:pl-3 transition-all duration-200 before:content-[''] group-hover:before:content-['—'] before:mr-1"
+                  onClick={() => window.scrollTo(0, 0)}
                 >
                   {item.label}
                 </Link>
@@ -118,6 +124,7 @@ const Footer = () => {
                 <Link
                   to={item.path}
                   className="hover:text-[var(--primary-color)] inline-block pl-0 group-hover:pl-3 transition-all duration-200 before:content-[''] group-hover:before:content-['—'] before:mr-1"
+                  onClick={() => window.scrollTo(0, 0)}
                 >
                   {item.label}
                 </Link>
